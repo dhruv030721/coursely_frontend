@@ -1,4 +1,3 @@
-import { Header } from "@/components/index"
 
 const HomePage = () => {
   return (
@@ -9,11 +8,8 @@ const HomePage = () => {
         <div className="absolute -bottom-1/4 -left-1/4 w-2/3 h-2/3 bg-green-600/40 rounded-full blur-[200px] animate-blob animation-delay-4000"></div>
       </div>
 
-      {/* Header */}
-      <Header />
-
       {/* Hero Section */}
-      <div className="relative z-10 container mx-auto px-4 pt-24 text-white font-geist text-center">
+      <div className="relative min-h-screen flex flex-col justify-center z-10 container mx-auto px-4 pt-24 text-white font-geist text-center">
         <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-white via-white/80 to-white/60 bg-clip-text text-transparent">
           Master the Markets with 
           <br />
