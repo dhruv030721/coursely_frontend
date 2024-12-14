@@ -17,9 +17,8 @@ const AdminAuthLayout = ({ children, authentication = true }: AuthLayoutProps) =
         if (authentication && !authStatus) {
             navigate('/login');
         } else {
-            navigate('/admin');
+            navigate('/admin/dashboard')
         }
-
     }, [])
 
 

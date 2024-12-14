@@ -1,16 +1,23 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HomePage, AdminAuthLayout, AuthLayout, Layout, AdminLayout } from "@/pages";
+import { HomePage, AdminAuthLayout, AuthLayout, Layout, AdminLayout, Dashboard } from "@/pages";
 
 const App = () => {
 
   return (
     <Router>
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<AuthLayout><Layout /></AuthLayout>}>
-          <Route path="/" element={<HomePage />} />
+          <Route path="" element={<HomePage />} />
         </Route>
-        <Route path="/admin" element={<AdminAuthLayout><AdminLayout /></AdminAuthLayout>}>
+
+        {/* Admin Routes  */}
+        <Route path="admin" element={<AdminAuthLayout><AdminLayout /></AdminAuthLayout>}>
+          <Route path="dashboard" element={<Dashboard />} />
         </Route>
+
+        {/* Fallback Routes */}
+        <Route path="*" element={<h1>404 - Page Not Found</h1>} />
       </Routes>
     </Router>
   );
