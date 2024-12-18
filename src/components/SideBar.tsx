@@ -5,6 +5,7 @@ import { TbVideoPlus, TbUsersGroup } from "react-icons/tb";
 import { GiReceiveMoney } from "react-icons/gi";
 import { PiArrowBendDownLeftBold } from "react-icons/pi";
 import { Link, useLocation } from "react-router-dom";
+import { FaMoneyBill1Wave } from "react-icons/fa6";
 import yslogo from "@/assets/logo_icon.png";
 
 interface SidebarOptionsType {
@@ -33,12 +34,12 @@ const SideBar = () => {
             ],
         },
         {
-            section: "Course",
+            section: "Course Management",
             elements: [
                 {
-                    name: "Courses",
+                    name: "Manage Courses",
                     icon: <MdVideoLibrary />,
-                    route: "courses",
+                    route: "manage-courses",
                 },
                 {
                     name: "Course Builder",
@@ -46,9 +47,9 @@ const SideBar = () => {
                     route: "course-builder",
                 },
             ],
-        },
+    },
         {
-            section: "User Section",
+            section: "User Management",
             elements: [
                 {
                     name: "Users",
@@ -61,23 +62,26 @@ const SideBar = () => {
             section: "Payments",
             elements: [
                 {
-                    name: "Transactions",
+                    name: "Purchase History",
                     icon: <GiReceiveMoney />,
                     route: "transactions",
+                },
+                {
+                    name: "Earning",
+                    icon: <FaMoneyBill1Wave />,
+                    route: "earning",
                 },
             ],
         },
     ];
 
-    console.log(location.pathname.split('/')[2])
-
     return (
-        <div className="w-[15%] border-r-[2px] border-zinc-700 h-full bg-zinc-950 flex flex-col drop-shadow-lg">
+        <div className="w-[15%] border-r-[0.5px] border-zinc-700 h-full bg-zinc-950 flex flex-col drop-shadow-lg">
             {/* Company Heading Section */}
             <div className="flex items-center justify-between mx-3 mt-3">
                 <div className="flex items-center justify-center">
                     <img src={yslogo} alt="" className="w-14" />
-                    <h1 className="font-caveat text-xl">Yayin Stocks</h1>
+                    <h1 className="font-caveat text-xl">Yayin Stocks Admin</h1>
                 </div>
             </div>
 

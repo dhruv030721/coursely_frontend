@@ -4,5 +4,6 @@ import Layout from "./Layout";
 import AdminAuthLayout from "./AdminAuthLayout";
 import AdminLayout from "./AdminLayout";
 import Dashboard from "./Admin/Dashboard";
+import CourseBuilder from "./Admin/CourseBuilder";
 
-export {HomePage, AuthLayout, Layout, AdminAuthLayout, AdminLayout, Dashboard};
+export {HomePage, AuthLayout, Layout, AdminAuthLayout, AdminLayout, Dashboard, CourseBuilder};
