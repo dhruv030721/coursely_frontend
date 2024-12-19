@@ -7,9 +7,9 @@ interface StepSectionProps {
 }
 
 const StepSection: React.FC<StepSectionProps> = ({ steps, activeStepNo }) => {
-    const activeStep = "border-dashed border-red-700 animate-bounce";
+    const activeStep = "border-solid border-red-700 animate-bounce";
     const completedStep = "border-solid border-green-700 bg-green-700";
-    const inActiveStep = "border-dashed border-red-700";
+    const inActiveStep = "border-solid border-red-700 text-red-500";
 
     return (
         <section className="flex justify-center items-center mt-5">

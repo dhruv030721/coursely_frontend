@@ -5,5 +5,6 @@ import TextArea from "./TextArea"
 import Button from "./Button"
 import StepSection from "./StepSection"
 import MediaInput from "./MediaInput"
+import Checkbox from "./Checkbox"
 
-export { Header, SideBar, Input, TextArea, Button, StepSection, MediaInput }
+export { Header, SideBar, Input, TextArea, Button, StepSection, MediaInput, Checkbox }

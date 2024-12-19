@@ -76,7 +76,7 @@ const SideBar = () => {
     ];
 
     return (
-        <div className="w-[15%] border-r-[0.5px] border-zinc-700 h-full bg-zinc-950 flex flex-col drop-shadow-lg">
+        <div className="w-[15%] border-r-[0.5px] border-zinc-700 min-h-full bg-zinc-950 flex flex-col drop-shadow-lg">
             {/* Company Heading Section */}
             <div className="flex items-center justify-between mx-3 mt-3">
                 <div className="flex items-center justify-center">

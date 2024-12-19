@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HomePage, AdminAuthLayout, AuthLayout, Layout, AdminLayout, Dashboard, CourseBuilder } from "@/pages";
+import { HomePage, AdminAuthLayout, AuthLayout, Layout, AdminLayout, Dashboard, CourseBuilder, PageNotFound } from "@/pages";
 
 const App = () => {
 
@@ -18,7 +18,7 @@ const App = () => {
         </Route>
 
         {/* Fallback Routes */}
-        <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   );

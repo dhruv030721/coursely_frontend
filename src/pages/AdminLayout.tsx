@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 const AdminLayout = () => {
 
   return (
-    <div className="h-screen flex text-white bg-zinc-950">
+    <div className="min-h-screen flex text-white bg-zinc-950">
 
       {/* Sidebar */}
       <SideBar />
