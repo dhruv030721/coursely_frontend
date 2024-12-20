@@ -3,18 +3,33 @@ import { TrendingDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const PageNotFound = () => {
-    // Generate mock stock data with a downward trend
-    const generateStockData = () => {
+    // Generate more realistic market data with ups and downs
+    const generateMarketData = () => {
         const data = [];
         let value = 100;
-        for (let i = 0; i < 50; i++) {
-            value = value * (0.98 + -i * 0.005);
-            data.push({ value });
+        const volatility = 0.03; // 3% volatility
+        const downwardBias = 0.001; // Slight downward bias
+
+        for (let i = 0; i < 100; i++) {
+            // Random walk with downward bias
+            const change = (Math.random() - 0.5) * volatility - downwardBias;
+            value = value * (1 + change);
+
+            // Add some market crashes and spikes
+            if (i === 30) value *= 0.85; // Sharp drop
+            if (i === 45) value *= 1.15; // Sharp rise
+            if (i === 60) value *= 0.90; // Another drop
+            if (i === 75) value *= 1.10; // Recovery
+
+            data.push({
+                value,
+                timestamp: i
+            });
         }
         return data;
     };
 
-    const stockData = generateStockData();
+    const marketData = generateMarketData();
 
     return (
         <div className="bg-black h-screen font-geist relative overflow-hidden">
@@ -26,16 +41,18 @@ const PageNotFound = () => {
 
             {/* Main Content */}
             <div className="relative h-screen flex flex-col justify-center items-center px-4">
-                {/* Stock Chart */}
-                <div className="w-full max-w- h-64 mb-8 opacity-10">
+                {/* Market Chart */}
+                <div className="w-full max-w-4xl h-64 mb-8 opacity-10">
                     <ResponsiveContainer width="100%" height="100%">
-                        <LineChart data={stockData}>
+                        <LineChart data={marketData}>
                             <Line
-                                type="monotone"
+                                type="basis"
                                 dataKey="value"
                                 stroke="#EF4444"
                                 strokeWidth={2}
                                 dot={false}
+                                isAnimationActive={true}
+                                animationDuration={2000}
                             />
                         </LineChart>
                     </ResponsiveContainer>
@@ -49,9 +66,9 @@ const PageNotFound = () => {
                     </div>
                     <h2 className="text-white text-2xl mb-4">Market Crash: Page Not Found</h2>
                     <p className="text-gray-400 mb-8">The asset you're looking for has been delisted from our exchange.</p>
-                    
+
                     {/* Action Button */}
-                    <Link 
+                    <Link
                         to="/"
                         className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-black rounded-lg hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-green-500/20"
                     >

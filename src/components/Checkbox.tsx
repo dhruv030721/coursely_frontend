@@ -11,6 +11,7 @@ interface CheckboxProps {
 const theme = createTheme({
     typography: {
         fontFamily: 'geist',
+        fontSize: 13,
         allVariants: {
             color: 'white'
         }

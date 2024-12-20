@@ -6,6 +6,7 @@ interface InputProps {
     name: string;
     divClasses?: string;
     inputClasses?: string;
+    innerDivClasses?: string;
     required: boolean;
     instruction: Array<string>;
 }
@@ -15,6 +16,7 @@ const MediaInput = ({
     name,
     divClasses,
     inputClasses,
+    innerDivClasses,
     required,
     instruction,
 }: InputProps) => {
@@ -55,7 +57,7 @@ const MediaInput = ({
                 {label} {required ? <span className="text-red-500">*</span> : ""}
             </label>
             <div
-                className="flex flex-col space-y-2 items-center border-b-[0.5px] border-zinc-400 bg-zinc-800 justify-around text-white rounded-md p-2"
+                className={`flex flex-col space-y-2 items-center ${innerDivClasses} bg-zinc-800 justify-around text-white rounded-md p-2`}
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
             >
@@ -70,7 +72,7 @@ const MediaInput = ({
                 />
                 {previewImage ? (
                     <div>
-                        <div className="bg-black rounded-md">
+                        <div className="bg-black rounded-md ">
                             <img
                                 src={previewImage}
                                 alt="Preview"

@@ -6,5 +6,7 @@ import Button from "./Button"
 import StepSection from "./StepSection"
 import MediaInput from "./MediaInput"
 import Checkbox from "./Checkbox"
+import CustomModal from "./Modal"
+import EditLesson from "./EditLesson"
 
-export { Header, SideBar, Input, TextArea, Button, StepSection, MediaInput, Checkbox }
+export { Header, SideBar, Input, TextArea, Button, StepSection, MediaInput, Checkbox, CustomModal, EditLesson }
