@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HomePage, AdminAuthLayout, AuthLayout, Layout, AdminLayout, Dashboard, CourseBuilder, PageNotFound } from "@/pages";
+import { HomePage, AdminAuthLayout, AuthLayout, Layout, AdminLayout, Dashboard, CourseBuilder, PageNotFound, ManageCourses } from "@/pages";
 
 const App = () => {
 
@@ -15,6 +15,7 @@ const App = () => {
         <Route path="admin" element={<AdminAuthLayout><AdminLayout /></AdminAuthLayout>}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="course-builder" element={<CourseBuilder />} />
+          <Route path="manage-courses" element={<ManageCourses />} />
         </Route>
 
         {/* Fallback Routes */}

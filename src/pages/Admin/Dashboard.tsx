@@ -1,13 +1,15 @@
 import { FiSettings } from "react-icons/fi"
+import { AiOutlineStock } from "react-icons/ai";
+
 
 const Dashboard = () => {
     return (
         <div className="w-[85%] m-5 flex font-geist">
-            
+
             <section className="flex justify-between w-full">
                 <div>
-                    <h1 className="text-2xl">
-                        Welcome Back, Admin
+                    <h1 className="text-2xl flex items-center gap-x-2">
+                        Welcome Back, Admin <AiOutlineStock />
                     </h1>
                     <p className="text-sm text-gray-400">
                         Manage your courses, users, analytics and other settings efficiently.

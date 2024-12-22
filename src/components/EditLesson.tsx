@@ -18,7 +18,7 @@ const EditLesson = ({ handleClose }: EditLessonProps) => {
             <div className="flex justify-center h-screen items-center font-geist">
                 <div className="max-w-[35%] min-h-[75%] rounded-md bg-zinc-900">
                     <div className="bg-zinc-900 border-b-[0.5px]  border-zinc-700 rounded-t-md text-zinc-300  p-3 flex items-center justify-between pr-5">
-                        <h1>Editing Lecture</h1>
+                        <h1>Edit Lecture</h1>
                         <button onClick={handleClose}>
                             <RxCross2 size={20} />
                         </button>
@@ -43,13 +43,13 @@ const EditLesson = ({ handleClose }: EditLessonProps) => {
                         <section className="flex justify-end space-x-3">
                             <Button
                                 name="Cancel"
-                                btnClass="bg-red-950 text-white border-b-[0.5px] border-r-[0.5px] border-zinc-600"
+                                btnClass="px-6 rounded-md bg-red-950 text-white border-b-[0.5px] border-r-[0.5px] border-zinc-600"
                                 handler={handleClose}
                             />
                             <Button
                                 name="Save Edits"
-                                btnClass="bg-green-950 border-b-[0.5px] border-r-[0.5px] border-zinc-600"
-                                // handler={nextBtnHandler}
+                                btnClass="px-6 rounded-md bg-green-950 border-b-[0.5px] border-r-[0.5px] border-zinc-600"
+                            // handler={nextBtnHandler}
                             />
                         </section>
                     </div>

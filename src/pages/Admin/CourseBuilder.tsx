@@ -105,14 +105,14 @@ const CourseBuilder = () => {
                             <Input label="Price" placeholder="Enter Price" name="course_price" type="number" required={true} icon={<RiMoneyRupeeCircleLine className="text-zinc-400" />} />
                             <TextArea label="Course Short Description" placeholder="Enter Description" name="course_description" required={true} />
                             <TextArea label="Benefits of the course" placeholder="Enter Benefits of the course" name="course_title" required={true} />
-                            <MediaInput label="Course Thumbnail" required={true} instruction={MediaInstruction} name="course_thumbnail" />
+                            <MediaInput label="Course Thumbnail" required={true} instruction={MediaInstruction} name="course_thumbnail" innerDivClasses="border border-dashed border-zinc-500" />
                         </form>
                     </section>
 
 
                     {/* Button Section */}
                     <section className="flex justify-end mt-5">
-                        <Button name="Next" btnClass="bg-green-950 border-b-[0.5px] border-r-[0.5px] border-zinc-600" handler={nextBtnHandler} posticon={<MdKeyboardArrowRight size={20} />} />
+                        <Button name="Next" btnClass="rounded-md px-6 bg-green-950 border-b-[0.5px] border-r-[0.5px] border-zinc-600" handler={nextBtnHandler} posticon={<MdKeyboardArrowRight size={20} />} />
                     </section>
                 </>}
 
@@ -205,7 +205,7 @@ const CourseBuilder = () => {
 
                     <Button
                         name="Create Section"
-                        btnClass="border-[0.5px] border-yellow-700 gap-x-2 text-yellow-500"
+                        btnClass=" rounded-md px-6 border-[0.5px] border-yellow-700 gap-x-2 text-yellow-500"
                         preicon={<IoMdAddCircleOutline size={20} />}
                         handler={() => {
                             setSections((prev) => sectionName != "" ? [...prev, { id: `${id}-${prev.length + 1}`, name: sectionName, lessons: [] },] : [...prev])
@@ -216,13 +216,13 @@ const CourseBuilder = () => {
                     <section className="flex justify-end space-x-3">
                         <Button
                             name="Back"
-                            btnClass="bg-zinc-900 text-white border-b-[0.5px] border-r-[0.5px] border-zinc-600"
+                            btnClass=" rounded-md px-6 bg-zinc-900 text-white border-b-[0.5px] border-r-[0.5px] border-zinc-600"
                             handler={backBtnHandler}
                             preicon={<MdKeyboardArrowLeft size={20} />}
                         />
                         <Button
                             name="Next"
-                            btnClass="bg-green-950 border-b-[0.5px] border-r-[0.5px] border-zinc-600"
+                            btnClass=" rounded-md px-6 bg-green-950 border-b-[0.5px] border-r-[0.5px] border-zinc-600"
                             handler={nextBtnHandler}
                             posticon={<MdKeyboardArrowRight size={20} />}
                         />
@@ -244,9 +244,9 @@ const CourseBuilder = () => {
                         <Checkbox label="Make this course public" />
                         {/* Button Section */}
                         <section className="flex justify-end mt-5 space-x-3">
-                            <Button name="Back" btnClass="bg-zinc-900 text-white border-b-[0.5px] border-r-[0.5px] border-zinc-600 " handler={backBtnHandler} preicon={<MdKeyboardArrowLeft size={20} />} />
-                            <Button name="Save as Draft" btnClass="bg-yellow-800 border-b-[0.5px] border-r-[0.5px] border-zinc-600" handler={nextBtnHandler} />
-                            <Button name="Save and Publish" btnClass="bg-blue-950 border-b-[0.5px] border-r-[0.5px] border-zinc-600" handler={nextBtnHandler} />
+                            <Button name="Back" btnClass=" rounded-md px-6 bg-zinc-900 text-white border-b-[0.5px] border-r-[0.5px] border-zinc-600 " handler={backBtnHandler} preicon={<MdKeyboardArrowLeft size={20} />} />
+                            <Button name="Save as Draft" btnClass=" rounded-md px-6 bg-yellow-800 border-b-[0.5px] border-r-[0.5px] border-zinc-600" handler={nextBtnHandler} />
+                            <Button name="Save and Publish" btnClass=" rounded-md px-6 bg-blue-950 border-b-[0.5px] border-r-[0.5px] border-zinc-600" handler={nextBtnHandler} />
                         </section>
                     </section>
 
