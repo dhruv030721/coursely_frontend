@@ -4,6 +4,8 @@ import { MdOutlineAddCircleOutline } from "react-icons/md";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { HiTrash } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
+import { FiUsers } from "react-icons/fi";
+
 
 interface CoursesProps {
     id: number,
@@ -15,8 +17,6 @@ interface CoursesProps {
     image: string,
     status: string
 }
-
-
 
 
 const ManageCourses = () => {
@@ -77,7 +77,7 @@ const ManageCourses = () => {
                     </thead>
                     <tbody className="text-sm">
                         {Courses.map((course: CoursesProps) => {
-                            return <tr>
+                            return <tr className="">
                                 <td className="flex gap-x-7">
                                     <img src={course.image} alt="" className="w-64 rounded-md object-cover"></img>
                                     <div className="text-lg flex flex-col gap-y-3">
@@ -90,9 +90,19 @@ const ManageCourses = () => {
                                 <td>{course.duration}</td>
                                 <td>&#x20b9;{course.price}</td>
                                 <td>
-                                    <div className="flex gap-x-4 items-center">
-                                        <FaPen size={17} />
-                                        <HiTrash size={23} />
+                                    <div className="flex  gap-x-4 items-center">
+                                        <div className="flex text-xs flex-col justify-center items-center space-y-2 cursor-pointer">
+                                            <FaPen size={17} />
+                                            <span>Edit</span>
+                                        </div>
+                                        <div className="flex text-xs flex-col justify-center items-center space-y-2 cursor-pointer">
+                                            <HiTrash size={20} />
+                                            <span>Delete</span>
+                                        </div>
+                                        <div className="flex text-xs flex-col justify-center items-center space-y-2 cursor-pointer">
+                                            <FiUsers size={17} />
+                                            <span>Users</span>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>

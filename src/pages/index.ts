@@ -7,5 +7,6 @@ import Dashboard from "./Admin/Dashboard";
 import CourseBuilder from "./Admin/CourseBuilder";
 import PageNotFound from "./PageNotFound";
 import ManageCourses from "./Admin/ManageCourses";
+import CoupenDiscount from "./Admin/CoupenDiscount";
 
-export { HomePage, AuthLayout, Layout, AdminAuthLayout, AdminLayout, Dashboard, CourseBuilder, PageNotFound, ManageCourses };
+export { HomePage, AuthLayout, Layout, AdminAuthLayout, AdminLayout, Dashboard, CourseBuilder, PageNotFound, ManageCourses, CoupenDiscount };

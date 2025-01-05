@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useId } from "react";
 import { BsSpeedometer2 } from "react-icons/bs";
 import { MdVideoLibrary } from "react-icons/md";
 import { TbVideoPlus, TbUsersGroup } from "react-icons/tb";
@@ -6,6 +6,7 @@ import { GiReceiveMoney } from "react-icons/gi";
 import { PiArrowBendDownLeftBold } from "react-icons/pi";
 import { Link, useLocation } from "react-router-dom";
 import { FaMoneyBill1Wave } from "react-icons/fa6";
+import { MdDiscount } from "react-icons/md";
 import yslogo from "@/assets/logo_icon.png";
 
 interface SidebarOptionsType {
@@ -21,6 +22,7 @@ interface SidebarSectionType {
 
 const SideBar = () => {
     const location = useLocation();
+    const id = useId();
 
     const SidebarMenus: Array<SidebarSectionType> = [
         {
@@ -47,7 +49,17 @@ const SideBar = () => {
                     route: "course-builder",
                 },
             ],
-    },
+        },
+        {
+            section: "Discount Management",
+            elements: [
+                {
+                    name: "Coupen Discount",
+                    icon: <MdDiscount />,
+                    route: "coupen-discount",
+                },
+            ],
+        },
         {
             section: "User Management",
             elements: [
@@ -88,15 +100,15 @@ const SideBar = () => {
             <div>
                 {/* Sidebar Menus */}
                 <div className="font-geist py-5 flex flex-col gap-y-3">
-                    {SidebarMenus.map((menu) => (
+                    {SidebarMenus.map((menu, index) => (
                         <>
-                            <h1 className="text-white text-xs mx-4 border-b border-zinc-700">
+                            <h1 className="text-white text-xs mx-4 border-b border-zinc-700" key={index}>
                                 {menu.section.toUpperCase()}
                             </h1>
                             {menu.elements.map((option) => (
                                 <Link
                                     to={option.route}
-                                    key={option.name}
+                                    key={id}
                                     className="flex justify-between items-center px-3"
                                 >
                                     <div className="flex items-center gap-x-3 px-3 py-2">
