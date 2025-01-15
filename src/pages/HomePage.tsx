@@ -11,12 +11,12 @@ const HomePage = () => {
       {/* Hero Section */}
       <div className="relative min-h-screen flex flex-col justify-center z-10 container mx-auto px-4 pt-24 text-white font-geist text-center">
         <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight bg-gradient-to-r from-white via-white/80 to-white/60 bg-clip-text text-transparent">
-          Master the Markets with 
+          Master the Markets with
           <br />
           Clarity and Confidence
         </h1>
         <p className="text-xl md:text-2xl max-w-2xl mx-auto mb-10 text-white/80">
-          We teach traders everything about Cash, Futures, and Options Trading 
+          We teach traders everything about Cash, Futures, and Options Trading
           in the Indian Markets. We've guided over 5,000 traders to success.
         </p>
         <div className="flex justify-center space-x-4">
