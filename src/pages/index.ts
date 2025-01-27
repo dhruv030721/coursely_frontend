@@ -1,6 +1,7 @@
 import HomePage from "./HomePage";
 import Login from "./Login"
 import Signup from "./Signup"
+import Contactus from "./Contactus";
 
 import Dashboard from "./Admin/Dashboard";
 import CourseBuilder from "./Admin/CourseBuilder";
@@ -16,4 +17,4 @@ import AdminAuthLayout from "./AdminAuthLayout";
 import AdminLayout from "./AdminLayout";
 import AuthPageLayout from "./AuthPageLayout";
 
-export { HomePage, AuthLayout, Layout, AdminAuthLayout, AdminLayout, Dashboard, CourseBuilder, PageNotFound, ManageCourses, CoupenDiscount, Login, Signup, AuthPageLayout };
+export { HomePage, AuthLayout, Layout, AdminAuthLayout, AdminLayout, Dashboard, CourseBuilder, PageNotFound, ManageCourses, CoupenDiscount, Login, Signup, AuthPageLayout, Contactus };

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import yslogo from "../assets/yayinstocks_bg_transperent_web.png";
 import { HiMiniShoppingBag } from "react-icons/hi2";
 
@@ -19,7 +19,7 @@ const Header = () => {
                     <li className="cursor-pointer hover:text-gray-300 transition-colors">Home</li>
                     <li className="cursor-pointer hover:text-gray-300 transition-colors">Course</li>
                     <li className="cursor-pointer hover:text-gray-300 transition-colors">About</li>
-                    <li className="cursor-pointer hover:text-gray-300 transition-colors">Contact</li>
+                    <Link to='/contact'> <li className="cursor-pointer hover:text-gray-300 transition-colors">Contact</li></Link>
                 </ul>
             </nav>
 
