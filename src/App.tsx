@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HomePage, AdminAuthLayout, Layout, AdminLayout, Dashboard, CourseBuilder, PageNotFound, ManageCourses, CoupenDiscount, Login, Signup, Contactus } from "@/pages";
+import { HomePage, AdminAuthLayout, Layout, AdminLayout, Dashboard, CourseBuilder, PageNotFound, ManageCourses, CoupenDiscount, Login, Signup, Contactus, AuthPageLayout } from "@/pages";
 
 const App = () => {
 
@@ -20,8 +20,8 @@ const App = () => {
           <Route path="coupen-discount" element={<CoupenDiscount />} />
         </Route>
 
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
+        <Route path="login" element={<AuthPageLayout children={<Login/>} />} />
+        <Route path="signup" element={<AuthPageLayout children={<Signup/>} />} />
 
         {/* Fallback Routes */}
         <Route path="*" element={<PageNotFound />} />

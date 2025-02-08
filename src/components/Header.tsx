@@ -15,7 +15,7 @@ const Header = () => {
 
             {/* menu section */}
             <nav className="text-white font-geist">
-                <ul className="flex gap-x-10 font-light">
+                <ul className="flex gap-x-10 font-light text-md">
                     <li className="cursor-pointer hover:text-gray-300 transition-colors">Home</li>
                     <li className="cursor-pointer hover:text-gray-300 transition-colors">Course</li>
                     <li className="cursor-pointer hover:text-gray-300 transition-colors">About</li>

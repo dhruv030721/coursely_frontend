@@ -66,6 +66,8 @@ const CoupenDiscount = () => {
                         <tr className="border-b bg-zinc-900  border-zinc-700">
                             <td className="rounded-ss-md">INDEX</td>
                             <td>COUPEN CODE</td>
+                            <td>START DATE</td>
+                            <td>END DATE</td>
                             <td>DISCOUNT (%)</td>
                             <td>STATUS</td>
                             <td className="rounded-se-md">ACTIONS</td>
@@ -80,6 +82,8 @@ const CoupenDiscount = () => {
                                 <td className="">
                                     {coupen.coupen_code}
                                 </td>
+                                <td>22/07/2024</td>
+                                <td>25/07/2024</td>
                                 <td>{coupen.discount}%</td>
                                 <td>{coupen.status ? <><h1 className="text-green-700">Active</h1></> : <><h1 className="text-red-700">Inactive</h1></>}</td>
                                 <td>
