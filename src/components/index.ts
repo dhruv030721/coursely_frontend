@@ -8,5 +8,6 @@ import MediaInput from "./MediaInput"
 import Checkbox from "./Checkbox"
 import CustomModal from "./Modal"
 import EditLesson from "./EditLesson"
+import Footer from "./Footer"
 
-export { Header, SideBar, Input, TextArea, Button, StepSection, MediaInput, Checkbox, CustomModal, EditLesson }
+export { Header, SideBar, Input, TextArea, Button, StepSection, MediaInput, Checkbox, CustomModal, EditLesson, Footer }

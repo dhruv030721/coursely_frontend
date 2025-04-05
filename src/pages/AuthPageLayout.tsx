@@ -14,7 +14,7 @@ const AuthPageLayout = ({ children }: AuthPageLayoutProps) => {
             <section className="w-full md:w-1/2 h-64  md:h-full p-0 md:p-3 shadow-lg">
                 <div className="relative w-full h-full">
                     {/* Background Image */}
-                    <div className="absolute inset-0 bg-[url('@/assets/bull_wallpaper.jpg')]  bg-no-repeat bg-cover bg-center rounded-none md:rounded-lg" />
+                    <div className="absolute inset-0 bg-[url('@/assets/bull_wallpaper.jpg')] bg-no-repeat bg-cover bg-center rounded-none md:rounded-lg" />
 
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-black/90 rounded-none md:rounded-lg" />

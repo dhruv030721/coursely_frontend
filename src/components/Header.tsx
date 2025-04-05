@@ -3,8 +3,15 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import yslogo from "../assets/yayinstocks_bg_transperent_web.png";
 import { HiMiniShoppingBag } from "react-icons/hi2";
 import white_stroke from "@/assets/white_stroke.png"
+import { useState } from "react";
 
 const Header = () => {
+
+    const [scrollY, setScrollY] = useState(0)
+
+    window.addEventListener('scroll', () => {
+        setScrollY(window.scrollY)
+    })
 
     const nav_links = [
         {
@@ -28,8 +35,10 @@ const Header = () => {
     const navigate = useNavigate();
     const {pathname} = useLocation();
 
+    console.log(window.scrollY)
+
     return (
-        <header className="absolute top-0 left-0 right-0 z-50 bg-transparent font-thin text-sm flex justify-between items-center px-20 py-5">
+        <header className={`fixed top-10 left-0 right-0 z-50 bg-transparent font-thin text-sm flex justify-between items-center px-20 bg-white rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-5 border-b border-zinc-700 transition-all shadow-md ${scrollY > 0 ? "-translate-y-full m-5 border" : "translate-y-0"}`}>
             {/* ========================================= */}
             {/* Logo Section */}
             {/* ========================================= */}
@@ -44,7 +53,7 @@ const Header = () => {
                 <ul className="flex gap-x-10 font-light text-lg">
                     {nav_links.map((menu) => {
                         return (
-                            <Link className="flex flex-col relative" to={menu.link}>
+                            <Link key={menu.link} className="flex flex-col relative" to={menu.link}>
                                 <li className="cursor-pointer hover:text-gray-300 transition-colors text-xl font-caveat">{menu.name}</li>
                                 {
                                     pathname == menu.link && <img src={white_stroke} alt="" className="w-32 invert absolute -bottom-2" />

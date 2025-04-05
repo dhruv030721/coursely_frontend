@@ -51,7 +51,7 @@ const Signup = () => {
             placeholder="Enter your password"
           />
           <Button
-            name="Login"
+            name="Signup"
             handler={handleSignup}
             btnClass="bg-green-900 w-full rounded-md flex justify-center text-white border-r border-b hover:bg-green-800 transition-colors"
           />
