@@ -6,6 +6,7 @@ import { AiOutlineYoutube } from "react-icons/ai";
 import { LuMousePointerClick } from "react-icons/lu";
 import { Footer } from "@/components"
 import video_background from '@/assets/background.mp4';
+import warrent_buffet from "@/assets/warren_buffet.jpg";
 
 const HomePage = () => {
   const features = [
@@ -64,7 +65,7 @@ const HomePage = () => {
           autoPlay
           loop
           muted
-          className="absolute  w-full h-full object-cover opacity-5"
+          className="absolute w-full h-full object-cover opacity-5"
         >
           <source src={video_background} type="video/mp4" />
           Your browser does not support the video tag.
@@ -127,8 +128,8 @@ const HomePage = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-24 px-4 md:px-10">
             {social_media.map((data, index) => (
-              <div key={index} className=" cursor-pointer border-zinc-600 relative text-white bg-zinc-800/50 shadow-lg z-10 rounded-3xl flex flex-col justify-center items-center p-8 gap-y-5 hover:scale-105 transition before:content-[''] before:absolute before:-top-2 before:-left-2 before:border-green-700 before:w-20 before:h-20 before:rounded-t-3xl before:rounded-r-none before:bg-transparent before:border-t before:border-l 
-              after:absolute after:-bottom-2 after:-right-2 after:border-green-700 after:w-20 after:h-20 after:rounded-b-3xl after:rounded-l-none after:bg-transparent after:border-b after:border-r">
+              <div key={index} className=" cursor-pointer border-zinc-600 relative text-white bg-zinc-800/50 shadow-lg z-10 rounded-3xl flex flex-col justify-center items-center p-8 gap-y-5 hover:scale-105 transition before:content-[''] before:absolute before:-top-2 before:-left-2 before:border-green-700 before:w-20 before:h-20 before:rounded-ss-3xl before:bg-transparent before:border-t before:border-l 
+              after:absolute after:-bottom-2 after:-right-2 after:border-green-700 after:w-20 after:h-20 after:rounded-ee-3xl after:bg-transparent after:border-b after:border-r">
                 <div className=''>{data.icon}</div>
                 <h1 className="text-2xl font-caveat font-semibold">{data.title}</h1>
               </div>
@@ -139,13 +140,18 @@ const HomePage = () => {
         {/* ========================================= */}
         {/* Our Mentor */}
         {/* ========================================= */}
-        <section className="text-white text-center space-y-10 container mx-auto px-4">
+        <section className="text-white text-center space-y-10 container mx-auto px-4 flex flex-col items-center">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-5">Our Mentor</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-5">Meet your Mentor</h2>
             <p className="text-gray-300">Meet our mentor, a trusted guide and advisor dedicated to supporting and inspiring our journey.</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4 md:px-10">
-
+          <div className="flex flex-col w-1/2 md:flex-row justify-center items-center gap-10">
+            <img src={warrent_buffet} alt="Mentor" className="rounded-full w-64 h-64 object-cover border border-zinc-300"/>
+            <div className="text-left">
+              <h1 className="text-4xl font-caveat font-semibold">Yashdeep Chorasiya</h1>
+              <p className="text-gray-400">Expert Trader and Mentor</p>
+              <p className="mt-4">With over 10 years of experience in the financial markets, John has a proven track record of success and is passionate about sharing his knowledge with others.</p>
+            </div>
           </div>
         </section>
 
@@ -170,7 +176,7 @@ const HomePage = () => {
           animation-delay: 4s;
         }
 
-         @keyframes mousePointer {
+        @keyframes mousePointer {
           0%, 100% { transform: translate(-10px, -10px) scale(1.2); }
           50% { transform: translate(15px, 15px) scale(1.0); }
         }

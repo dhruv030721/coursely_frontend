@@ -12,7 +12,7 @@ const Footer = () => {
                             className="w-20 md:w-14 mb-6"
                         />
                         <h2 className="text-2xl font-bold mb-4">YayinStocks</h2>
-                        <p className="text-gray-400 text-center">
+                        <p className="text-gray-400 text-center text-xs"> 
                             Empowering traders with knowledge, strategy, and community.
                         </p>
                     </div>

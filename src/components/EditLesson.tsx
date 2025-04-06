@@ -49,7 +49,7 @@ const EditLesson = ({ handleClose }: EditLessonProps) => {
                             <Button
                                 name="Save Edits"
                                 btnClass="px-6 rounded-md bg-green-950 border-b-[0.5px] border-r-[0.5px] border-zinc-600"
-                            // handler={nextBtnHandler}
+                            handler={() => {}}
                             />
                         </section>
                     </div>

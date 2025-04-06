@@ -35,8 +35,6 @@ const Header = () => {
     const navigate = useNavigate();
     const {pathname} = useLocation();
 
-    console.log(window.scrollY)
-
     return (
         <header className={`fixed top-10 left-0 right-0 z-50 bg-transparent font-thin text-sm flex justify-between items-center px-20 bg-white rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-5 border-b border-zinc-700 transition-all shadow-md ${scrollY > 0 ? "-translate-y-full m-5 border" : "translate-y-0"}`}>
             {/* ========================================= */}
