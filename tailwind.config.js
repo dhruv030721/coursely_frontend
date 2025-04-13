@@ -18,7 +18,10 @@ export default {
 				],
 				'dm_sans': [
 					'DM Sans'
-				]
+				],
+				'orbitron': [
+					'Orbitron'
+				],
 			},
 			animation: {
 				'drawLine': 'drawLine 10s ease-in-out infinite',

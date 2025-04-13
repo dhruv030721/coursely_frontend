@@ -4,7 +4,7 @@ import { IoLogoFacebook } from "react-icons/io5";
 import { RiInstagramFill } from "react-icons/ri";
 import { AiOutlineYoutube } from "react-icons/ai";
 import { LuMousePointerClick } from "react-icons/lu";
-import { Footer } from "@/components"
+import { Footer, CourseCard } from "@/components"
 import video_background from '@/assets/background.mp4';
 import warrent_buffet from "@/assets/warren_buffet.jpg";
 
@@ -87,7 +87,7 @@ const HomePage = () => {
         </p>
         <div className="flex justify-center space-x-4">
           <div className='relative'>
-            <button className="px-8 py-3 bg-green-900 border border-green-200 animate-in hover:bg-green-700 text-white font-bold rounded-3xl transition-colors animate-pulse">
+            <button className="px-8 py-3 bg-green-800 border border-green-200 animate-in hover:bg-green-900 text-white font-bold rounded-3xl transition-colors animate-pulse">
               Open Your Mutual Fund Account
             </button>
             <LuMousePointerClick className='absolute right-0 animate-mousePointer' color='green' size={30} />
@@ -142,16 +142,30 @@ const HomePage = () => {
         {/* ========================================= */}
         <section className="text-white text-center space-y-10 container mx-auto px-4 flex flex-col items-center">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-5">Meet your Mentor</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-5">Meet your <span className='text-green-500'>Mentor</span></h2>
             <p className="text-gray-300">Meet our mentor, a trusted guide and advisor dedicated to supporting and inspiring our journey.</p>
           </div>
           <div className="flex flex-col w-1/2 md:flex-row justify-center items-center gap-10">
-            <img src={warrent_buffet} alt="Mentor" className="rounded-full w-64 h-64 object-cover border border-zinc-300"/>
+            <img src={warrent_buffet} alt="Mentor" className="rounded-full w-64 h-64 object-cover border border-zinc-300" />
             <div className="text-left">
               <h1 className="text-4xl font-caveat font-semibold">Yashdeep Chorasiya</h1>
               <p className="text-gray-400">Expert Trader and Mentor</p>
               <p className="mt-4">With over 10 years of experience in the financial markets, John has a proven track record of success and is passionate about sharing his knowledge with others.</p>
             </div>
+          </div>
+        </section>
+
+
+        {/* ========================================= */}
+        {/* Our Mentor */}
+        {/* ========================================= */}
+        <section className="text-white text-center space-y-10 container mx-auto px-4 flex flex-col items-center">
+          <div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-5">What would you like to <span className='text-green-500'>Learn?</span></h2>
+          </div>
+          <div className='flex gap-x-10'>
+            <CourseCard thumbnail='https://th.bing.com/th/id/OIP.xNz_Q8NqgfBrM_EfLxbU3AHaE7?w=255&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7' title='Introduction to Trading' />
+            <CourseCard thumbnail='https://i.ytimg.com/vi/YBJWGuzDRxo/maxresdefault.jpg' title='Introduction to Stock Market' />
           </div>
         </section>
 

@@ -12,19 +12,21 @@ const Footer = () => {
                             className="w-20 md:w-14 mb-6"
                         />
                         <h2 className="text-2xl font-bold mb-4">YayinStocks</h2>
-                        <p className="text-gray-400 text-center text-xs"> 
+                        <p className="text-gray-400 text-center text-xs">
                             Empowering traders with knowledge, strategy, and community.
                         </p>
                     </div>
                     <div className='flex flex-col items-center'>
-                        <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-                        {/* Quick Links */}
-                        <ul className="space-y-2 text-gray-400">
-                            <li><a href="#" className="hover:text-green-500 transition-colors">Home</a></li>
-                            <li><a href="#" className="hover:text-green-500 transition-colors">Courses</a></li>
-                            <li><a href="#" className="hover:text-green-500 transition-colors">About Us</a></li>
-                            <li><a href="#" className="hover:text-green-500 transition-colors">Contact</a></li>
-                        </ul>
+                        <div>
+                            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+                            {/* Quick Links */}
+                            <ul className="space-y-2 text-gray-400">
+                                <li><a href="#" className="hover:text-green-500 transition-colors">Home</a></li>
+                                <li><a href="#" className="hover:text-green-500 transition-colors">Courses</a></li>
+                                <li><a href="#" className="hover:text-green-500 transition-colors">About Us</a></li>
+                                <li><a href="#" className="hover:text-green-500 transition-colors">Contact</a></li>
+                            </ul>
+                        </div>
                     </div>
                     <div className='flex flex-col items-center'>
                         {/* Social Media */}
