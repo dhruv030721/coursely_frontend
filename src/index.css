@@ -13,19 +13,19 @@
 }
 
 /* Custom scrollbar */
-.scrollbar-custom::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 5px; /* Set the width of the scrollbar */
 }
 
-.scrollbar-custom::-webkit-scrollbar-thumb {
-  background-color: gray; /* Set the color of the thumb (scrollbar itself) */
+::-webkit-scrollbar-thumb {
+  background-color: grey; /* Set the color of the thumb (scrollbar itself) */
   border-radius: 50px; /* Make the thumb round */
 }
 
-.scrollbar-custom::-webkit-scrollbar-thumb:hover {
-  background-color: #555; /* Change color on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(86, 86, 86); /* Change color on hover */
 }
 
-.scrollbar-custom::-webkit-scrollbar-track {
-  background: transparent; /* Set the track color (background of the scrollbar) */
+::-webkit-scrollbar-track {
+  background: black; /* Set the track color (background of the scrollbar) */
 }

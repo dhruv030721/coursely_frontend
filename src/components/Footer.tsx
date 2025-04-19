@@ -2,7 +2,7 @@ import yayin_logo_bgremove from "@/assets/logo_icon.png";
 
 const Footer = () => {
     return (
-        <section className="border-t border-zinc-800 py-12 text-white">
+        <section className="border-t border-zinc-800 bg-black py-12 text-white ">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     <div className='flex flex-col items-center'>
@@ -54,7 +54,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="text-center pt-8 border-t border-zinc-800 text-gray-400">
-                    <p>© 2025 Yayinstocks. All rights reserved.</p>
+                    <p>Copyright © 2025 Yayinstocks. All rights reserved.</p>
                 </div>
             </div>
         </section>

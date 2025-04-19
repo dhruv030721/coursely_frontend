@@ -4,7 +4,7 @@ import { IoLogoFacebook } from "react-icons/io5";
 import { RiInstagramFill } from "react-icons/ri";
 import { AiOutlineYoutube } from "react-icons/ai";
 import { LuMousePointerClick } from "react-icons/lu";
-import { Footer, CourseCard } from "@/components"
+import { CourseCard } from "@/components"
 import video_background from '@/assets/background.mp4';
 import warrent_buffet from "@/assets/warren_buffet.jpg";
 
@@ -168,11 +168,6 @@ const HomePage = () => {
             <CourseCard thumbnail='https://i.ytimg.com/vi/YBJWGuzDRxo/maxresdefault.jpg' title='Introduction to Stock Market' />
           </div>
         </section>
-
-        {/* ========================================= */}
-        {/* Footer */}
-        {/* ========================================= */}
-        <Footer />
       </div>
 
 
