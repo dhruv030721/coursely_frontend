@@ -159,7 +159,7 @@ const HomePage = () => {
         {/* ========================================= */}
         {/* Our Mentor */}
         {/* ========================================= */}
-        <section className="text-white text-center space-y-10 container mx-auto px-4 flex flex-col items-center">
+        <section className="text-white text-center space-y-10 container  mx-auto px-4 pb-32 flex flex-col items-center">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-5">What would you like to <span className='text-green-500'>Learn?</span></h2>
           </div>
