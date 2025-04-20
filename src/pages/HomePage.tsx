@@ -7,6 +7,8 @@ import { LuMousePointerClick } from "react-icons/lu";
 import { CourseCard } from "@/components"
 import video_background from '@/assets/background.mp4';
 import warrent_buffet from "@/assets/warren_buffet.jpg";
+import Marquee from "react-fast-marquee";
+
 
 const HomePage = () => {
   const features = [
@@ -52,9 +54,15 @@ const HomePage = () => {
     }
   ];
 
+  const Keywords = [
+    "Fundamental & Technical Analysis",
+    "Options & Futures Trading",
+    "Risk Management & Capital Preservation"
+  ]
+
 
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden">
+    <div className="relative min-h-screen bg-black overflow-hidden" id='HomeSection'>
       {/* ========================================= */}
       {/* Background and Blur Effect */}
       {/* ========================================= */}
@@ -97,6 +105,31 @@ const HomePage = () => {
           </button>
         </div>
       </section>
+
+      {/* ========================================= */}
+      {/* Keywords Marquee */}
+      {/* ========================================= */}
+      <div className='mt-24 h-16 flex items-center rotate-2 relative -top-20 -left-5 z-20 border-t border-b border-zinc-700 shadow-lg'>
+        <div className='text-white whitespace-nowrap relative bg-black h-full text-center flex items-center font-geist text-xl before:h-full before:w-10 before:absolute before:-right-8 before:bg-gradient-to-r before:from-black before:to-transparent before:z-10
+        '><p className='pr-5 px-10 font uppercase flex gap-x-2'>What we Provide <span className=" text-yellow-500 mr-3 text-xl">?</span>
+          </p></div>
+        <Marquee className="text-white bg-black text-xl font-bold uppercase h-full font-geist" speed={100} direction='right' gradient={false}>{
+          Keywords.map((keyword, index) => (
+            <>
+              <span className=" text-yellow-500 mr-3 text-xl">•</span>
+              <span key={index} className="text-green-500 font-bold mx-10">{keyword}</span></>
+          ))
+        }</Marquee>
+      </div>
+
+      {/* ========================================= */}
+      {/* Discount Marquee */}
+      {/* ========================================= */}
+      <div className='mb-24 h-16 flex items-center -rotate-1 relative -top-5 -left-5 z-20 border-t border-b border-zinc-700 shadow-lg'>
+        <div className='text-white relative bg-black h-full text-center flex items-center font-geist text-xl before:h-full before:w-10 before:absolute before:-right-8 before:bg-gradient-to-r before:from-black before:to-transparent before:z-10
+        '><p className='pr-5 px-10 font uppercase flex gap-x-2'>Discounts <span className='text-green-700 font-bold'>%</span></p></div>
+        <Marquee className="text-white bg-black text-xl font-bold uppercase h-full font-geist" speed={100} gradient={false}><span className=" text-yellow-500 mr-3 text-xl">20%</span>OFF for New User</Marquee>
+      </div>
 
       <div className='flex flex-col space-y-40'>
         {/* ========================================= */}

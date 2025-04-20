@@ -1,6 +1,20 @@
 import yayin_logo_bgremove from "@/assets/logo_icon.png";
+import { Link } from "react-router-dom";
+
 
 const Footer = () => {
+
+
+    const goToSection = (sectionId: string, time: number) => {
+        setTimeout(() => {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }, time);
+    }
+
+
     return (
         <section className="border-t border-zinc-800 bg-black py-8 text-white">
             <div className="container mx-auto px-4">
@@ -21,10 +35,20 @@ const Footer = () => {
                             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
                             {/* Quick Links */}
                             <ul className="space-y-2 text-gray-400">
-                                <li><a href="#" className="hover:text-green-500 transition-colors">Home</a></li>
-                                <li><a href="#" className="hover:text-green-500 transition-colors">Courses</a></li>
-                                <li><a href="#" className="hover:text-green-500 transition-colors">About Us</a></li>
-                                <li><a href="#" className="hover:text-green-500 transition-colors">Contact</a></li>
+                                <li>
+                                    <Link
+                                        to="/"
+                                        className="hover:text-green-500 transition-colors"
+                                        onClick={() => {
+                                            goToSection("HomeSection", 100)
+                                        }}
+                                    >
+                                        Home
+                                    </Link>
+                                </li>
+                                <li><Link to="#" className="hover:text-green-500 transition-colors">Courses</Link></li>
+                                <li><Link to="#" className="hover:text-green-500 transition-colors">About Us</Link></li>
+                                <li><Link to="/contact#" onClick={() => {goToSection("ContactSection", 100)}} className="hover:text-green-500 transition-colors">Contact</Link></li>
                             </ul>
                         </div>
                     </div>

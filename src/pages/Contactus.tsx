@@ -7,7 +7,7 @@ import { PiPhoneCallFill } from "react-icons/pi";
 
 const Contactus = () => {
     return (
-        <div className="relative w-full text-white flex flex-col items-center">
+        <div className="relative w-full text-white flex flex-col items-center" id="ContactSection">
 
             {/* Form floating between black and green */}
             <div className="flex relative top-40 z-10 rounded-3xl py-10 px-16 bg-black/60 shadow-xl border border-zinc-500 backdrop-blur-lg">
