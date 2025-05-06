@@ -12,7 +12,7 @@ interface ButtonProps {
 const Button = ({ name, btnClass, handler, preicon, posticon }: ButtonProps) => {
   return (
     <div>
-      <button className={` font-light flex items-center py-2 text-sm  ${btnClass}`} onClick={handler}>{preicon}{name}{posticon}</button>
+      <button className={` font-light flex justify-center items-center py-2 text-sm  ${btnClass}`} onClick={handler}>{preicon}{name}{posticon}</button>
     </div>
   )
 }

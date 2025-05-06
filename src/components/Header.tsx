@@ -19,8 +19,8 @@ const Header = () => {
             link: "/"
         },
         {
-            name: "Course",
-            link: "/course"
+            name: "Courses",
+            link: "/courses"
         },
         {
             name: "About",
@@ -66,7 +66,7 @@ const Header = () => {
             {/* Authentication Button Section */}
             {/* ========================================= */}
             <div className="text-white font-geist flex items-center gap-x-5">
-                <HiMiniShoppingBag color="white" size={20} className="cursor-pointer hover:opacity-80 transition-opacity" />
+                <Link to="/cart"><HiMiniShoppingBag color="white" size={20} className="cursor-pointer hover:opacity-80 transition-opacity" /></Link>
                 <button className="border-[0.5px] border-gray-400 font-light rounded-3xl px-5 py-2 hover:bg-white/10 transition-colors" onClick={() => { navigate('/login') }}>
                     Login
                 </button>

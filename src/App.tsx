@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HomePage, AdminAuthLayout, Layout, AdminLayout, Dashboard, CourseBuilder, PageNotFound, ManageCourses, CoupenDiscount, Login, Signup, Contactus, AuthPageLayout } from "@/pages";
+import { HomePage, AdminAuthLayout, Layout, AdminLayout, Dashboard, CourseBuilder, PageNotFound, ManageCourses, CoupenDiscount, Login, Signup, Contactus, AuthPageLayout, Aboutus, Courses, Cart } from "@/pages";
 
 const App = () => {
 
@@ -9,7 +9,10 @@ const App = () => {
         {/* Public Routes */}
         <Route path="/" element={<Layout />}>
           <Route path="" element={<HomePage />} />
+          <Route path="courses" element={<Courses />} />
+          <Route path="about" element={<Aboutus />} />
           <Route path="contact" element={<Contactus />} />
+          <Route path="cart" element={<Cart />} />
         </Route>
 
         {/* Admin Routes  */}

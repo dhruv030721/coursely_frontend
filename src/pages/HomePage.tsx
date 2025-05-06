@@ -54,6 +54,37 @@ const HomePage = () => {
     }
   ];
 
+  const courses = [
+    {
+      id: 7,
+      title: 'Value Investing: Warren Buffett Method',
+      instructor: 'Thomas Baker',
+      description: 'Discover the investment strategies used by Warren Buffett to build long-term wealth.',
+      level: 'Beginner',
+      rating: 4.9,
+      students: 25467,
+      duration: '26 hours',
+      price: 139.99,
+      category: 'Investing',
+      image: 'https://th.bing.com/th/id/OIP.xNz_Q8NqgfBrM_EfLxbU3AHaE7?w=255&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7',
+      featured: true
+    },
+    {
+      id: 8,
+      title: 'Candlestick Patterns and Chart Reading',
+      instructor: 'Andrew Wilson',
+      description: 'Master Japanese candlestick patterns to identify market reversals and continuations.',
+      level: 'Intermediate',
+      rating: 4.6,
+      students: 11243,
+      duration: '16 hours',
+      price: 79.99,
+      category: 'Technical Analysis',
+      image: 'https://th.bing.com/th/id/OIP.xNz_Q8NqgfBrM_EfLxbU3AHaE7?w=255&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7',
+      featured: false
+    }
+  ]
+
   const Keywords = [
     "Fundamental & Technical Analysis",
     "Options & Futures Trading",
@@ -96,7 +127,7 @@ const HomePage = () => {
         <div className="flex justify-center space-x-4">
           <div className='relative'>
             <button className="px-8 py-3 bg-green-800 border border-green-200 animate-in hover:bg-green-900 text-white font-bold rounded-3xl transition-colors animate-pulse">
-              Open Your Mutual Fund Account
+              <a href="http://p.njw.bz/46976" target='__blank__' >Open Your Mutual Fund Account</a>
             </button>
             <LuMousePointerClick className='absolute right-0 animate-mousePointer' color='green' size={30} />
           </div>
@@ -109,7 +140,7 @@ const HomePage = () => {
       {/* ========================================= */}
       {/* Keywords Marquee */}
       {/* ========================================= */}
-      <div className='mt-24 h-16 flex items-center rotate-2 relative -top-20 -left-5 z-20 border-t border-b border-zinc-700 shadow-lg'>
+      <div className='mt-24 h-16 flex items-center rotate-2 relative -top-20 -left-5 z-20 border-t-2 border-b-2 border-zinc-800 shadow-lg'>
         <div className='text-white whitespace-nowrap relative bg-black h-full text-center flex items-center font-geist text-xl before:h-full before:w-10 before:absolute before:-right-8 before:bg-gradient-to-r before:from-black before:to-transparent before:z-10
         '><p className='pr-5 px-10 font uppercase flex gap-x-2'>What we Provide <span className=" text-yellow-500 mr-3 text-xl">?</span>
           </p></div>
@@ -125,7 +156,7 @@ const HomePage = () => {
       {/* ========================================= */}
       {/* Discount Marquee */}
       {/* ========================================= */}
-      <div className='mb-24 h-16 flex items-center -rotate-1 relative -top-5 -left-5 z-20 border-t border-b border-zinc-700 shadow-lg'>
+      <div className='mb-24 h-16 flex items-center -rotate-1 relative -top-5 -left-5 z-20 border-t-2 border-b-2 border-zinc-800 shadow-lg'>
         <div className='text-white relative bg-black h-full text-center flex items-center font-geist text-xl before:h-full before:w-10 before:absolute before:-right-8 before:bg-gradient-to-r before:from-black before:to-transparent before:z-10
         '><p className='pr-5 px-10 font uppercase flex gap-x-2'>Discounts <span className='text-green-700 font-bold'>%</span></p></div>
         <Marquee className="text-white bg-black text-xl font-bold uppercase h-full font-geist" speed={100} gradient={false}><span className=" text-yellow-500 mr-3 text-xl">20%</span>OFF for New User</Marquee>
@@ -190,45 +221,21 @@ const HomePage = () => {
 
 
         {/* ========================================= */}
-        {/* Our Mentor */}
+        {/* Upcoming Courses */}
         {/* ========================================= */}
         <section className="text-white text-center space-y-10 container  mx-auto px-4 pb-32 flex flex-col items-center">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-5">What would you like to <span className='text-green-500'>Learn?</span></h2>
           </div>
-          <div className='flex gap-x-10'>
-            <CourseCard thumbnail='https://th.bing.com/th/id/OIP.xNz_Q8NqgfBrM_EfLxbU3AHaE7?w=255&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7' title='Introduction to Trading' />
-            <CourseCard thumbnail='https://i.ytimg.com/vi/YBJWGuzDRxo/maxresdefault.jpg' title='Introduction to Stock Market' />
+          <div className='grid grid-cols-2 w-1/2 gap-x-10'>
+            {
+              courses.map((course) => (
+                <CourseCard key={course.id} course={course} />
+              ))
+            }
           </div>
         </section>
       </div>
-
-
-
-      {/* Custom Animation for Blob Effect */}
-      <style>{`
-        @keyframes blob {
-          0%, 100% { transform: translate(0, 0) scale(1); }
-          50% { transform: translate(50px, 100px) scale(1.2); }
-        }
-        .animate-blob {
-          animation: blob 15s infinite linear;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-
-        @keyframes mousePointer {
-          0%, 100% { transform: translate(-10px, -10px) scale(1.2); }
-          50% { transform: translate(15px, 15px) scale(1.0); }
-        }
-        .animate-mousePointer {
-          animation: mousePointer 1s infinite linear;
-        }
-        .animation-delay-4000 {
-          animation-delay: 4s;
-        }
-      `}</style>
     </div>
   );
 };

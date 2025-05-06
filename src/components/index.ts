@@ -10,5 +10,6 @@ import CustomModal from "./Modal"
 import EditLesson from "./EditLesson"
 import Footer from "./Footer"
 import CourseCard from "./CourseCard"
+import JourneyStep  from "./JourneyStep"
 
-export { Header, SideBar, Input, TextArea, Button, StepSection, MediaInput, Checkbox, CustomModal, EditLesson, Footer, CourseCard }
+export { Header, SideBar, Input, TextArea, Button, StepSection, MediaInput, Checkbox, CustomModal, EditLesson, Footer, CourseCard, JourneyStep }

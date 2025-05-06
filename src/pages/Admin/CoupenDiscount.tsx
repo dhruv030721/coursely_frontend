@@ -54,7 +54,7 @@ const CoupenDiscount = () => {
                     <h1 className="text-2xl">Coupen Discount Management</h1>
                     <p className="text-gray-400 text-xs">Simplify the process of creating, tracking, and managing discounts with ease in the Coupon Discount Management section.</p>
                 </div>
-                <Button name="Add Coupen" handler={() => { }} btnClass="rounded-md px-6 border-b border-r border-zinc-400 gap-x-1 bg-yellow-800 text-white " preicon={<MdDiscount
+                <Button name="Add Coupen" handler={() => { }} btnClass="rounded-md px-6 border-b border-r border-zinc-400 gap-x-1 bg-yellow-800 text-white" preicon={<MdDiscount
                     size={15} />} />
             </section>
 
