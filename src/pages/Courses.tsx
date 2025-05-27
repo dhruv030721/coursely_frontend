@@ -143,7 +143,7 @@ export default function Courses() {
   const featuredCourses = courses.filter(course => course.featured);
 
   return (
-    <div className="relative min-h-screen bg-black text-gray-100 pt-20">
+    <div id='CoursesSection' className="relative min-h-screen bg-black text-gray-100 pt-20">
 
       {/* Hero Section */}
       <section className="bg-gradient-to-t from-black via-green-950/50 to-black py-16">

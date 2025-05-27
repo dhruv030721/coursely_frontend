@@ -5,7 +5,7 @@ import { BarChart3, BookOpen, LineChart, TrendingUp } from "lucide-react"
 
 const Aboutus = () => {
   return (
-    <div className="relative bg-black">
+    <div id="AboutSection" className="relative bg-black">
       <div className="absolute h-full top-0 left-0 w-full overflow-hidden pointer-events-none">
         <div className="absolute -top-1/4 -right-1/4 w-2/3 h-2/3 bg-red-900/40 rounded-full blur-[300px] animate-blob"></div>
         <div className="absolute -bottom-1/4 -left-1/4 w-2/3 h-2/3 bg-green-900/40 rounded-full blur-[300px] animate-blob animation-delay-4000"></div>

@@ -5,6 +5,7 @@ import { RiInstagramFill } from "react-icons/ri";
 import { AiOutlineYoutube } from "react-icons/ai";
 import { LuMousePointerClick } from "react-icons/lu";
 import { CourseCard } from "@/components"
+import { Link } from "react-router-dom";
 import video_background from '@/assets/background.mp4';
 import warrent_buffet from "@/assets/warren_buffet.jpg";
 import Marquee from "react-fast-marquee";
@@ -132,7 +133,7 @@ const HomePage = () => {
             <LuMousePointerClick className='absolute right-0 animate-mousePointer' color='green' size={30} />
           </div>
           <button className="px-8 py-3 border border-white/30 hover:bg-white/10 text-white font-light rounded-3xl transition-colors">
-            View Courses
+            <Link to="/courses">View Courses</Link>
           </button>
         </div>
       </section>

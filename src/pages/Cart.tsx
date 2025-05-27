@@ -187,13 +187,13 @@ export default function Cart() {
                                             value={promoCode}
                                             handler={(e) => setPromoCode(e.target.value)}
                                             placeholder="Enter Promo Code"
-                                            innerDivClasses="bg-white/5 border-b px-3 py-2.5 m-0"
+                                            innerDivClasses="bg-white/5 border-b border-r px-3 py-2.5 m-0 border-zinc-500"
                                             divClasses='my-0'
                                         />
                                         <Button
                                             name="Apply"
                                             handler={applyPromoCode}
-                                            btnClass="bg-blue-900 hover:bg-blue-950 transition border-b border-zinc-400 text-white px-4 py-2 rounded"
+                                            btnClass="bg-blue-900 hover:bg-blue-950 transition border-b border-r border-zinc-500 text-white px-4 py-2 rounded"
                                         />
                                     </div>
                                     {promoApplied && (
@@ -202,7 +202,7 @@ export default function Cart() {
                                 </div>
 
                                 {/* Checkout button */}
-                                <Button posticon={<ChevronRight size={18} className="ml-1" />} btnClass="w-full transition rounded-md px-6 border-b bg-green-900 border-zinc-400 gap-x-1 text-white hover:bg-green-800 transition" handler={applyPromoCode} name="Proceed to Checkout" />
+                                <Button posticon={<ChevronRight size={18} className="ml-1" />} btnClass="w-full transition rounded-md px-6 border-b border-r bg-green-900 border-zinc-500 gap-x-1 text-white hover:bg-green-800 transition" handler={applyPromoCode} name="Proceed to Checkout" />
 
                                 <div className="mt-4 text-center text-sm text-gray-400">
                                     Need help? Contact our support team.
