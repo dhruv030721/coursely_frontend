@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HomePage, AdminAuthLayout, Layout, AdminLayout, Dashboard, CourseBuilder, PageNotFound, ManageCourses, CoupenDiscount, Login, Signup, Contactus, AuthPageLayout, Aboutus, Courses, Cart, UserProfile } from "@/pages";
+import { HomePage, AdminAuthLayout, Layout, AdminLayout, Dashboard, CourseBuilder, PageNotFound, ManageCourses, CoupenDiscount, Login, Signup, Contactus, AuthPageLayout, Aboutus, Courses, Cart, UserProfile, ForgotPassword } from "@/pages";
 
 const App = () => {
 
@@ -26,6 +26,7 @@ const App = () => {
 
         <Route path="login" element={<AuthPageLayout children={<Login />} />} />
         <Route path="signup" element={<AuthPageLayout children={<Signup />} />} />
+        <Route path="forgotpassword" element={<AuthPageLayout children={<ForgotPassword />} />} />
 
         {/* Fallback Routes */}
         <Route path="*" element={<PageNotFound />} />

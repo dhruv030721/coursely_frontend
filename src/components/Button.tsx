@@ -4,7 +4,7 @@ import { MouseEventHandler, ReactNode } from "react"
 interface ButtonProps {
   name: string,
   btnClass: string,
-  handler: MouseEventHandler<HTMLButtonElement>,
+  handler: CallableFunction,
   preicon?: ReactNode
   posticon?: ReactNode
 }

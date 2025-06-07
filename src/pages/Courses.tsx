@@ -145,11 +145,12 @@ export default function Courses() {
   return (
     <div id='CoursesSection' className="relative min-h-screen bg-black text-gray-100 pt-20">
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-t from-black via-green-950/50 to-black py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Invest in Your <span className="text-green-400">Financial Future</span></h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+      <section className="bg-gradient-to-t from-black via-green-950/50 to-black py-12 sm:py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
+            Invest in Your <span className="text-green-400">Financial Future</span>
+          </h2>
+          <p className="text-base sm:text-lg lg:text-xl text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
             Our expert-led stock market courses give you the knowledge and skills to trade with confidence and build wealth for the long term.
           </p>
         </div>
@@ -158,7 +159,7 @@ export default function Courses() {
       {/* Featured Courses */}
       <section className="py-12 bg-black">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-8 flex items-center">
+          <h2 className="text-2xl font-bold mb-8 flex justify-center md:justify-start items-center">
             <Star className="text-yellow-400 mr-2" size={24} />
             Featured Courses
           </h2>
@@ -183,15 +184,15 @@ export default function Courses() {
                   name='search'
                   type="text"
                   placeholder="Search courses..."
-                  divClasses="w-1/2 text-gray-100 rounded-lg py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  divClasses="md:w-1/2 text-gray-100 rounded-lg py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-teal-500"
                   value={searchQuery}
                   icon={<Search className="text-white" size={18} />}
                   handler={(e) => setSearchQuery(e.target.value)}
                 />
-              <div className="flex items-center">
+              <div className="flex flex-col md:flex-row md:items-center items-end">
                 <Filter className="text-gray-400 mr-2" size={18} />
                 <span className="text-gray-300 mr-2">Filter by:</span>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap justify-end gap-2">
                   {categories.map(category => (
                     <button
                       key={category}
@@ -228,42 +229,6 @@ export default function Courses() {
           )}
         </div>
       </section>
-
-      {/* Stats Section */}
-      {/* <section className="py-12 bg-gray-800">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-            <div className="bg-white/50 p-6 rounded-lg">
-              <div className="flex justify-center mb-4">
-                <Users className="text-teal-400" size={32} />
-              </div>
-              <h3 className="text-3xl font-bold mb-2">50,000+</h3>
-              <p className="text-gray-400">Students</p>
-            </div>
-            <div className="bg-white/50 p-6 rounded-lg">
-              <div className="flex justify-center mb-4">
-                <BookOpen className="text-teal-400" size={32} />
-              </div>
-              <h3 className="text-3xl font-bold mb-2">120+</h3>
-              <p className="text-gray-400">Courses</p>
-            </div>
-            <div className="bg-white/50 p-6 rounded-lg">
-              <div className="flex justify-center mb-4">
-                <TrendingUp className="text-teal-400" size={32} />
-              </div>
-              <h3 className="text-3xl font-bold mb-2">85%</h3>
-              <p className="text-gray-400">Success Rate</p>
-            </div>
-            <div className="bg-white/50 p-6 rounded-lg">
-              <div className="flex justify-center mb-4">
-                <DollarSign className="text-teal-400" size={32} />
-              </div>
-              <h3 className="text-3xl font-bold mb-2">$2.5M+</h3>
-              <p className="text-gray-400">Student Profits</p>
-            </div>
-          </div>
-        </div>
-      </section> */}
     </div>
   );
 }

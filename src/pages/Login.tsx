@@ -1,13 +1,21 @@
 import { Input, Button } from "@/components";
 import yayin_logo_bgremove from "@/assets/logo_icon.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { toastDarkStyle } from "@/components/GlobalStyle";
+
+interface LoginProps {
+    email: string;
+    password: string;
+}
 
 const Login = () => {
 
     const navigate = useNavigate();
 
-    const handleLogin = () => {
-        // Login handler implementation
+    const handleLogin = ({email, password} : LoginProps) => {
+        // toast.promise(
+        //     "Login Successful!", toastDarkStyle("SUCCESS") as object);
     };
 
     return (
@@ -28,7 +36,7 @@ const Login = () => {
                 </div>
 
                 {/* Form */}
-                <form className="w-full max-w-96 flex flex-col space-y-5 mt-8 md:mt-10">
+                <div className="w-full max-w-96 flex flex-col space-y-5 mt-8 md:mt-10">
                     <Input
                         name="Email"
                         type="email"
@@ -43,9 +51,9 @@ const Login = () => {
                         required={true}
                         placeholder="Enter your password"
                     />
-                    <span className="text-end text-sm text-zinc-200 hover:text-white cursor-pointer">
+                    <Link to="/forgotpassword" > <span className="text-end text-sm text-zinc-200 hover:text-white cursor-pointer">
                         Forgot your password?
-                    </span>
+                    </span></Link>
                     <Button
                         name="Login"
                         handler={handleLogin}
@@ -57,7 +65,7 @@ const Login = () => {
                             Register Here
                         </span>
                     </span>
-                </form>
+                </div>
             </section>
         </>
     );

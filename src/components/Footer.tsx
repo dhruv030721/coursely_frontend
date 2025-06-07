@@ -34,7 +34,7 @@ const Footer = () => {
                         <div>
                             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
                             {/* Quick Links */}
-                            <ul className="space-y-2 text-gray-400">
+                            <ul className="space-y-2 text-gray-400 text-center md:text-start">
                                 <li><Link to="/" className="hover:text-green-500 transition-colors" onClick={() => { goToSection("HomeSection", 100) }}>Home</Link></li>
                                 <li><Link to="/courses" onClick={() => { goToSection("CoursesSection", 100) }} className="hover:text-green-500 transition-colors">Courses</Link></li>
                                 <li><Link to="/about" onClick={() => { goToSection("AboutSection", 100) }} className="hover:text-green-500 transition-colors">About Us</Link></li>
