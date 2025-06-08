@@ -12,7 +12,7 @@ const Contactus = () => {
                 </h1>
             </div>
 
-            <div className="relative w-full text-white flex flex-col items-center  lg:px-8" id="ContactSection">
+            <div className="relative w-full text-white flex flex-col items-center " id="ContactSection">
                 <div className="px-8">
                     <div className="flex flex-col lg:flex-row relative top-36 sm:top-28 lg:top-40 z-10 rounded-3xl py-6 sm:py-8 lg:py-10 px-4 sm:px-8 lg:px-16 bg-black/20 shadow-xl border border-zinc-700 backdrop-blur-lg w-full max-w-5xl">
                         {/* Contact Information */}

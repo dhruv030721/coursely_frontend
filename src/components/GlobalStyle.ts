@@ -1,4 +1,4 @@
-const toastDarkStyle = (type: string) => {
+const toastDarkStyle = (type: string): object => {
     let icon = '';
     if (type == "SUCCESS") {
         return {

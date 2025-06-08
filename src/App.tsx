@@ -18,6 +18,7 @@ const App = () => {
 
         {/* Admin Routes  */}
         <Route path="admin" element={<AdminAuthLayout><AdminLayout /></AdminAuthLayout>}>
+          <Route path="" element={<Dashboard />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="course-builder" element={<CourseBuilder />} />
           <Route path="manage-courses" element={<ManageCourses />} />

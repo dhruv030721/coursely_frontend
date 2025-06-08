@@ -211,7 +211,7 @@ export default function Cart() {
                         </div>
                     </div>
                 ) : (
-                    <div className="text-center py-16 bg-gray-800 rounded-lg">
+                    <div className="text-center py-16  rounded-lg">
                         <div className="flex justify-center mb-4">
                             <ShoppingCart size={64} className="text-gray-500" />
                         </div>

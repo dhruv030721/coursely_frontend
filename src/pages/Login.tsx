@@ -3,6 +3,8 @@ import yayin_logo_bgremove from "@/assets/logo_icon.png";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { toastDarkStyle } from "@/components/GlobalStyle";
+import { useState } from "react"
+import { CheckValidation } from "@/utility/Validation";
 
 interface LoginProps {
     email: string;
@@ -11,11 +13,13 @@ interface LoginProps {
 
 const Login = () => {
 
+    const [validEmail, setValidEmail] = useState(true);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const handleLogin = ({email, password} : LoginProps) => {
-        // toast.promise(
-        //     "Login Successful!", toastDarkStyle("SUCCESS") as object);
+    const handleLogin = ({ email, password }: LoginProps) => {
+        toast.success(`${email}: ${password}`, toastDarkStyle("SUCCESS"))
     };
 
     return (
@@ -36,27 +40,38 @@ const Login = () => {
                 </div>
 
                 {/* Form */}
-                <div className="w-full max-w-96 flex flex-col space-y-5 mt-8 md:mt-10">
+                <div className="w-full max-w-96 flex flex-col space-y-3 mt-8 md:mt-10">
                     <Input
                         name="Email"
                         type="email"
                         label="Email"
                         required={true}
+                        value={email}
                         placeholder="Enter your email"
+                        handler={(e) => {
+                            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                            CheckValidation({ value: e.target.value, regex: emailRegex }) ? setValidEmail(true) : setValidEmail(false)
+                            setEmail(e.target.value)
+                        }}
                     />
+                    {!validEmail && <p className="text-red-500 text-xs">*Please enter a valid email</p>}
                     <Input
                         name="Password"
                         type="password"
                         label="Password"
                         required={true}
+                        value={password}
                         placeholder="Enter your password"
+                        handler={(e) => {
+                            setPassword(e.target.value)
+                        }}
                     />
                     <Link to="/forgotpassword" > <span className="text-end text-sm text-zinc-200 hover:text-white cursor-pointer">
                         Forgot your password?
                     </span></Link>
                     <Button
                         name="Login"
-                        handler={handleLogin}
+                        handler={() => { handleLogin({ email, password }) }}
                         btnClass="bg-green-900 w-full rounded-md flex justify-center text-white border-r border-b hover:bg-green-800 transition-colors"
                     />
                     <span className="text-center text-sm text-zinc-200">
