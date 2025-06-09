@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { toastDarkStyle } from "@/components/GlobalStyle";
 import { useState } from "react"
 import { CheckValidation } from "@/utility/Validation";
+import userServices from "@/services/User/UserServices";
 
 interface LoginProps {
     email: string;
@@ -14,12 +15,28 @@ interface LoginProps {
 const Login = () => {
 
     const [validEmail, setValidEmail] = useState(true);
+    const [validPassword, setValidPassword] = useState(true);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const handleLogin = ({ email, password }: LoginProps) => {
-        toast.success(`${email}: ${password}`, toastDarkStyle("SUCCESS"))
+    const handleLogin = async ({ email, password }: LoginProps) => {
+        if (validEmail && validPassword) {
+            await toast.promise(
+                userServices.Login({ email, password }),
+                {
+                    loading: "Verifying",
+                    success: (response) => {
+                        navigate("/")
+                        return `${response.data.message}`
+                    },
+                    error: (error) => {
+                        return `${error.response.data.message}`
+                    }
+                },
+                toastDarkStyle("")
+            )
+        }
     };
 
     return (
@@ -40,7 +57,7 @@ const Login = () => {
                 </div>
 
                 {/* Form */}
-                <div className="w-full max-w-96 flex flex-col space-y-3 mt-8 md:mt-10">
+                <div className="w-full max-w-96 flex flex-col space-y-5 mt-8 md:mt-10">
                     <Input
                         name="Email"
                         type="email"
@@ -53,8 +70,9 @@ const Login = () => {
                             CheckValidation({ value: e.target.value, regex: emailRegex }) ? setValidEmail(true) : setValidEmail(false)
                             setEmail(e.target.value)
                         }}
+                        isValid={validEmail}
+                        error="*Please enter a valid email"
                     />
-                    {!validEmail && <p className="text-red-500 text-xs">*Please enter a valid email</p>}
                     <Input
                         name="Password"
                         type="password"
@@ -63,8 +81,16 @@ const Login = () => {
                         value={password}
                         placeholder="Enter your password"
                         handler={(e) => {
-                            setPassword(e.target.value)
+                            const minLength = 6;
+                            if (e.target.value.length >= minLength) {
+                                setValidPassword(true);
+                            } else {
+                                setValidPassword(false);
+                            }
+                            setPassword(e.target.value);
                         }}
+                        isValid={validPassword}
+                        error="*Please enter a valid password"
                     />
                     <Link to="/forgotpassword" > <span className="text-end text-sm text-zinc-200 hover:text-white cursor-pointer">
                         Forgot your password?

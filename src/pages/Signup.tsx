@@ -1,13 +1,15 @@
 import { Button, Input } from "@/components"
 import yayin_logo_bgremove from "@/assets/logo_icon.png";
 import { useNavigate } from "react-router-dom";
+import { CheckValidation } from "@/utility/Validation";
+import { useState } from "react";
 
 const Signup = () => {
 
+  const [validEmail, setValidEmail] = useState(true);
   const navigate = useNavigate();
 
   const handleSignup = () => {
-
   }
 
   return (
@@ -36,14 +38,23 @@ const Signup = () => {
             required={true}
             placeholder="Enter your name"
             divClasses="col-span-1"
+            isValid={false}
+            error=""
           />
           <Input
             name="Email"
             type="email"
             label="Email"
             required={true}
+            handler={(e) => {
+              const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+              CheckValidation({ value: e.target.value, regex: emailRegex }) ? setValidEmail(true) : setValidEmail(false)
+
+            }}
             placeholder="Enter your email"
             divClasses="col-span-1"
+            isValid={validEmail}
+            error="*Please enter a valid email"
           />
           <Input
             name="Password"

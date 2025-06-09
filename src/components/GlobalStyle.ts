@@ -1,32 +1,14 @@
 const toastDarkStyle = (type: string): object => {
     let icon = '';
-    if (type == "SUCCESS") {
-        return {
-            style: {
-                borderRadius: '50px',
-                background: '#333',
-                color: '#fff',
-                fontFamily: "DM Sans, sans-serif",
-            },
-            position: 'top-right'
-        }
-    } else if (type == "ERROR") {
-        return {
-            style: {
-                borderRadius: '30px',
-                background: '#333',
-                color: '#fff',
-            },
-        }
-    } else {
-        return {
-            icon: icon,
-            style: {
-                borderRadius: '30px',
-                background: '#333',
-                color: '#fff',
-            },
-        }
+    return {
+        style: {
+            borderRadius: '10px',
+            background: 'rgba(255,255,255,0.1)',
+            color: '#fff',
+            fontFamily: "DM Sans, sans-serif",
+            fontSize: "15px"
+        },
+        position: 'bottom-center'
     }
 }
 
