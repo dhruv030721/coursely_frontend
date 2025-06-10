@@ -3,16 +3,16 @@ import { apiConnector } from "../ApiConnector";
 import { UserEndPoints } from "../Apis";
 
 interface LoginPayload {
-    email: string;
-    password: string;
+    Email: string;
+    Password: string;
 }
 class UserServices {
 
-    async Login({ email, password }: LoginPayload): Promise<any> {
+    async Login({ Email, Password }: LoginPayload): Promise<any> {
         const response = await apiConnector({
             method: "POST",
             url: UserEndPoints.LOGIN,
-            bodyData: { email, password }
+            bodyData: { Email, Password }
         })
         return response;
     }

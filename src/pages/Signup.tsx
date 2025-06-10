@@ -1,13 +1,12 @@
 import { Button, Input } from "@/components"
 import yayin_logo_bgremove from "@/assets/logo_icon.png";
 import { useNavigate } from "react-router-dom";
-import { CheckValidation } from "@/utility/Validation";
-import { useState } from "react";
+import { useForm } from "react-hook-form"
 
 const Signup = () => {
 
-  const [validEmail, setValidEmail] = useState(true);
   const navigate = useNavigate();
+  const { register, handleSubmit, formState: { errors }, getValues } = useForm()
 
   const handleSignup = () => {
   }
@@ -30,68 +29,106 @@ const Signup = () => {
         </div>
 
         {/* Form */}
-        <form className="w-full max-w-96 grid grid-cols-1 justify-center items-center md:grid-cols-2 gap-5 mt-8 md:mt-10">
-          <Input
-            name="Name"
-            type="text"
-            label="Name"
-            required={true}
-            placeholder="Enter your name"
-            divClasses="col-span-1"
-            isValid={false}
-            error=""
-          />
-          <Input
-            name="Email"
-            type="email"
-            label="Email"
-            required={true}
-            handler={(e) => {
-              const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-              CheckValidation({ value: e.target.value, regex: emailRegex }) ? setValidEmail(true) : setValidEmail(false)
-
-            }}
-            placeholder="Enter your email"
-            divClasses="col-span-1"
-            isValid={validEmail}
-            error="*Please enter a valid email"
-          />
-          <Input
-            name="Password"
-            type="password"
-            label="Password"
-            required={true}
-            placeholder="Enter your password"
-            divClasses="col-span-1"
-          />
-          <Input
-            name="Confirm Password"
-            type="password"
-            label="Confirm Password"
-            required={true}
-            placeholder="Enter your password"
-            divClasses="col-span-1"
-          />
-          <Input
-            name="Age"
-            type="number"
-            label="Age"
-            required={true}
-            placeholder="Enter your age"
-            divClasses="col-span-1"
-          />
-          <Input
-            name="Contact"
-            type="number"
-            label="Contact"
-            required={true}
-            placeholder="Enter your contact number"
-            divClasses="col-span-1"
-          />
+        <form onSubmit={handleSubmit((data => console.log(data)))} className="w-full max-w-96 grid grid-cols-1 justify-center items-center md:grid-cols-2 gap-5 mt-8 md:mt-10">
+          <div className="relative">
+            <Input
+              type="text"
+              label="Name"
+              required={true}
+              placeholder="Enter your name"
+              divClasses="col-span-1"
+              isValid={false}
+              error=""
+              {
+              ...register('Name', { required: true })
+              }
+            />
+            {
+              errors.Name && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter your name!</p>
+            }
+          </div>
+          <div className="relative">
+            <Input
+              type="email"
+              label="Email"
+              required={true}
+              placeholder="Enter your email"
+              divClasses="col-span-1"
+              {
+              ...register("Email", { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ })
+              }
+            />
+            {
+              errors.Email && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid email!</p>
+            }
+          </div>
+          <div className="relative">
+            <Input
+              type="password"
+              label="Password"
+              required={true}
+              placeholder="Enter your password"
+              divClasses="col-span-1"
+              {
+              ...register("Password", { required: true, validate: (value) => value.length > 8 })
+              }
+            />
+            {
+              errors.Password && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid password!</p>
+            }
+          </div>
+          <div className="relative">
+            <Input
+              type="password"
+              label="Confirm Password"
+              required={true}
+              placeholder="Enter your password"
+              divClasses="col-span-1"
+              {
+              ...register("ConfirmPassword", {
+                required: true,
+                validate: (value) => value === getValues("Password") || "Both password are not same!"
+              })
+              }
+            />
+            {
+              errors.ConfirmPassword && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Both password are not same!</p>
+            }
+          </div>
+          <div className="relative">
+            <Input
+              type="number"
+              label="Age"
+              required={true}
+              placeholder="Enter your age"
+              divClasses="col-span-1"
+              {
+              ...register("Age", { required: true , validate: (value) => value >= 18})
+              }
+            />
+            {
+              errors.Age && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Only above 18 are eligible!</p>
+            }
+          </div>
+          <div className="relative">
+            <Input
+              type="number"
+              label="Contact"
+              required={true}
+              placeholder="Enter your contact number"
+              divClasses="col-span-1"
+              {
+              ...register("Contact", { required: true, validate: (value) => value.length == 10 })
+              }
+            />
+            {
+              errors.Contact && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid contact!</p>
+            }
+          </div>
           <div className="col-span-1 md:col-span-2">
             <Button
               name="Signup"
-              handler={handleSignup}
+              type="submit"
               btnClass="bg-green-900 w-full rounded-md flex justify-center text-white border-r border-b hover:bg-green-800 transition-colors"
             />
           </div>

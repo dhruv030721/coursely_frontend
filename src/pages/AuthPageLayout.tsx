@@ -6,7 +6,7 @@ interface AuthPageLayoutProps {
 
 const AuthPageLayout = ({ children }: AuthPageLayoutProps) => {
     return (
-        <div className="bg-zinc-950 flex flex-col md:flex-row h-screen text-white font-geist">
+        <div className="bg-zinc-950 flex flex-col md:flex-row h-screen text-white font-geist overflow-y-hidden">
 
             {children}
 

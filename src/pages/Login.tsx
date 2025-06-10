@@ -3,27 +3,19 @@ import yayin_logo_bgremove from "@/assets/logo_icon.png";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { toastDarkStyle } from "@/components/GlobalStyle";
-import { useState } from "react"
-import { CheckValidation } from "@/utility/Validation";
 import userServices from "@/services/User/UserServices";
-
-interface LoginProps {
-    email: string;
-    password: string;
-}
+import { FieldValues, useForm } from "react-hook-form";
 
 const Login = () => {
 
-    const [validEmail, setValidEmail] = useState(true);
-    const [validPassword, setValidPassword] = useState(true);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const { register, handleSubmit, formState: { errors } } = useForm()
 
-    const handleLogin = async ({ email, password }: LoginProps) => {
-        if (validEmail && validPassword) {
+    const handleLogin = async (data: FieldValues) => {
+        const { Email, Password } = data
+        if (Email != "" && Password != "") {
             await toast.promise(
-                userServices.Login({ email, password }),
+                userServices.Login({ Email, Password }),
                 {
                     loading: "Verifying",
                     success: (response) => {
@@ -31,6 +23,7 @@ const Login = () => {
                         return `${response.data.message}`
                     },
                     error: (error) => {
+                        if (error.response.data == "") return `${error.response.statusText}`
                         return `${error.response.data.message}`
                     }
                 },
@@ -57,47 +50,41 @@ const Login = () => {
                 </div>
 
                 {/* Form */}
-                <div className="w-full max-w-96 flex flex-col space-y-5 mt-8 md:mt-10">
-                    <Input
-                        name="Email"
-                        type="email"
-                        label="Email"
-                        required={true}
-                        value={email}
-                        placeholder="Enter your email"
-                        handler={(e) => {
-                            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-                            CheckValidation({ value: e.target.value, regex: emailRegex }) ? setValidEmail(true) : setValidEmail(false)
-                            setEmail(e.target.value)
-                        }}
-                        isValid={validEmail}
-                        error="*Please enter a valid email"
-                    />
-                    <Input
-                        name="Password"
-                        type="password"
-                        label="Password"
-                        required={true}
-                        value={password}
-                        placeholder="Enter your password"
-                        handler={(e) => {
-                            const minLength = 6;
-                            if (e.target.value.length >= minLength) {
-                                setValidPassword(true);
-                            } else {
-                                setValidPassword(false);
+                <form onSubmit={handleSubmit((data) => handleLogin(data))} className="w-full max-w-96 flex flex-col space-y-5 mt-8 md:mt-10">
+                    <div className="relative">
+                        <Input
+                            type="email"
+                            label="Email"
+                            required={true}
+                            placeholder="Enter your email"
+                            {
+                            ...register("Email", { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ })
                             }
-                            setPassword(e.target.value);
-                        }}
-                        isValid={validPassword}
-                        error="*Please enter a valid password"
-                    />
+                        />
+                        {
+                            errors.Email && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid email!</p>
+                        }
+                    </div>
+                    <div>
+                        <Input
+                            type="password"
+                            label="Password"
+                            required={true}
+                            placeholder="Enter your password"
+                            {
+                            ...register("Password", { required: true, validate: (value) => value.length >= 8 })
+                            }
+                        />
+                        {
+                            errors.Password && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid password!</p>
+                        }
+                    </div>
                     <Link to="/forgotpassword" > <span className="text-end text-sm text-zinc-200 hover:text-white cursor-pointer">
                         Forgot your password?
                     </span></Link>
                     <Button
                         name="Login"
-                        handler={() => { handleLogin({ email, password }) }}
+                        type="submit"
                         btnClass="bg-green-900 w-full rounded-md flex justify-center text-white border-r border-b hover:bg-green-800 transition-colors"
                     />
                     <span className="text-center text-sm text-zinc-200">
@@ -106,7 +93,7 @@ const Login = () => {
                             Register Here
                         </span>
                     </span>
-                </div>
+                </form>
             </section>
         </>
     );
