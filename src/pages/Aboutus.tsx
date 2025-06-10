@@ -8,7 +8,7 @@ const Aboutus = () => {
         <div className="absolute -top-1/4 -right-1/4 w-2/3 h-2/3 bg-red-900/40 rounded-full blur-[300px] animate-blob"></div>
         <div className="absolute -bottom-1/4 -left-1/4 w-2/3 h-2/3 bg-green-900/40 rounded-full blur-[300px] animate-blob animation-delay-4000"></div>
       </div>
-      
+
       <div className="relative pt-16 sm:pt-20 lg:pt-32 px-4 sm:px-6 lg:px-8">
         {/* Hero section */}
         <div className="mb-12 sm:mb-16 text-center">
@@ -76,20 +76,20 @@ const Aboutus = () => {
               together!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-x-4 items-start sm:items-end text-start">
-              <Input 
-                name="email" 
-                label="Email" 
-                required 
-                placeholder="Write your email to subscribe to get more updates" 
-                type="email" 
-                divClasses="w-full text-white" 
-                innerDivClasses="bg-white/5" 
-                inputClasses="py-2 sm:py-1 px-2 text-sm sm:text-base"
+              <Input
+                name="email"
+                label="Email"
+                required
+                placeholder="Write your email to subscribe to get more updates"
+                type="email"
+                divClasses="w-full text-white"
+                innerDivClasses="bg-white/5"
+                inputClasses="py-2 sm:py-1 px-2 text-xs sm:text-xs"
               />
-              <Button 
-                btnClass="w-full sm:w-auto rounded-md px-4 sm:px-6 py-2 border-b bg-white/5 border-zinc-400 gap-x-1 text-white hover:bg-white/10 hover:scale-105 transition text-sm sm:text-base" 
-                handler={() => { }} 
-                name="Subscribe" 
+              <Button
+                btnClass="w-full sm:w-auto rounded-md px-4 sm:px-6 py-3 border-b bg-white/5 border-zinc-400 gap-x-1 text-white hover:bg-white/10 hover:scale-105 transition text-sm sm:text-xs"
+                handler={() => { }}
+                name="Subscribe"
               />
             </div>
           </div>

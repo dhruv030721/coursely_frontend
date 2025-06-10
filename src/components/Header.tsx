@@ -4,12 +4,16 @@ import { HiMiniShoppingBag } from "react-icons/hi2";
 import white_stroke from "@/assets/white_stroke.png"
 import { useState, useEffect } from "react";
 import { FiUser, FiMenu, FiX } from "react-icons/fi";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
+import { GiSpellBook } from "react-icons/gi";
+
 
 const Header = () => {
     const [scrollY, setScrollY] = useState(0)
-    const [isLogin, setIsLogin] = useState(true)
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const navigate = useNavigate();
+    const isLogin = useSelector((state: RootState) => state.auth.isLogin)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -83,7 +87,7 @@ const Header = () => {
 
     return (
         <>
-            <header className={`${isMobileMenuOpen ? 'hidden': 'fixed'} left-0 right-0 z-50 h-14 md:h-auto bg-transparent font-thin text-sm flex justify-between items-center px-4 sm:px-8 lg:px-20 bg-white rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-5 border-b border-zinc-700 transition-all shadow-md ${scrollY > 0 ? "m-2 sm:m-3 border rounded-3xl" : "translate-y-0"}`}>
+            <header className={`${isMobileMenuOpen ? 'hidden' : 'fixed'} left-0 right-0 z-50 h-14 md:h-auto bg-transparent font-thin text-sm flex justify-between items-center px-4 sm:px-8 lg:px-20 bg-white rounded-b-3xl bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-5 border-b border-zinc-700 transition-all shadow-md ${scrollY > 0 ? "m-2 sm:m-3 border rounded-3xl" : "translate-y-0"}`}>
                 {/* Logo Section */}
                 <div>
                     <Link to="/">
@@ -109,8 +113,26 @@ const Header = () => {
                                 </Link>
                             )
                         })}
+                        {
+                            isLogin &&
+                            (<Link
+                                className="flex flex-col relative"
+                                to={"/mycourses"}
+                            >
+                                <button
+                                    className="w-full flex items-center gap-x-2 font-dm_sans  border-b border-r border-green-100  text-white rounded-lg px-5 py-1 hover:bg-white/10 transition-colors text-sm"
+                                    onClick={() => {
+                                        navigate('/mycourses')
+                                    }}
+                                >
+                                    My Courses
+                                    <GiSpellBook  />
+                                </button>
+                            </Link>)
+                        }
                     </ul>
                 </nav>
+
 
                 {/* Desktop Auth & Cart Section */}
                 <div className="text-white font-geist hidden lg:flex items-center gap-x-5">

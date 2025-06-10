@@ -1,14 +1,32 @@
 import { Button, Input } from "@/components"
 import yayin_logo_bgremove from "@/assets/logo_icon.png";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form"
+import { FieldValues, useForm } from "react-hook-form"
+import toast from "react-hot-toast";
+import userServices from "@/services/User/UserServices";
+import { toastDarkStyle } from "@/components/GlobalStyle";
 
 const Signup = () => {
 
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors }, getValues } = useForm()
 
-  const handleSignup = () => {
+  const handleSignup = async (data: FieldValues) => {
+    await toast.promise(
+      userServices.Signup(data),
+      {
+        loading: "Processing",
+        success: (response) => {
+          navigate("/login")
+          return `${response.data.message}`
+        },
+        error: (error) => {
+          if (error.response.data == "") return `${error.response.statusText}`
+          return `${error.response.data.message}`
+        }
+      },
+      toastDarkStyle("")
+    )
   }
 
   return (
@@ -29,7 +47,7 @@ const Signup = () => {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit((data => console.log(data)))} className="w-full max-w-96 grid grid-cols-1 justify-center items-center md:grid-cols-2 gap-5 mt-8 md:mt-10">
+        <form onSubmit={handleSubmit((data => handleSignup(data)))} className="w-full max-w-96 grid grid-cols-1 justify-center items-center md:grid-cols-2 gap-5 mt-8 md:mt-10">
           <div className="relative">
             <Input
               type="text"
@@ -40,11 +58,11 @@ const Signup = () => {
               isValid={false}
               error=""
               {
-              ...register('Name', { required: true })
+              ...register('name', { required: true })
               }
             />
             {
-              errors.Name && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter your name!</p>
+              errors.name && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter your name!</p>
             }
           </div>
           <div className="relative">
@@ -55,11 +73,11 @@ const Signup = () => {
               placeholder="Enter your email"
               divClasses="col-span-1"
               {
-              ...register("Email", { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ })
+              ...register("email", { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ })
               }
             />
             {
-              errors.Email && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid email!</p>
+              errors.email && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid email!</p>
             }
           </div>
           <div className="relative">
@@ -70,11 +88,11 @@ const Signup = () => {
               placeholder="Enter your password"
               divClasses="col-span-1"
               {
-              ...register("Password", { required: true, validate: (value) => value.length > 8 })
+              ...register("password", { required: true, validate: (value) => value.length > 8 })
               }
             />
             {
-              errors.Password && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid password!</p>
+              errors.password && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid password!</p>
             }
           </div>
           <div className="relative">
@@ -85,14 +103,14 @@ const Signup = () => {
               placeholder="Enter your password"
               divClasses="col-span-1"
               {
-              ...register("ConfirmPassword", {
+              ...register("confirmpassword", {
                 required: true,
-                validate: (value) => value === getValues("Password") || "Both password are not same!"
+                validate: (value) => value === getValues("password") || "Both password are not same!"
               })
               }
             />
             {
-              errors.ConfirmPassword && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Both password are not same!</p>
+              errors.confirmpassword && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Both password are not same!</p>
             }
           </div>
           <div className="relative">
@@ -103,11 +121,11 @@ const Signup = () => {
               placeholder="Enter your age"
               divClasses="col-span-1"
               {
-              ...register("Age", { required: true , validate: (value) => value >= 18})
+              ...register("age", { required: true, validate: (value) => value >= 18 })
               }
             />
             {
-              errors.Age && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Only above 18 are eligible!</p>
+              errors.age && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Only above 18 are eligible!</p>
             }
           </div>
           <div className="relative">
@@ -118,11 +136,11 @@ const Signup = () => {
               placeholder="Enter your contact number"
               divClasses="col-span-1"
               {
-              ...register("Contact", { required: true, validate: (value) => value.length == 10 })
+              ...register("contact", { required: true, validate: (value) => value.length == 10 })
               }
             />
             {
-              errors.Contact && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid contact!</p>
+              errors.contact && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid contact!</p>
             }
           </div>
           <div className="col-span-1 md:col-span-2">

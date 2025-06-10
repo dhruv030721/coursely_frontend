@@ -1,5 +1,7 @@
 import { ReactNode, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { RootState } from "@/store"
 
 
 interface AuthLayoutProps {
@@ -9,17 +11,16 @@ interface AuthLayoutProps {
 
 const AuthLayout = ({ children, authentication = true }: AuthLayoutProps) => {
 
-    const authStatus = true;
+    const authStatus = useSelector((state: RootState) => state.auth.isLogin);
     const navigate = useNavigate();
 
     useEffect(() => {
 
-        if (authentication && !authStatus) {
+        if (authentication && !authStatus) {            
             navigate('/login');
-        } else {
-            navigate('/');
         }
-    }, [authStatus, authentication, navigate])
+
+    }, [authStatus, authentication])
 
 
     return (<>{children}</>)

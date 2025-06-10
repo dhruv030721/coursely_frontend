@@ -14,7 +14,7 @@ const Contactus = () => {
 
             <div className="relative w-full text-white flex flex-col items-center " id="ContactSection">
                 <div className="px-8">
-                    <div className="flex flex-col lg:flex-row relative top-36 sm:top-28 lg:top-40 z-10 rounded-3xl py-6 sm:py-8 lg:py-10 px-4 sm:px-8 lg:px-16 bg-black/20 shadow-xl border border-zinc-700 backdrop-blur-lg w-full max-w-5xl">
+                    <div className="flex flex-col lg:flex-row relative top-36 sm:top-28 lg:top-40 z-10 rounded-3xl py-6 sm:py-8 lg:py-10 px-4 sm:px-8 lg:px-16 bg-black/20 shadow-xl border border-zinc-700 backdrop-blur-2xl w-full max-w-5xl">
                         {/* Contact Information */}
                         <div className="w-full lg:w-auto lg:flex-shrink-0 mb-8 lg:mb-0">
                             <h1 className="text-lg sm:text-xl font-bold text-center mb-6 sm:mb-8 lg:mb-10">Contact Information</h1>

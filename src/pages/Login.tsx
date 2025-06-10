@@ -5,20 +5,24 @@ import toast from "react-hot-toast";
 import { toastDarkStyle } from "@/components/GlobalStyle";
 import userServices from "@/services/User/UserServices";
 import { FieldValues, useForm } from "react-hook-form";
+import { login } from "@/store/slices/auth.slice";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch()
     const { register, handleSubmit, formState: { errors } } = useForm()
 
     const handleLogin = async (data: FieldValues) => {
-        const { Email, Password } = data
-        if (Email != "" && Password != "") {
+        const { email, password } = data
+        if (email != "" && password != "") {
             await toast.promise(
-                userServices.Login({ Email, Password }),
+                userServices.Login({ email, password }),
                 {
                     loading: "Verifying",
                     success: (response) => {
+                        dispatch(login(response.data.data))
                         navigate("/")
                         return `${response.data.message}`
                     },
@@ -58,21 +62,21 @@ const Login = () => {
                             required={true}
                             placeholder="Enter your email"
                             {
-                            ...register("Email", { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ })
+                            ...register("email", { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ })
                             }
                         />
                         {
                             errors.Email && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid email!</p>
                         }
                     </div>
-                    <div>
+                    <div className="relative">
                         <Input
                             type="password"
                             label="Password"
                             required={true}
                             placeholder="Enter your password"
                             {
-                            ...register("Password", { required: true, validate: (value) => value.length >= 8 })
+                            ...register("password", { required: true, validate: (value) => value.length >= 8 })
                             }
                         />
                         {
