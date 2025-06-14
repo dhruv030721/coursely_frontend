@@ -22,6 +22,10 @@ const Aboutus = () => {
           </div>
         </div>
 
+        <div className="w-full flex mb-12 sm:mb-16 justify-center">
+          <img src="https://res.cloudinary.com/dkkawe9gq/image/upload/v1749929994/NISM_CERTIFICATE_MFD_page-0001_ggjaax.jpg" alt="" className="w-[50%] rounded-xl border border-zinc-500 shadow-xl shadow-zinc-900 p-1"/>
+        </div>
+
         {/* Founder's Journey */}
         <div className="mb-16 sm:mb-20 max-w-7xl mx-auto">
           <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-6 lg:p-8 shadow-xl backdrop-blur-md backdrop-filter">
