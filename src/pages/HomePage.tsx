@@ -141,7 +141,7 @@ const HomePage = () => {
       {/* ========================================= */}
       {/* Keywords Marquee */}
       {/* ========================================= */}
-      <div className='mt-12 sm:mt-16 lg:mt-24 h-12 sm:h-16 flex items-center rotate-1 sm:rotate-2 relative -top-10 sm:-top-20 -left-2 sm:-left-5 z-20 border-t-2 border-b-2 border-zinc-800 shadow-lg'>
+      <div className='mt-12 sm:mt-16 lg:mt-24 h-12 sm:h-16 flex items-center rotate-1 sm:rotate-2 relative -top-10 sm:-top-20 z-20 border-t-2 border-b-2 border-zinc-800 shadow-lg'>
         <div className='text-white whitespace-nowrap relative bg-black h-full text-center flex items-center font-geist text-sm sm:text-lg lg:text-xl before:h-full before:w-6 sm:before:w-10 before:absolute before:-right-4 sm:before:-right-8 before:bg-gradient-to-r before:from-black before:to-transparent before:z-10'>
           <p className='pr-3 sm:pr-5 px-4 sm:px-10 font uppercase flex gap-x-2'>
             What we Provide <span className="text-yellow-500 mr-2 sm:mr-3 text-lg sm:text-xl">?</span>
@@ -160,7 +160,7 @@ const HomePage = () => {
       {/* ========================================= */}
       {/* Discount Marquee */}
       {/* ========================================= */}
-      <div className='mb-12 sm:mb-16 lg:mb-24 h-12 sm:h-16 flex items-center -rotate-1 relative -top-2 sm:-top-5 -left-2 sm:-left-5 z-20 border-t-2 border-b-2 border-zinc-800 shadow-lg'>
+      <div className='mb-12 sm:mb-16 lg:mb-24 h-12 sm:h-16 flex items-center -rotate-1 relative -top-2 sm:-top-5  z-20 border-t-2 border-b-2 border-zinc-800 shadow-lg'>
         <div className='text-white relative bg-black h-full text-center flex items-center font-geist text-sm sm:text-lg lg:text-xl before:h-full before:w-6 sm:before:w-10 before:absolute before:-right-4 sm:before:-right-8 before:bg-gradient-to-r before:from-black before:to-transparent before:z-10'>
           <p className='pr-3 sm:pr-5 px-4 sm:px-10 font uppercase flex gap-x-2'>
             Discounts <span className='text-green-700 font-bold'>%</span>

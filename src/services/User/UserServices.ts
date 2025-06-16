@@ -26,6 +26,16 @@ class UserServices {
         })
         return response
     }
+
+    async SendOTP(data: FieldValues) {
+        const { email } = data
+        const response = await apiConnector({
+            method: "POST",
+            url: UserEndPoints.SEND_OTP,
+            bodyData: { email }
+        })
+        return response
+    }
 }
 
 const userServices = new UserServices()

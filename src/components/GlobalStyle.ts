@@ -1,5 +1,4 @@
-const toastDarkStyle = (type: string): object => {
-    let icon = '';
+const toastDarkStyle = (): object => {
     return {
         style: {
             borderRadius: '10px',

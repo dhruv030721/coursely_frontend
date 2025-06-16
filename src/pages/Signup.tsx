@@ -1,5 +1,5 @@
 import { Button, Input } from "@/components"
-import yayin_logo_bgremove from "@/assets/logo_icon.png";
+import yayin_logo_bgremove from "@/assets/yayinstocks_bg_transperent_web.png";
 import { useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form"
 import toast from "react-hot-toast";
@@ -25,7 +25,7 @@ const Signup = () => {
           return `${error.response.data.message}`
         }
       },
-      toastDarkStyle("")
+      toastDarkStyle()
     )
   }
 
@@ -40,7 +40,7 @@ const Signup = () => {
             alt="Yayin Stock Logo"
             className="w-20 md:w-14 mb-6"
           />
-          <h1 className="font-dm_sans text-3xl md:text-5xl">Welcome back!</h1>
+          <h1 className="font-dm_sans text-3xl md:text-5xl">Welcome Back!</h1>
           <p className="text-xs text-zinc-400 mt-2">
             Enter to get unlimited access of data & information
           </p>
