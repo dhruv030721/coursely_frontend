@@ -5,18 +5,38 @@ import { FieldValues, useForm } from "react-hook-form";
 import { userServices } from "@/services";
 import toast from "react-hot-toast"
 import { toastDarkStyle } from "@/components/GlobalStyle";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPassword = () => {
 
     const [steps, setSteps] = useState(1);
     const { register, handleSubmit, formState: { errors }, getValues } = useForm();
+    const navigate = useNavigate();
 
-    const handleSendOTP = async (data: FieldValues) => {
+    const handleSendOTP = async (email: FieldValues) => {
         await toast.promise(
-            userServices.SendOTP(data), 
-            {   
+            userServices.SendOTP(email),
+            {
                 loading: "Sending OTP",
-                success: (response) => {    
+                success: (response) => {
+                    setSteps(prev => prev > 2 ? 1 : prev + 1)
+                    return `${response.data.message}`
+                },
+                error: (error) => {
+                    return `${error.response.data.message}`
+                }
+            },
+            toastDarkStyle()
+        )
+    }
+
+    const handleChangePassword = async (data: FieldValues) => {
+        await toast.promise(
+            userServices.ChangePassword(data),
+            {
+                loading: "Changing Password",
+                success: (response) => {
+                    navigate("/login")
                     return `${response.data.message}`
                 },
                 error: (error) => {
@@ -71,34 +91,59 @@ const ForgotPassword = () => {
                 }
                 {
                     steps === 2 && (
-                        < div className="w-full max-w-96 flex flex-col space-y-5 mt-8 md:mt-10">
-                            <Input
-                                type="text"
-                                label="New Password"
-                                required={true}
-                                placeholder="Enter your new Password"
-                                {...register("password", {
-                                    required: true,
-                                    validate: (value) => value.lenght > 8
-                                })}
-                            />
-                            <Input
-                                type="text"
-                                label="Re-enter Password"
-                                required={true}
-                                placeholder="Re-enter your Password"
-                                {...register("retypepassword", {
-                                    required: true,
-                                    validate: (value) =>
-                                        value === getValues("password") || "Both password are not same!"
-                                })}
-                            />
+                        < form onSubmit={handleSubmit((data) => handleChangePassword(data))} className="w-full max-w-96 flex flex-col space-y-5 mt-8 md:mt-10">
+                            <div className="relative">
+                                <Input
+                                    type="text"
+                                    label="OTP"
+                                    required={true}
+                                    placeholder="Enter your OTP"
+                                    {...register("otp", {
+                                        required: true,
+                                        validate: (value) => value.length == 6
+                                    })}
+                                />
+                                {
+                                    errors.otp && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid OTP!</p>
+                                }
+                            </div>
+                            <div className="relative">
+                                <Input
+                                    type="password"
+                                    label="New Password"
+                                    required={true}
+                                    placeholder="Enter your new Password"
+                                    {...register("password", {
+                                        required: true,
+                                        validate: (value) => value.length > 8
+                                    })}
+                                />
+                                {
+                                    errors.password && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid password!</p>
+                                }
+                            </div>
+                            <div className="relative">
+                                <Input
+                                    type="password"
+                                    label="Re-enter Password"
+                                    required={true}
+                                    placeholder="Re-enter your Password"
+                                    {...register("retypepassword", {
+                                        required: true,
+                                        validate: (value) =>
+                                            value === getValues("password") || "Both password are not same!"
+                                    })}
+                                />
+                                {
+                                    errors.retypepassword && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Both password are not same!</p>
+                                }
+                            </div>
                             <Button
                                 name="Change Password"
                                 type="submit"
                                 btnClass="bg-green-900 w-full rounded-md flex justify-center text-white border-r border-b hover:bg-green-800 transition-colors"
                             />
-                        </div>
+                        </form>
                     )
                 }
 
