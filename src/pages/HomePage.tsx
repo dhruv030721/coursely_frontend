@@ -223,7 +223,7 @@ const HomePage = () => {
             <div className="text-center md:text-left">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-caveat font-semibold">Yashdeep Chorasiya</h1>
               <p className="text-gray-400 text-sm sm:text-base">Expert Trader and Mentor</p>
-              <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed">With over 10 years of experience in the financial markets, John has a proven track record of success and is passionate about sharing his knowledge with others.</p>
+              <p className="w-[50vw] mt-3 sm:mt-4 text-sm">With over 10 years of experience in the financial markets, John has a proven track record of success and is passionate about sharing his knowledge with others.</p>
             </div>
           </div>
         </section>

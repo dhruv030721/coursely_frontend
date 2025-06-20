@@ -23,7 +23,7 @@ const Aboutus = () => {
         </div>
 
         <div className="w-full flex mb-12 sm:mb-16 justify-center">
-          <img src="https://res.cloudinary.com/dkkawe9gq/image/upload/v1749964887/NISM_CERTIFICATE_MFD_page-0001_p3b5ud.webp" alt="" className="w-[50%] rounded-xl border border-zinc-500 shadow-xl shadow-zinc-900 p-1"/>
+          <img src="https://res.cloudinary.com/dkkawe9gq/image/upload/v1749964887/NISM_CERTIFICATE_MFD_page-0001_p3b5ud.webp" alt="" className="w-[80%] md:w-[50%] rounded-xl border border-zinc-500 shadow-xl shadow-zinc-900 p-1"/>
         </div>
 
         {/* Founder's Journey */}
