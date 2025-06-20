@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HomePage, AdminAuthLayout, Layout, AdminLayout, Dashboard, CourseBuilder, PageNotFound, ManageCourses, CoupenDiscount, Login, Signup, Contactus, AuthPageLayout, Aboutus, Courses, Cart, UserProfile, ForgotPassword, AuthLayout, MyCourses } from "@/pages";
+import { HomePage, Layout, PageNotFound, Login, Signup, Contactus, AuthPageLayout, Aboutus, Courses, Cart, UserProfile, ForgotPassword, AuthLayout, MyCourses } from "@/pages";
 
 const App = () => {
 
