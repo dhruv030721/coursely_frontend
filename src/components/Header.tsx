@@ -106,7 +106,7 @@ const Header = () => {
                                     to={menu.link}
                                     onClick={() => { goToSection(menu.viewId, 100) }}
                                 >
-                                    <li className="cursor-pointer hover:text-gray-300 transition-colors text-xl font-caveat">{menu.name}</li>
+                                    <li className="cursor-pointer hover:text-gray-300 transition-colors text-sm font-geist">{menu.name}</li>
                                     {
                                         pathname == menu.link && <img src={white_stroke} alt="" className="w-32 invert absolute -bottom-2" />
                                     }
