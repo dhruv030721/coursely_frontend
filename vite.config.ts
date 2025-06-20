@@ -2,9 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import path from "path";
 import { nodePolyfills } from 'vite-plugin-node-polyfills'
-import dotenv from 'dotenv'
-
-dotenv.config()
 
 export default defineConfig({
   plugins: [
@@ -23,14 +20,5 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-  },
-  server: {
-    host: true,
-    allowedHosts: true,
-    proxy:{
-      '/api/v1/' : {
-        target: process.env.VITE_BACKEND_URL
-      }
-    }
-  }
+  }s
 })
