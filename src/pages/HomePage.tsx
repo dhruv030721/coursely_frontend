@@ -119,7 +119,7 @@ const HomePage = () => {
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight bg-gradient-to-r from-white via-white/80 to-white/60 bg-clip-text text-transparent">
           Master the Markets with
           <br />
-          Clarity and Confidence
+          Clarity and Confidence with Jalay
         </h1>
         <p className="text-base sm:text-lg md:text-xl lg:text-xl max-w-xs sm:max-w-lg md:max-w-2xl mx-auto mb-8 sm:mb-10 text-white/50 px-4 sm:px-0">
           We teach traders everything about Cash, Futures, and Options Trading
