@@ -1,5 +1,4 @@
-const toastDarkStyle = (type: string): object => {
-    let icon = '';
+const toastDarkStyle = (): object => {
     return {
         style: {
             borderRadius: '10px',
@@ -8,7 +7,7 @@ const toastDarkStyle = (type: string): object => {
             fontFamily: "DM Sans, sans-serif",
             fontSize: "15px"
         },
-        position: 'bottom-center'
+        position: 'bottom-left'
     }
 }
 

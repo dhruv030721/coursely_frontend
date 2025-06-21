@@ -106,30 +106,13 @@ const Header = () => {
                                     to={menu.link}
                                     onClick={() => { goToSection(menu.viewId, 100) }}
                                 >
-                                    <li className="cursor-pointer hover:text-gray-300 transition-colors text-xl font-caveat">{menu.name}</li>
+                                    <li className="cursor-pointer hover:text-gray-300 transition-colors text-sm font-geist">{menu.name}</li>
                                     {
                                         pathname == menu.link && <img src={white_stroke} alt="" className="w-32 invert absolute -bottom-2" />
                                     }
                                 </Link>
                             )
                         })}
-                        {
-                            isLogin &&
-                            (<Link
-                                className="flex flex-col relative"
-                                to={"/mycourses"}
-                            >
-                                <button
-                                    className="w-full flex items-center gap-x-2 font-dm_sans  border-b border-r border-green-100  text-white rounded-lg px-5 py-1 hover:bg-white/10 transition-colors text-sm"
-                                    onClick={() => {
-                                        navigate('/mycourses')
-                                    }}
-                                >
-                                    My Courses
-                                    <GiSpellBook  />
-                                </button>
-                            </Link>)
-                        }
                     </ul>
                 </nav>
 
@@ -141,10 +124,26 @@ const Header = () => {
                     </Link>
                     {
                         isLogin ?
-                            <Link to="/profile">
-                                <FiUser size={25} className="hover:scale-110 transition-all" />
-                            </Link> :
-                            <button className="border-[0.5px] border-gray-400 font-light rounded-3xl px-5 py-2 hover:bg-white/10 transition-colors" onClick={() => { navigate('/login') }}>
+                            (<>
+                                <Link to="/profile">
+                                    <FiUser size={25} className="hover:scale-110 transition-all" />
+                                </Link>
+                                <Link
+                                    className="flex flex-col relative"
+                                    to={"/mycourses"}
+                                >
+                                    <button
+                                        className="w-full flex items-center gap-x-2 font-dm_sans  font-semibold border border-green-100  text-white rounded-lg px-5 py-1 hover:bg-white/10 transition-colors text-sm"
+                                        onClick={() => {
+                                            navigate('/mycourses')
+                                        }}
+                                    >
+                                        My Courses
+                                        <GiSpellBook />
+                                    </button>
+                                </Link></>)
+                            :
+                            <button className="border border-zinc-400 font-light rounded-3xl px-5 py-2 hover:bg-white/10 transition-colors" onClick={() => { navigate('/login') }}>
                                 Login
                             </button>
                     }
@@ -152,6 +151,20 @@ const Header = () => {
 
                 {/* Mobile Menu Button & Cart */}
                 <div className="lg:hidden flex items-center gap-x-3">
+                    {isLogin && <Link
+                        className="flex flex-col relative"
+                        to={"/mycourses"}
+                    >
+                        <button
+                            className="w-full flex items-center gap-x-2 font-dm_sans  font-semibold border border-zinc-700  text-white rounded-xl px-5 py-1 hover:bg-white/10 transition-colors text-sm"
+                            onClick={() => {
+                                navigate('/mycourses')
+                            }}
+                        >
+                            My Courses
+                            <GiSpellBook />
+                        </button>
+                    </Link>}
                     <Link to="/cart">
                         <HiMiniShoppingBag color="white" size={18} className="cursor-pointer hover:opacity-80 transition-opacity" />
                     </Link>
@@ -202,16 +215,17 @@ const Header = () => {
                     <div className="px-6 py-6 flex justify-center border-t border-zinc-800">
                         {
                             isLogin ?
-                                <Link
-                                    to="/profile"
-                                    className="flex items-center gap-3 text-zinc-300 text-lg font-dm_sans hover:text-gray-300 transition-colors"
-                                    onClick={closeMobileMenu}
-                                >
-                                    <FiUser size={20} />
-                                    Profile
-                                </Link> :
+                                <div className="flex flex-col gap-y-5 items-center">
+                                    <Link
+                                        to="/profile"
+                                        className="flex items-center gap-3 text-zinc-300 text-lg font-dm_sans hover:text-gray-300 transition-colors"
+                                        onClick={closeMobileMenu}
+                                    >
+                                        <FiUser size={20} />
+                                        Profile
+                                    </Link></div> :
                                 <button
-                                    className="w-full border-[0.5px] border-gray-400 text-white font-light rounded-3xl px-5 py-3 hover:bg-white/10 transition-colors text-lg"
+                                    className="w-full border-[0.5px] border-zinc-700 text-white font-light rounded-2xl px-5 py-3 hover:bg-white/10 transition-colors text-lg"
                                     onClick={() => {
                                         closeMobileMenu()
                                         navigate('/login')

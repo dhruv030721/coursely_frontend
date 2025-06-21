@@ -1,11 +1,19 @@
-const BASE_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
+const BASE_URL = import.meta.env.VITE_ENV_MODE === "DEV" 
+    ? import.meta.env.VITE_BACKEND_URL_DEV
+    : import.meta.env.VITE_ENV_MODE === "QA"
+    ? import.meta.env.VITE_BACKEND_URL_QA
+    : import.meta.env.VITE_BACKEND_URL_PROD;
+
 
 export const UserEndPoints = {
-    LOGIN: `/api/v1/login`,
-    SIGNUP: `/api/v1/signup`,
+    LOGIN: `${BASE_URL}/api/v1/login`,
+    SIGNUP: `${BASE_URL}/api/v1/signup`,
+    FORGOT_PASSWORD: `${BASE_URL}/api/v1/forgot_password`,
+    CHANGE_PASSWORD: `${BASE_URL}/api/v1/change_password`
 }
 
-export const AdminEndPoints = {
-
+export const WebEndPoints = {
+    SUBSCRIBE: `${BASE_URL}/api/v1/subscribe`,
+    CONTACT_US: `${BASE_URL}/api/v1/contactus`
 }
 

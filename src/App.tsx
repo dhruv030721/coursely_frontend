@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HomePage, AdminAuthLayout, Layout, AdminLayout, Dashboard, CourseBuilder, PageNotFound, ManageCourses, CoupenDiscount, Login, Signup, Contactus, AuthPageLayout, Aboutus, Courses, Cart, UserProfile, ForgotPassword, AuthLayout, MyCourses } from "@/pages";
+import { HomePage, Layout, PageNotFound, Login, Signup, Contactus, AuthPageLayout, Aboutus, Courses, Cart, UserProfile, ForgotPassword, AuthLayout, MyCourses } from "@/pages";
 
 const App = () => {
 
@@ -18,13 +18,13 @@ const App = () => {
         </Route>
 
         {/* Admin Routes  */}
-        <Route path="admin" element={<AdminAuthLayout><AdminLayout /></AdminAuthLayout>}>
+        {/* <Route path="admin" element={<AdminAuthLayout><AdminLayout /></AdminAuthLayout>}>
           <Route path="" element={<Dashboard />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="course-builder" element={<CourseBuilder />} />
           <Route path="manage-courses" element={<ManageCourses />} />
           <Route path="coupen-discount" element={<CoupenDiscount />} />
-        </Route>
+        </Route> */}
 
         <Route path="login" element={<AuthPageLayout children={<Login />} />} />
         <Route path="signup" element={<AuthPageLayout children={<Signup />} />} />

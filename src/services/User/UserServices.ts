@@ -26,6 +26,26 @@ class UserServices {
         })
         return response
     }
+
+    async SendOTP(email: FieldValues) {
+
+        const response = await apiConnector({
+            method: "POST",
+            url: UserEndPoints.FORGOT_PASSWORD,
+            bodyData: { email }
+        })
+        return response
+    }
+
+    async ChangePassword(data: FieldValues) {
+        const { email, otp, password } = data
+        const response = await apiConnector({
+            method: "POST",
+            url: UserEndPoints.CHANGE_PASSWORD,
+            bodyData: { email, otp, password }
+        })
+        return response
+    }
 }
 
 const userServices = new UserServices()

@@ -1,5 +1,4 @@
 import { Button, Input } from "@/components"
-import yayin_logo_bgremove from "@/assets/logo_icon.png";
 import { useNavigate } from "react-router-dom";
 import { FieldValues, useForm } from "react-hook-form"
 import toast from "react-hot-toast";
@@ -25,7 +24,7 @@ const Signup = () => {
           return `${error.response.data.message}`
         }
       },
-      toastDarkStyle("")
+      toastDarkStyle()
     )
   }
 
@@ -36,11 +35,11 @@ const Signup = () => {
         {/* Heading Section */}
         <div className="flex flex-col items-start w-full max-w-96">
           <img
-            src={yayin_logo_bgremove}
+            src={"https://res.cloudinary.com/dkkawe9gq/image/upload/v1749928894/logo_icon_ez4nif.png"}
             alt="Yayin Stock Logo"
             className="w-20 md:w-14 mb-6"
           />
-          <h1 className="font-dm_sans text-3xl md:text-5xl">Welcome back!</h1>
+          <h1 className="font-dm_sans text-3xl md:text-5xl">Welcome Back!</h1>
           <p className="text-xs text-zinc-400 mt-2">
             Enter to get unlimited access of data & information
           </p>
@@ -62,7 +61,7 @@ const Signup = () => {
               }
             />
             {
-              errors.name && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter your name!</p>
+              errors.name && <p className="text-xs text-red-500 absolute -bottom-5">Please enter your name!</p>
             }
           </div>
           <div className="relative">
@@ -77,7 +76,7 @@ const Signup = () => {
               }
             />
             {
-              errors.email && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid email!</p>
+              errors.email && <p className="text-xs text-red-500 absolute -bottom-5">Please enter valid email!</p>
             }
           </div>
           <div className="relative">
@@ -92,7 +91,7 @@ const Signup = () => {
               }
             />
             {
-              errors.password && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid password!</p>
+              errors.password && <p className="text-xs text-red-500 absolute -bottom-5">Please enter valid password!</p>
             }
           </div>
           <div className="relative">
@@ -110,7 +109,7 @@ const Signup = () => {
               }
             />
             {
-              errors.confirmpassword && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Both password are not same!</p>
+              errors.confirmpassword && <p className="text-xs text-red-500 absolute -bottom-5">Both password are not same!</p>
             }
           </div>
           <div className="relative">
@@ -125,7 +124,7 @@ const Signup = () => {
               }
             />
             {
-              errors.age && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Only above 18 are eligible!</p>
+              errors.age && <p className="text-xs text-red-500 absolute -bottom-5">Only above 18 are eligible!</p>
             }
           </div>
           <div className="relative">
@@ -140,7 +139,7 @@ const Signup = () => {
               }
             />
             {
-              errors.contact && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid contact!</p>
+              errors.contact && <p className="text-xs text-red-500 absolute -bottom-5">Please enter valid contact!</p>
             }
           </div>
           <div className="col-span-1 md:col-span-2">
