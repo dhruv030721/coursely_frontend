@@ -7,7 +7,7 @@ const toastDarkStyle = (): object => {
             fontFamily: "DM Sans, sans-serif",
             fontSize: "15px"
         },
-        position: 'bottom-center'
+        position: 'bottom-left'
     }
 }
 

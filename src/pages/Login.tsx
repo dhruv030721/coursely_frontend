@@ -1,5 +1,4 @@
 import { Input, Button } from "@/components";
-import yayin_logo_bgremove from "@/assets/logo_icon.png";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { toastDarkStyle } from "@/components/GlobalStyle";
@@ -43,7 +42,7 @@ const Login = () => {
                 {/* Heading Section */}
                 <div className="flex flex-col items-start w-full max-w-96">
                     <img
-                        src={yayin_logo_bgremove}
+                        src={"https://res.cloudinary.com/dkkawe9gq/image/upload/v1749928894/logo_icon_ez4nif.png"}
                         alt="Yayin Stock Logo"
                         className="w-20 md:w-14 mb-6"
                     />
@@ -66,7 +65,7 @@ const Login = () => {
                             }
                         />
                         {
-                            errors.Email && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid email!</p>
+                            errors.email && <p className="text-xs text-red-500 absolute -bottom-5">Please enter valid email!</p>
                         }
                     </div>
                     <div className="relative">
@@ -80,7 +79,7 @@ const Login = () => {
                             }
                         />
                         {
-                            errors.Password && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid password!</p>
+                            errors.password && <p className="text-xs text-red-500 absolute -bottom-5">Please enter valid password!</p>
                         }
                     </div>
                     <Link to="/forgotpassword" > <span className="text-end text-sm text-zinc-200 hover:text-white cursor-pointer">

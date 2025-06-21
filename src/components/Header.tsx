@@ -151,6 +151,20 @@ const Header = () => {
 
                 {/* Mobile Menu Button & Cart */}
                 <div className="lg:hidden flex items-center gap-x-3">
+                    {isLogin && <Link
+                        className="flex flex-col relative"
+                        to={"/mycourses"}
+                    >
+                        <button
+                            className="w-full flex items-center gap-x-2 font-dm_sans  font-semibold border border-zinc-700  text-white rounded-xl px-5 py-1 hover:bg-white/10 transition-colors text-sm"
+                            onClick={() => {
+                                navigate('/mycourses')
+                            }}
+                        >
+                            My Courses
+                            <GiSpellBook />
+                        </button>
+                    </Link>}
                     <Link to="/cart">
                         <HiMiniShoppingBag color="white" size={18} className="cursor-pointer hover:opacity-80 transition-opacity" />
                     </Link>
@@ -201,14 +215,15 @@ const Header = () => {
                     <div className="px-6 py-6 flex justify-center border-t border-zinc-800">
                         {
                             isLogin ?
-                                <Link
-                                    to="/profile"
-                                    className="flex items-center gap-3 text-zinc-300 text-lg font-dm_sans hover:text-gray-300 transition-colors"
-                                    onClick={closeMobileMenu}
-                                >
-                                    <FiUser size={20} />
-                                    Profile
-                                </Link> :
+                                <div className="flex flex-col gap-y-5 items-center">
+                                    <Link
+                                        to="/profile"
+                                        className="flex items-center gap-3 text-zinc-300 text-lg font-dm_sans hover:text-gray-300 transition-colors"
+                                        onClick={closeMobileMenu}
+                                    >
+                                        <FiUser size={20} />
+                                        Profile
+                                    </Link></div> :
                                 <button
                                     className="w-full border-[0.5px] border-zinc-700 text-white font-light rounded-2xl px-5 py-3 hover:bg-white/10 transition-colors text-lg"
                                     onClick={() => {

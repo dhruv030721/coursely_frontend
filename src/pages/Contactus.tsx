@@ -2,8 +2,32 @@ import { Input, Button } from "@/components"
 import { IoSend } from "react-icons/io5";
 import { MdOutlineMail } from "react-icons/md";
 import { PiPhoneCallFill } from "react-icons/pi";
+import { FieldValues, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import webServices from "@/services/Web/WebService";
+import { toastDarkStyle } from "@/components/GlobalStyle";
 
 const Contactus = () => {
+
+    const { register, handleSubmit, formState: { errors } } = useForm()
+
+    const handleContact = async (data: FieldValues) => {
+        await toast.promise(
+            webServices.Contact(data),
+            {
+                loading: "Sending Query",
+                success: (response) => {
+                    return `${response.data.message}`
+                },
+                error: (error) => {
+                    return `${error.response.data.message}`
+                }
+            },
+            toastDarkStyle()
+        )
+    }
+
+
     return (
         <div className="flex flex-col justify-center items-center min-h-screen bg-black">
             <div className="relative top-32 sm:top-20 lg:top-32 px-4 sm:px-0">
@@ -41,53 +65,66 @@ const Contactus = () => {
                                 Questions, Bug Report, Feedback --- We're here for all!
                             </p>
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                                <Input
-                                    name="Name"
-                                    placeholder="Enter your name"
-                                    type="text"
-                                    required={true}
-                                    label="Name"
-                                />
-                                <Input
-                                    name="Email"
-                                    placeholder="Enter your email"
-                                    type="email"
-                                    required={true}
-                                    label="Email"
-                                />
-                                <Input
-                                    name="Phone Number"
-                                    placeholder="Enter your Phone number"
-                                    type="number"
-                                    required={true}
-                                    label="Phone Number"
-                                />
-                                <Input
-                                    name="Subject"
-                                    placeholder="Enter your Subject"
-                                    type="text"
-                                    required={true}
-                                    label="Subject"
-                                />
-                                <div className="col-span-1 sm:col-span-2">
+                            <form onSubmit={handleSubmit((data) => handleContact(data))} className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                                <div className="relative">
                                     <Input
-                                        name="Message"
+                                        placeholder="Enter your name"
+                                        type="text"
+                                        required={true}
+                                        label="Name"
+                                        {...register("name", { required: true })}
+                                    />
+                                    {errors.name && <p className="text-xs text-red-500 absolute -bottom-5">Please enter your name!</p>}
+                                </div>
+                                <div className="relative">
+                                    <Input
+                                        placeholder="Enter your email"
+                                        type="email"
+                                        required={true}
+                                        label="Email"
+                                        {...register("email", { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ })}
+                                    />
+                                    {errors.email && <p className="text-xs text-red-500 absolute -bottom-5">Please enter your email!</p>}
+                                </div>
+                                <div className="relative">
+                                    <Input
+                                        placeholder="Enter your Phone number"
+                                        type="number"
+                                        required={true}
+                                        label="Phone Number"
+                                        {...register("contact", { required: true, validate: (value) => value.length == 10 })}
+                                    />
+                                    {errors.phone && <p className="text-xs text-red-500 absolute -bottom-5">Please enter your phone number!</p>}
+                                </div>
+                                <div className="relative">
+                                    <Input
+                                        placeholder="Enter your Subject"
+                                        type="text"
+                                        required={true}
+                                        label="Subject"
+                                        {...register("subject", { required: true })}
+                                    />
+                                    {errors.subject && <p className="text-xs text-red-500 absolute -bottom-5">Please enter your subject!</p>}
+                                </div>
+                                <div className="col-span-1 sm:col-span-2 relative">
+                                    <Input
                                         placeholder="Enter your message"
                                         type="text"
                                         required={true}
                                         label="Message"
+                                        {...register("message", { required: true })}
                                     />
+                                    {errors.message && <p className="text-xs text-red-500 absolute -bottom-5">Please enter your message!</p>}
                                 </div>
                                 <div className="col-span-1 sm:col-span-2 flex justify-center sm:justify-end">
                                     <Button
                                         name="Submit"
-                                        btnClass="rounded-md px-4 sm:px-6 py-2 bg-green-950 border-b-[0.5px] border-r-[0.5px] border-zinc-600 gap-x-2 text-sm sm:text-base w-64 md:w-full"
-                                        handler={() => { }}
+                                        btnClass="rounded-md px-4 sm:px-6 py-2 bg-green-950 border-b-[0.5px] border-r-[0.5px] border-zinc-600 gap-x-2 text-sm sm:text-sm w-64 md:w-full"
+                                        type="submit"
                                         posticon={<IoSend />}
                                     />
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

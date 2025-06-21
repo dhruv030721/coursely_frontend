@@ -78,7 +78,7 @@ const ForgotPassword = () => {
                                     })}
                                 />
                                 {
-                                    errors.email && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid email!</p>
+                                    errors.email && <p className="text-xs text-red-500 absolute -bottom-5 ">Please enter valid email!</p>
                                 }
                             </div>
                             <Button
@@ -104,7 +104,7 @@ const ForgotPassword = () => {
                                     })}
                                 />
                                 {
-                                    errors.otp && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid OTP!</p>
+                                    errors.otp && <p className="text-xs text-red-500 absolute -bottom-5 ">Please enter valid OTP!</p>
                                 }
                             </div>
                             <div className="relative">
@@ -119,7 +119,7 @@ const ForgotPassword = () => {
                                     })}
                                 />
                                 {
-                                    errors.password && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Please enter valid password!</p>
+                                    errors.password && <p className="text-xs text-red-500 absolute -bottom-5">Please enter valid password!</p>
                                 }
                             </div>
                             <div className="relative">
@@ -135,7 +135,7 @@ const ForgotPassword = () => {
                                     })}
                                 />
                                 {
-                                    errors.retypepassword && <p className="text-xs text-red-500 absolute -bottom-5 animate-bounce">Both password are not same!</p>
+                                    errors.retypepassword && <p className="text-xs text-red-500 absolute -bottom-5">Both password are not same!</p>
                                 }
                             </div>
                             <Button

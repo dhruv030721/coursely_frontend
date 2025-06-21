@@ -1,4 +1,8 @@
-const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+const BASE_URL = import.meta.env.VITE_ENV_MODE === "DEV" 
+    ? import.meta.env.VITE_BACKEND_URL_DEV
+    : import.meta.env.VITE_ENV_MODE === "QA"
+    ? import.meta.env.VITE_BACKEND_URL_QA
+    : import.meta.env.VITE_BACKEND_URL_PROD;
 
 
 export const UserEndPoints = {
@@ -8,4 +12,8 @@ export const UserEndPoints = {
     CHANGE_PASSWORD: `${BASE_URL}/api/v1/change_password`
 }
 
+export const WebEndPoints = {
+    SUBSCRIBE: `${BASE_URL}/api/v1/subscribe`,
+    CONTACT_US: `${BASE_URL}/api/v1/contactus`
+}
 

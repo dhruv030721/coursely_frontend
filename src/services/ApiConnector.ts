@@ -24,6 +24,7 @@ export const apiConnector = ({
     url,
     data: bodyData || undefined,
     headers: headers || undefined,
+    withCredentials: true,
     params: params || undefined,
     responseType: responseType || undefined,  // Add this line
   };
