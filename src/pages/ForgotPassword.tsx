@@ -6,7 +6,6 @@ import { userServices } from "@/services";
 import toast from "react-hot-toast"
 import { toastDarkStyle } from "@/components/GlobalStyle";
 import { useNavigate } from "react-router-dom";
-import { start } from "repl";
 
 const ForgotPassword = () => {
 
