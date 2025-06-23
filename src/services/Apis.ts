@@ -9,7 +9,8 @@ export const UserEndPoints = {
     LOGIN: `${BASE_URL}/api/v1/login`,
     SIGNUP: `${BASE_URL}/api/v1/signup`,
     FORGOT_PASSWORD: `${BASE_URL}/api/v1/forgot_password`,
-    CHANGE_PASSWORD: `${BASE_URL}/api/v1/change_password`
+    CHANGE_PASSWORD: `${BASE_URL}/api/v1/change_password`,
+    VERIFY_TOKEN: `${BASE_URL}/api/v1/verify_token`
 }
 
 export const WebEndPoints = {

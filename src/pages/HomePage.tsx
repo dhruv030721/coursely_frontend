@@ -6,9 +6,9 @@ import { AiOutlineYoutube } from "react-icons/ai";
 import { LuMousePointerClick } from "react-icons/lu";
 import { CourseCard } from "@/components"
 import { Link } from "react-router-dom";
-import video_background from '@/assets/background.mp4';
 import warrent_buffet from "@/assets/warren_buffet.jpg";
 import Marquee from "react-fast-marquee";
+import { brandConfig } from '@/components/GlobalStyle';
 
 
 const HomePage = () => {
@@ -107,7 +107,7 @@ const HomePage = () => {
           muted
           className="absolute w-full h-full object-cover opacity-5"
         >
-          <source src={video_background} type="video/mp4" />
+          <source src={brandConfig.background_video} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </div>

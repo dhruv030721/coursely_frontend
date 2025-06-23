@@ -1,5 +1,4 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import yslogo from "../assets/yayinstocks_bg_transperent_web.png";
 import { HiMiniShoppingBag } from "react-icons/hi2";
 import white_stroke from "@/assets/white_stroke.png"
 import { useState, useEffect } from "react";
@@ -7,6 +6,7 @@ import { FiUser, FiMenu, FiX } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { GiSpellBook } from "react-icons/gi";
+import { brandConfig } from "./GlobalStyle";
 
 
 const Header = () => {
@@ -91,7 +91,7 @@ const Header = () => {
                 {/* Logo Section */}
                 <div>
                     <Link to="/">
-                        <img src={yslogo} className="max-w-20 sm:max-w-24 lg:max-w-28" alt="YayinStocks Logo" />
+                        <img src={brandConfig.main_logo} className="max-w-20 sm:max-w-24 lg:max-w-28" alt="YayinStocks Logo" />
                     </Link>
                 </div>
 
@@ -183,7 +183,7 @@ const Header = () => {
                 <div className="flex flex-col h-full">
                     {/* Mobile Menu Header */}
                     <div className="flex justify-between items-center p-6  border-zinc-700">
-                        <img src={yslogo} className="max-w-20" alt="YayinStocks Logo" />
+                        <img src={brandConfig.main_logo} className="max-w-20" alt="YayinStocks Logo" />
                         <button
                             onClick={closeMobileMenu}
                             className="text-white p-2 hover:bg-white/10 rounded-md transition-colors"

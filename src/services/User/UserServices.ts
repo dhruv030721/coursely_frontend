@@ -8,6 +8,15 @@ interface LoginPayload {
 }
 class UserServices {
 
+    async verifyToken(token: string) {
+        const response = await apiConnector({
+            method: "POST",
+            url: UserEndPoints.VERIFY_TOKEN,
+            bodyData: { token }
+        })
+        return response;
+    }
+
     async Login({ email, password }: LoginPayload): Promise<any> {
         const response = await apiConnector({
             method: "POST",

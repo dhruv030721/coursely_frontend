@@ -11,4 +11,10 @@ const toastDarkStyle = (): object => {
     }
 }
 
+export const brandConfig = {
+    logo: "https://res.cloudinary.com/droclyuwd/image/upload/v1750704509/hkrcmm6ancpnxyhfazzt_ypfayk.webp",
+    main_logo: "https://res.cloudinary.com/droclyuwd/image/upload/v1750704510/r1dvwwbwxw7b98misirm_u5nt2k.webp",
+    background_video: "https://res.cloudinary.com/droclyuwd/video/upload/v1750704483/background_gemahm.mp4"
+}
+
 export { toastDarkStyle };
