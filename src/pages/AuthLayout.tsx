@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "@/store"
-import { getCookie } from "@/utility/getCookie";
+import { getToken } from "@/utility/getToken";
 import UserServices from "@/services/User/UserServices";
 import { login } from "@/store/slices/auth.slice";
 
@@ -20,10 +20,11 @@ const AuthLayout = ({ children, authentication = true }: AuthLayoutProps) => {
 
 
     useEffect(() => {
-        const token = getCookie('auth_token');
-    
-        if (authStatus === false && token != null) {
-            UserServices.verifyToken(token).then((response) => {
+
+        const { authToken } = getToken();
+
+        if (authStatus === false && authToken != null) {
+            UserServices.verifyToken(authToken).then((response) => {
                 if (response.status === 200) {
                     dispatch(login(response.data.data.email));
                 } else {
@@ -36,13 +37,13 @@ const AuthLayout = ({ children, authentication = true }: AuthLayoutProps) => {
             setIsLoading(false);
         }
     }, []);
-    
+
     useEffect(() => {
         if (!isLoading && authentication && !authStatus) {
             navigate('/login');
         }
     }, [authStatus, authentication, isLoading]);
-    
+
 
     if (isLoading) {
         return <div>Loading...</div>

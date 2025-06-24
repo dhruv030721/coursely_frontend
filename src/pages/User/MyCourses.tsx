@@ -1,9 +1,6 @@
-import { getCookie } from "@/utility/getCookie"
+import { getCookie } from "@/utility/getToken"
 
 const MyCourses = () => {
-
-    const token = getCookie('auth_token');
-    console.log(token);
 
     return (
         <div>

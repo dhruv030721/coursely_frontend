@@ -23,6 +23,11 @@ class UserServices {
             url: UserEndPoints.LOGIN,
             bodyData: { email, password }
         })
+
+        if (response.status === 200) {
+            localStorage.setItem("authToken", response.data.auth_token)
+            localStorage.setItem("refreshToken", response.data.refresh_token)
+        }
         return response;
     }
 
