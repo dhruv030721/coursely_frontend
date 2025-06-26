@@ -1,4 +1,3 @@
-import { getCookie } from "@/utility/getToken"
 
 const MyCourses = () => {
 
