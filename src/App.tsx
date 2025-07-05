@@ -1,8 +1,22 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HomePage, Layout, PageNotFound, Login, Signup, Contactus, AuthPageLayout, Aboutus, Courses, Cart, UserProfile, ForgotPassword, AuthLayout, MyCourses } from "@/pages";
+import {
+  Aboutus,
+  AuthLayout,
+  AuthPageLayout,
+  Cart,
+  Contactus,
+  Courses,
+  ForgotPassword,
+  HomePage,
+  Layout,
+  Login,
+  MyCourses,
+  PageNotFound,
+  Signup,
+  UserProfile,
+} from '@/pages';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 const App = () => {
-
   return (
     <Router>
       <Routes>
@@ -12,9 +26,30 @@ const App = () => {
           <Route path="courses" element={<Courses />} />
           <Route path="about" element={<Aboutus />} />
           <Route path="contact" element={<Contactus />} />
-          <Route path="cart" element={<AuthLayout><Cart /></AuthLayout>} />
-          <Route path="profile" element={<AuthLayout><UserProfile /></AuthLayout>} />
-          <Route path="mycourses" element={<AuthLayout><MyCourses /></AuthLayout>} />
+          <Route
+            path="cart"
+            element={
+              <AuthLayout>
+                <Cart />
+              </AuthLayout>
+            }
+          />
+          <Route
+            path="profile"
+            element={
+              <AuthLayout>
+                <UserProfile />
+              </AuthLayout>
+            }
+          />
+          <Route
+            path="mycourses"
+            element={
+              <AuthLayout>
+                <MyCourses />
+              </AuthLayout>
+            }
+          />
         </Route>
 
         {/* Admin Routes  */}
