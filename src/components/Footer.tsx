@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 
 
 const Footer = () => {
-
-
     const goToSection = (sectionId: string, time: number) => {
         setTimeout(() => {
             const section = document.getElementById(sectionId);

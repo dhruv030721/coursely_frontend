@@ -15,7 +15,7 @@ const Signup = () => {
       userServices.Signup(data),
       {
         loading: "Processing",
-        success: (response) => {
+        success: (response: any) => {
           navigate("/login")
           return `${response.data.message}`
         },

@@ -1,5 +1,6 @@
-import { store, RootState } from "./store"
+import { RootState, store } from './store';
 
-import authReducer from "./slices/auth.slice"
+import authReducer from './slices/auth.slice';
+import courseReducer from './slices/course.slice';
 
-export { store, type RootState, authReducer }
+export { authReducer, courseReducer, store, type RootState };

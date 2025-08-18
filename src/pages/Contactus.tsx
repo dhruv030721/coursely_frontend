@@ -16,7 +16,7 @@ const Contactus = () => {
             webServices.Contact(data),
             {
                 loading: "Sending Query",
-                success: (response) => {
+                success: (response: any) => {
                     return `${response.data.message}`
                 },
                 error: (error) => {

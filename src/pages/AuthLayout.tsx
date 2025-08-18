@@ -1,3 +1,4 @@
+import { CandleStickLoader, Footer, Header } from '@/components';
 import UserServices from '@/services/User/UserServices';
 import { RootState } from '@/store';
 import { login } from '@/store/slices/auth.slice';
@@ -20,16 +21,19 @@ const AuthLayout = ({ children, authentication = true }: AuthLayoutProps) => {
   useEffect(() => {
     const { authToken } = getToken();
 
-    if (authStatus === false && authToken != null) {
-      UserServices.verifyToken(authToken)
-        .then((response) => {
-          if (response.status === 200) {
-            dispatch(login(response.data.data.email));
+    if (authToken) {
+      UserServices.VerifyToken()
+        .then((response: any) => {
+          if (response.status === 200 || response.status === 304) {
+            dispatch(login(response.data.data));
           } else {
-            setIsLoading(false);
+            navigate('/login');
           }
         })
         .catch(() => {
+          navigate('/login');
+        })
+        .finally(() => {
           setIsLoading(false);
         });
     } else {
@@ -44,10 +48,16 @@ const AuthLayout = ({ children, authentication = true }: AuthLayoutProps) => {
   }, [authStatus, authentication, isLoading]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <CandleStickLoader />;
   }
 
-  return <>{children}</>;
+  return (
+    <div className='font-geist'>
+      <Header />
+      {children}
+      <Footer />
+    </div>
+  );
 };
 
 export default AuthLayout;

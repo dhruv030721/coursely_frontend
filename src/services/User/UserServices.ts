@@ -1,5 +1,5 @@
 import { FieldValues } from "react-hook-form";
-import { apiConnector } from "../ApiConnector";
+import { apiConnector, apiConnectorWithToken } from "../ApiConnector";
 import { UserEndPoints } from "../Apis";
 
 interface LoginPayload {
@@ -8,17 +8,25 @@ interface LoginPayload {
 }
 class UserServices {
 
-    async verifyToken(token: string) {
-        const response = await apiConnector({
-            method: "POST",
-            url: UserEndPoints.VERIFY_TOKEN,
-            bodyData: { token }
+    async GetUser(email: string) {
+        const response = await apiConnectorWithToken({
+            method: "GET",
+            url: `${UserEndPoints.GET_USER}/${email}`
+        })  
+
+        return response;
+    }
+
+    async VerifyToken() {
+        const response = await apiConnectorWithToken({
+            method: "GET",
+            url: UserEndPoints.VERIFY_TOKEN
         })
         return response;
     }
 
     async Login({ email, password }: LoginPayload): Promise<any> {
-        const response = await apiConnector({
+        const response: any = await apiConnector({
             method: "POST",
             url: UserEndPoints.LOGIN,
             bodyData: { email, password }
@@ -57,6 +65,44 @@ class UserServices {
             url: UserEndPoints.CHANGE_PASSWORD,
             bodyData: { email, otp, password }
         })
+        return response
+    }
+
+    async AddToCart(email: string, courseId: string) {
+        const response = await apiConnectorWithToken({
+            method: 'POST',
+            url: UserEndPoints.ADD_TO_CART,
+            bodyData: { email, courseId }
+        })
+
+        return response
+    }
+
+    async RemoveFromCart(email: string, courseId: string) {
+        const response = await apiConnectorWithToken({
+            method: 'DELETE',
+            url: UserEndPoints.REMOVE_FROM_CART,
+            bodyData: { email, courseId }
+        })
+
+        return response
+    }
+
+    async GetCart(email: string) {
+        const response = await apiConnectorWithToken({
+            method: 'GET',
+            url: `${UserEndPoints.GET_CART}?email=${email}`,
+        })
+
+        return response
+    }
+
+    async ApplyDiscount(code: string) {
+        const response = await apiConnectorWithToken({
+            method: 'GET',
+            url: `${UserEndPoints.APPLY_DISCOUNT}?discountCode=${code}`,
+        })
+
         return response
     }
 }
