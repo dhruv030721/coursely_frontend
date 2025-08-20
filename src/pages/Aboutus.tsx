@@ -14,7 +14,7 @@ const Aboutus = () => {
       webServices.Subscribe(data),
       {
         loading: "Subscribing",
-        success: (response) => {
+        success: (response: any) => {
           return `${response.data.message}`
         },
         error: (error) => {

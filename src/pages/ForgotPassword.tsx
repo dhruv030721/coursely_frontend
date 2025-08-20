@@ -19,7 +19,7 @@ const ForgotPassword = () => {
             userServices.SendOTP(email),
             {
                 loading: "Sending OTP",
-                success: (response) => {
+                success: (response: any) => {
                     if (!isResend) {
                         setSteps(prev => prev > 2 ? 1 : prev + 1)
                         startTimer()
@@ -41,7 +41,7 @@ const ForgotPassword = () => {
             userServices.ChangePassword(data),
             {
                 loading: "Changing Password",
-                success: (response) => {
+                success: (response: any) => {
                     navigate("/login")
                     return `${response.data.message}`
                 },
