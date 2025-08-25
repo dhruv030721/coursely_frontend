@@ -7,24 +7,23 @@ import { Outlet } from 'react-router-dom';
 
 export type LayoutContextType = {
   disableLoader: () => void;
-  discounts: Discount[];
+  discounts: String[];
+  userCount: number;
 };
 
 const Layout = () => {
   const [loader, setLoader] = useState<Boolean>(true);
   const [discounts, setDiscounts] = useState<Discount[]>([]);
+  const [userCount, setUserCount] = useState<number>(0);  
 
   const disableLoader = () => {
     setLoader(false);
   };
 
   const fetchDiscounts = async () => {
-    const discount: any = await webServices.GetDiscount();
-    setDiscounts(
-      discount.data.data
-        .filter((item: any) => item.status === 'active')
-        .map((item: any) => ({ code: item.code, text: item.offerText, percentage: item.discount }))
-    );
+    const response: any = await webServices.HomeData();
+    setDiscounts(response.data.data.discounts);
+    setUserCount(response.data.data.userCount);
     disableLoader();
   };
 
@@ -43,7 +42,7 @@ const Layout = () => {
   return (
     <div className="bg-black h-screen font-geist scrollbar-custom">
       <Header />
-      <Outlet context={{ disableLoader, discounts }} />
+      <Outlet context={{ disableLoader, discounts, userCount }} />
       <Footer />
     </div>
   );

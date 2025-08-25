@@ -1,9 +1,9 @@
 const BASE_URL =
-  window.__APP_CONFIG__.VITE_ENV_MODE === 'DEV'
-    ? window.__APP_CONFIG__.VITE_BACKEND_URL_DEV
-    : window.__APP_CONFIG__.VITE_ENV_MODE === 'QA'
-      ? window.__APP_CONFIG__.VITE_BACKEND_URL_QA
-      : window.__APP_CONFIG__.VITE_BACKEND_URL_PROD;
+  import.meta.env.VITE_ENV_MODE === 'DEV'
+    ? import.meta.env.VITE_BACKEND_URL_DEV
+    : import.meta.env.VITE_ENV_MODE === 'QA'
+      ? import.meta.env.VITE_BACKEND_URL_QA
+      : import.meta.env.VITE_BACKEND_URL_PROD;
 
 export const UserEndPoints = {
   LOGIN: `${BASE_URL}/api/v1/login`,
@@ -19,6 +19,7 @@ export const UserEndPoints = {
 };
 
 export const WebEndPoints = {
+  HOME: `${BASE_URL}/api/v1/homepage`,
   SUBSCRIBE: `${BASE_URL}/api/v1/subscribe`,
   CONTACT_US: `${BASE_URL}/api/v1/contactus`,
   GET_COURSES: `${BASE_URL}/api/v1/admin/course`,

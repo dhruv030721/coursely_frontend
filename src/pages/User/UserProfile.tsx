@@ -65,25 +65,12 @@ const UserProfile = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
               <div className="relative">
                 <Input
-                  type="text"
-                  label="Name"
-                  required={true}
-                  placeholder="Enter your name"
-                  divClasses=""
-                  isValid={false}
-                  error=""
-                  {...register('name', { required: 'Please enter your name!' })}
-                />
-                {errors.name && (
-                  <p className="text-xs text-red-500 mt-1">Please enter your name!</p>
-                )}
-              </div>
-
-              <div className="relative">
-                <Input
                   type="email"
                   label="Email"
+                  inputClasses='text-gray-400'
+                  innerDivClasses='border-none bg-zinc-900'
                   required={true}
+                  readOnly={true}
                   placeholder="Enter your email"
                   divClasses=""
                   {...register('email', {
@@ -96,6 +83,21 @@ const UserProfile = () => {
                 />
                 {errors.email && (
                   <p className="text-xs text-red-500 mt-1">Please enter a valid email!</p>
+                )}
+              </div>
+              <div className="relative">
+                <Input
+                  type="text"
+                  label="Name"
+                  required={true}
+                  placeholder="Enter your name"
+                  divClasses=""
+                  isValid={false}
+                  error=""
+                  {...register('name', { required: 'Please enter your name!' })}
+                />
+                {errors.name && (
+                  <p className="text-xs text-red-500 mt-1">Please enter your name!</p>
                 )}
               </div>
               <div className="relative">

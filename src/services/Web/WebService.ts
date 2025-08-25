@@ -3,6 +3,15 @@ import { apiConnector } from '../ApiConnector';
 import { WebEndPoints } from '../Apis';
 
 class WebServices {
+
+  async HomeData() {
+    const response = await apiConnector({
+      method: 'GET',
+      url: WebEndPoints.HOME,
+    });
+    return response;
+  }
+
   async Subscribe(data: FieldValues) {
     const response = await apiConnector({
       method: 'GET',

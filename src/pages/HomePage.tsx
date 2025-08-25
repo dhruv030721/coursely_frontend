@@ -65,7 +65,7 @@ const HomePage = () => {
     'Technical analysis / precious entry and exit',
   ];
 
-  const { discounts } = useOutletContext<LayoutContextType>();
+  const { discounts, userCount } = useOutletContext<LayoutContextType>();
 
   useEffect(() => {}, []);
 
@@ -94,8 +94,8 @@ const HomePage = () => {
         </h1>
         <p className="text-base sm:text-lg md:text-xl lg:text-xl max-w-xs sm:max-w-lg md:max-w-2xl mx-auto mb-8 sm:mb-10 text-white/50 px-4 sm:px-0">
           We teach traders everything about Cash, Futures, and Options Trading in the Indian
-          Markets. We've guided over <span className="bg-green-300 px-2 text-green-950">5,000</span>{' '}
-          traders to success.
+          Markets. We've guided over{' '}
+          <span className="bg-green-300 px-2 text-green-950">{userCount}</span> traders to success.
         </p>
         <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4 px-4 sm:px-0">
           <div className="relative">
@@ -110,7 +110,10 @@ const HomePage = () => {
               size={24}
             />
           </div>
-          <Link to="/courses" className="w-[70vw] sm:w-auto px-6 sm:px-8 py-3 border border-white/30 hover:bg-white/10 text-white font-light rounded-3xl transition-colors text-sm sm:text-base">
+          <Link
+            to="/courses"
+            className="w-[70vw] sm:w-auto px-6 sm:px-8 py-3 border border-white/30 hover:bg-white/10 text-white font-light rounded-3xl transition-colors text-sm sm:text-base"
+          >
             View Courses
           </Link>
         </div>
@@ -157,13 +160,14 @@ const HomePage = () => {
           speed={100}
           gradient={false}
         >
-          {discounts.map((item, index) => (
+          {discounts.map((item: String, index: number) => (
             <div key={index}>
               {index != 0 && discounts.length > 1 && (
                 <span className="text-yellow-500 mr-2 sm:mr-3 text-lg sm:text-xl">•</span>
               )}
               <span key={index} className="text-green-500 font-bold mx-4 sm:mx-6 lg:mx-10">
-                <span className="text-yellow-500">{item.code}</span> {item.text}
+                <span className="text-yellow-500 font-geist">{item.split(' ')[0]}</span>{' '}
+                {item.split(' ').slice(1).join(' ')}
               </span>
             </div>
           ))}
@@ -180,7 +184,8 @@ const HomePage = () => {
               Why Choose Us?
             </h2>
             <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto px-4 sm:px-0">
-              Thousands of traders have elevated their performance with our proven strategies — Join them today.
+              Thousands of traders have elevated their performance with our proven strategies —
+              Join them today.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-4 sm:gap-6 sm:px-4 md:px-2">
