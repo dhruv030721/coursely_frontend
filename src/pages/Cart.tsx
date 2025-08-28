@@ -1,12 +1,15 @@
-import { Button, CandleStickLoader, Input, Toast } from '@/components';
+import { brandConfig, Button, CandleStickLoader, Input, Toast } from '@/components';
 import { CartItem } from '@/interfaces/cart';
 import { userServices } from '@/services';
 import { RootState } from '@/store';
+import { updateCartItemCount } from '@/store/slices/auth.slice';
+import { paymentHistoryEnum } from '@/utility/interfaces';
 import { ChevronRight, ShoppingCart, Trash2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-import { useSelector } from 'react-redux';
+import { RazorpayOrderOptions, useRazorpay } from 'react-razorpay';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
@@ -20,6 +23,8 @@ const Cart = () => {
   const navigate = useNavigate();
   const userData = useSelector((state: RootState) => state.auth.user);
   const { register, handleSubmit, reset } = useForm();
+  const dispatch = useDispatch();
+  const { Razorpay, error } = useRazorpay();
 
   // Calculate subtotal, discount, and total whenever cartItems or percentage changes
   useEffect(() => {
@@ -33,17 +38,18 @@ const Cart = () => {
     setTotal(calculatedTotal);
   }, [cartItems, percentage]);
 
-  const removeFromCart = async (id: number) => {
+  const removeFromCart = async (id: string) => {
     if (userData?.email) {
-      await Toast.promise(userServices.RemoveFromCart(userData.email, id.toString()), {
+      await Toast.promise(userServices.RemoveFromCart(userData.email, id), {
         loading: 'Removing from cart',
         success: (response) => {
           // Update cart items - this will trigger the useEffect above to recalculate totals
           setCartItems((prevItems) => prevItems.filter((item) => item._id !== id));
+          dispatch(updateCartItemCount(cartItems.length - 1));
           return `${response.data.message}`;
         },
         error: (error) => {
-          return `${error.response.data.message}`;
+          return `${error.data.message}`;
         },
       });
     }
@@ -72,11 +78,71 @@ const Cart = () => {
     reset({ DiscountCode: '' }); // clears input field too
   };
 
+  const handlePayment = async () => {
+    const amount = total;
+    const response: any = await userServices.GenerateOrderID(amount);
+    const orderId = response.data.data.orderId;
+    const receiptId = response.data.data.receiptId;
+
+    const options: RazorpayOrderOptions = {
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID as string,
+      amount: amount * 100,
+      currency: 'INR',
+      name: 'Yayin Stock',
+      description: 'Welcome to Yayinstocks.',
+      order_id: orderId,
+      handler: async (response) => {
+        if (userData != null) {
+          const { razorpay_payment_id, razorpay_order_id } = response;
+          Toast.promise(
+            userServices.RegisterPayment({
+              email: userData.email,
+              items: cartItems.map((item) => item._id),
+              razorpayPaymentId: razorpay_payment_id,
+              razorpayOrderId: razorpay_order_id,
+              receiptId,
+              amount,
+              status: paymentHistoryEnum.COMPLETED,
+            }),
+            {
+              loading: 'Processing...',
+              success: (response) => {
+                setCartItems([]);
+                dispatch(updateCartItemCount(0));
+                return `${response.data.message}`;
+              },
+              error: (error) => {
+                return `${error.response.data.message}`;
+              },
+            }
+          );
+        }
+      },
+      prefill: {
+        name: userData?.name,
+        email: userData?.email,
+        contact: userData?.contact,
+      },
+      image: brandConfig.main_logo,
+      theme: {
+        color: '#F37254',
+      },
+    };
+
+    const razorpayInstance = new Razorpay(options);
+    try {
+      razorpayInstance.open();
+    } catch (error) {
+      console.error('Error during payment:', error);
+    }
+  };
+
   const fetchCart = async () => {
     if (userData?.email) {
       try {
         const response: any = await userServices.GetCart(userData.email);
         setCartItems(response.data.data.items || []);
+        dispatch(updateCartItemCount(response.data.data.items.length));
       } catch (error) {
         console.error('Error fetching cart:', error);
         setCartItems([]);
@@ -91,6 +157,10 @@ const Cart = () => {
 
   if (loader) {
     return <CandleStickLoader />;
+  }
+
+  if (error) {
+    Toast.error(`Razorpay SDK failed to load, ${error}`);
   }
 
   return (
@@ -216,6 +286,8 @@ const Cart = () => {
                     posticon={<ChevronRight size={18} className="ml-1" />}
                     btnClass="w-full transition rounded-md px-6 border-b border-r bg-green-900 border-zinc-500 gap-x-1 text-white hover:bg-green-800 transition"
                     name="Proceed to Checkout"
+                    type="button"
+                    handler={handlePayment}
                   />
 
                   <div

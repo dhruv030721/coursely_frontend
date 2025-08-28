@@ -1,6 +1,6 @@
 import { MouseEventHandler, ReactNode } from 'react';
 interface ButtonProps {
-  name: string;
+  name: ReactNode | string;
   btnClass: string;
   handler?: MouseEventHandler<HTMLButtonElement>;
   preicon?: ReactNode;

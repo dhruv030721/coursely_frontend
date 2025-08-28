@@ -2,6 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface UserData {
     email: string;
+    name: string;
+    contact: string;
+    cartItemCount: number
 }
 
 interface AuthState {
@@ -19,6 +22,7 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         login(state, action: PayloadAction<UserData>) {
+            console.log(action.payload)
             state.isLogin = true;
             state.user = action.payload;
         },
@@ -31,8 +35,13 @@ const authSlice = createSlice({
                 state.user = { ...state.user, ...action.payload };
             }
         },
+        updateCartItemCount(state, action: PayloadAction<number>) {
+            if (state.user) {
+                state.user.cartItemCount = action.payload;
+            }
+        },
     },
 });
 
-export const { login, logout, updateUser } = authSlice.actions;
+export const { login, logout, updateUser, updateCartItemCount } = authSlice.actions;
 export default authSlice.reducer;

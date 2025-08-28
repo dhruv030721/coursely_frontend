@@ -1,6 +1,7 @@
 import { FieldValues } from "react-hook-form";
 import { apiConnector, apiConnectorWithToken } from "../ApiConnector";
 import { UserEndPoints } from "../Apis";
+import { RegisterPaymentPayload } from "@/utility/interfaces"
 
 interface LoginPayload {
     email: string;
@@ -12,7 +13,7 @@ class UserServices {
         const response = await apiConnectorWithToken({
             method: "GET",
             url: `${UserEndPoints.GET_USER}/${email}`
-        })  
+        })
 
         return response;
     }
@@ -105,6 +106,36 @@ class UserServices {
 
         return response
     }
+
+    async GenerateOrderID(amount: number) {
+        const response = await apiConnectorWithToken({
+            method: 'POST',
+            url: UserEndPoints.GENERATE_ORDER_ID,
+            bodyData: { amount }
+        })
+
+        return response
+    }
+
+    async RegisterPayment({ email, items, razorpayPaymentId, razorpayOrderId, receiptId, amount, status }: RegisterPaymentPayload) {
+        const response = await apiConnectorWithToken({
+            method: 'POST',
+            url: UserEndPoints.REGISTER_PAYMENT,
+            bodyData: { email, items, razorpayPaymentId, razorpayOrderId, receiptId, amount, status }
+        })
+
+        return response
+    }
+
+    async GetMyCourses(email: string) {
+        const response = await apiConnectorWithToken({
+            method: 'GET',
+            url: `${UserEndPoints.GET_MY_COURSES}/${email}`,
+        })
+
+        return response
+    }
+
 }
 
 const userServices = new UserServices()

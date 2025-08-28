@@ -14,6 +14,7 @@ import {
   PageNotFound,
   Signup,
   UserProfile,
+  CoursePlayer
 } from '@/pages';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
@@ -50,6 +51,14 @@ const App = () => {
           element={
             <AuthLayout>
               <MyCourses />
+            </AuthLayout>
+          }
+        />
+        <Route
+          path="mycourses/:courseId"
+          element={
+            <AuthLayout>
+              <CoursePlayer />
             </AuthLayout>
           }
         />

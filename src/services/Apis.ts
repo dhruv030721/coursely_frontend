@@ -16,6 +16,9 @@ export const UserEndPoints = {
   GET_CART: `${BASE_URL}/api/v1/cart`, // GET,
   APPLY_DISCOUNT: `${BASE_URL}/api/v1/apply_discount`,
   GET_USER: `${BASE_URL}/api/v1/get_user`,
+  GENERATE_ORDER_ID: `${BASE_URL}/api/v1/payment/create_order`,
+  REGISTER_PAYMENT: `${BASE_URL}/api/v1/payment`,
+  GET_MY_COURSES: `${BASE_URL}/api/v1/my_courses`,
 };
 
 export const WebEndPoints = {

@@ -12,6 +12,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const isLogin = useSelector((state: RootState) => state.auth.isLogin);
+  const cartItemCount = useSelector((state: RootState) => state.auth.user?.cartItemCount || 0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -130,12 +131,17 @@ const Header = () => {
         <div className="text-white font-geist hidden lg:flex items-center gap-x-5">
           {isLogin ? (
             <>
-              <Link to="/cart">
+              <Link to="/cart" className="relative">
                 <HiMiniShoppingBag
                   color="white"
                   size={20}
                   className="cursor-pointer hover:opacity-80 transition-opacity"
                 />
+                {cartItemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-400  border border-zinc-950 text-zinc-950 text-xs font-semibold rounded-full h-5 w-5 flex items-center justify-center">
+                    {cartItemCount}
+                  </span>
+                )}
               </Link>
               <Link to="/profile">
                 <FiUser size={25} className="hover:scale-110 transition-all" />
