@@ -2,6 +2,7 @@ import { FieldValues } from "react-hook-form";
 import { apiConnector, apiConnectorWithToken } from "../ApiConnector";
 import { UserEndPoints } from "../Apis";
 import { RegisterPaymentPayload } from "@/utility/interfaces"
+import CryptoJS from 'crypto-js';
 
 interface LoginPayload {
     email: string;
@@ -27,10 +28,12 @@ class UserServices {
     }
 
     async Login({ email, password }: LoginPayload): Promise<any> {
+        const cryptoPassword = CryptoJS.AES.encrypt(password, import.meta.env.VITE_CRYPTO_SECRET).toString();
+
         const response: any = await apiConnector({
             method: "POST",
             url: UserEndPoints.LOGIN,
-            bodyData: { email, password }
+            bodyData: { email, password: cryptoPassword }
         })
 
         if (response.status === 200) {
@@ -39,12 +42,25 @@ class UserServices {
         return response;
     }
 
+
+    async Logout(): Promise<any> {
+
+        const response = await apiConnectorWithToken({
+            method: "POST",
+            url: UserEndPoints.LOGOUT
+        })
+        return response;
+    }
+
     async Signup(data: FieldValues) {
         const { name, email, password, age, contact } = data
+
+        const cryptoPassword = CryptoJS.AES.encrypt(password, import.meta.env.VITE_CRYPTO_SECRET).toString();
+
         const response = await apiConnector({
             method: "POST",
             url: UserEndPoints.SIGNUP,
-            bodyData: { name, email, password, age, contact }
+            bodyData: { name, email, password: cryptoPassword, age, contact }
         })
         return response
     }
@@ -61,10 +77,13 @@ class UserServices {
 
     async ChangePassword(data: FieldValues) {
         const { email, otp, password } = data
+
+        const cryptoPassword = CryptoJS.AES.encrypt(password, import.meta.env.VITE_CRYPTO_SECRET).toString();
+
         const response = await apiConnector({
             method: "POST",
             url: UserEndPoints.CHANGE_PASSWORD,
-            bodyData: { email, otp, password }
+            bodyData: { email, otp, password: cryptoPassword }
         })
         return response
     }
@@ -117,11 +136,11 @@ class UserServices {
         return response
     }
 
-    async RegisterPayment({ email, items, razorpayPaymentId, razorpayOrderId, receiptId, amount, status }: RegisterPaymentPayload) {
+    async RegisterPayment({ email, items, razorpayPaymentId, razorpayOrderId, receiptId, amount, discount, status }: RegisterPaymentPayload) {
         const response = await apiConnectorWithToken({
             method: 'POST',
             url: UserEndPoints.REGISTER_PAYMENT,
-            bodyData: { email, items, razorpayPaymentId, razorpayOrderId, receiptId, amount, status }
+            bodyData: { email, items, razorpayPaymentId, razorpayOrderId, receiptId, amount, discount, status }
         })
 
         return response
@@ -131,6 +150,26 @@ class UserServices {
         const response = await apiConnectorWithToken({
             method: 'GET',
             url: `${UserEndPoints.GET_MY_COURSES}/${email}`,
+        })
+
+        return response
+    }
+
+    async UpdateUser(email: string, name: string, age: number, contact: string) {
+        const response = await apiConnectorWithToken({
+            method: "PUT",
+            url: `${UserEndPoints.UPDATE_USER}`,
+            bodyData: { email, name, age, contact }
+        })
+
+        return response
+    }
+
+    async CreateReview(userId: string, courseId: string, rating: number, message: string) {
+        const response = await apiConnectorWithToken({
+            method: "POST",
+            url: UserEndPoints.CREATE_REVIEW,
+            bodyData: { userId, courseId, rating, message }
         })
 
         return response

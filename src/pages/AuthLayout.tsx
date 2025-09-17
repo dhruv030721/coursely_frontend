@@ -52,7 +52,7 @@ const AuthLayout = ({ children, authentication = true }: AuthLayoutProps) => {
   }
 
   return (
-    <div className='font-geist'>
+    <div className="font-geist">
       <Header />
       {children}
       <Footer />

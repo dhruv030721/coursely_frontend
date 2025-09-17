@@ -5,6 +5,7 @@ import {
   Cart,
   Contactus,
   Course,
+  CoursePlayer,
   Courses,
   ForgotPassword,
   HomePage,
@@ -14,11 +15,17 @@ import {
   PageNotFound,
   Signup,
   UserProfile,
-  CoursePlayer
 } from '@/pages';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { brandConfig } from './components';
+import usePreloadImage from './hooks/usePreload';
+
 
 const App = () => {
+
+  usePreloadImage(brandConfig.logo);
+  usePreloadImage(brandConfig.main_logo);
+
   return (
     <Router>
       <Routes>

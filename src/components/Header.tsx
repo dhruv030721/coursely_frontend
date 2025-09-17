@@ -1,9 +1,12 @@
+import { Toast } from '@/components';
+import { userServices } from '@/services';
 import { RootState } from '@/store';
+import { logout } from '@/store/slices/auth.slice';
 import { useEffect, useState } from 'react';
 import { FiMenu, FiUser, FiX } from 'react-icons/fi';
 import { GiSpellBook } from 'react-icons/gi';
 import { HiMiniShoppingBag } from 'react-icons/hi2';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { brandConfig } from './GlobalStyle';
 
@@ -11,6 +14,7 @@ const Header = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const isLogin = useSelector((state: RootState) => state.auth.isLogin);
   const cartItemCount = useSelector((state: RootState) => state.auth.user?.cartItemCount || 0);
 
@@ -114,7 +118,7 @@ const Header = () => {
                   }}
                 >
                   <li
-                    className={`cursor-pointer ${pathname == menu.link ? 'border-b' : ''} px-2 leading-7 rounded-md hover:text-gray-300 transition-colors text-sm font-geist`}
+                    className={`cursor-pointer ${pathname == menu.link ? 'border-b border-zinc-500 bg-gradient-to-b from-transparent via-black/10 to-white/10' : ''} px-2 leading-7 rounded-md hover:text-gray-300 transition-colors text-sm font-geist`}
                   >
                     {menu.name}
                   </li>
@@ -157,6 +161,25 @@ const Header = () => {
                   <GiSpellBook />
                 </button>
               </Link>
+              <button
+                className="border border-red-500 text-red-200 bg-red-950/80 font-light rounded-3xl px-5 py-2 hover:bg-white/10 transition-colors"
+                onClick={async () => {
+                  await Toast.promise(userServices.Logout(), {
+                    loading: 'Processing',
+                    success: (response) => {
+                      return `${response.data.message}`;
+                    },
+                    error: (error) => {
+                      return `${error.response.data.message}`;
+                    },
+                  });
+                  dispatch(logout());
+                  localStorage.removeItem('authToken');
+                  navigate('/login');
+                }}
+              >
+                Logout
+              </button>
             </>
           ) : (
             <button
@@ -249,6 +272,25 @@ const Header = () => {
                   <FiUser size={20} />
                   Profile
                 </Link>
+                <button
+                  className="border border-red-500 text-red-200 bg-red-950/80 font-light rounded-3xl px-5 py-2 hover:bg-white/10 transition-colors"
+                  onClick={async () => {
+                    await Toast.promise(userServices.Logout(), {
+                      loading: 'Processing',
+                      success: (response) => {
+                        return `${response.data.message}`;
+                      },
+                      error: (error) => {
+                        return `${error.response.data.message}`;
+                      },
+                    });
+                    dispatch(logout());
+                    localStorage.removeItem('authToken');
+                    navigate('/login');
+                  }}
+                >
+                  Logout
+                </button>
               </div>
             ) : (
               <button

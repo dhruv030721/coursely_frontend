@@ -1,6 +1,5 @@
-import warrent_buffet from '@/assets/warren_buffet.jpg';
-import { brandConfig } from '@/components';
-import { LineChart, Shield, TrendingUp, Users } from 'lucide-react';
+import { brandConfig, Lottie } from '@/components';
+import { BarChart3, LineChart, Shield, Star, TrendingUp, Users } from 'lucide-react';
 import { useEffect } from 'react';
 import Marquee from 'react-fast-marquee';
 import { AiOutlineYoutube } from 'react-icons/ai';
@@ -9,6 +8,7 @@ import { LuMousePointerClick } from 'react-icons/lu';
 import { RiInstagramFill } from 'react-icons/ri';
 import { TfiTwitter } from 'react-icons/tfi';
 import { Link, useOutletContext } from 'react-router-dom';
+import stockMarketAnimation from '../assets/lottie/Fast Stock Market App.json';
 import { LayoutContextType } from './Layout';
 
 const HomePage = () => {
@@ -62,12 +62,23 @@ const HomePage = () => {
     'Risk Management and Capital Preservation',
     'Options and future trading strategy',
     'Intraday stock trading strategy',
-    'Technical analysis / precious entry and exit',
+    'Technical analysis / precious entry and exit',
   ];
 
-  const { discounts, userCount } = useOutletContext<LayoutContextType>();
+  const { discounts, userCount, reviews } = useOutletContext<LayoutContextType>();
 
   useEffect(() => {}, []);
+
+  const renderStars = (rating: number) => {
+    return Array.from({ length: 5 }, (_, index) => (
+      <Star
+        key={index}
+        className={`w-4 h-4 ${
+          index < rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-400'
+        }`}
+      />
+    ));
+  };
 
   return (
     <div className="relative min-h-screen bg-black overflow-hidden" id="HomeSection">
@@ -177,15 +188,15 @@ const HomePage = () => {
       {/* ========================================= */}
       {/* Why Choose Us */}
       {/* ========================================= */}
-      <div className="flex flex-col w-screen space-y-20 sm:space-y-32 lg:space-y-40">
+      <div className="flex flex-col w-screen space-y-10 sm:space-y-20 lg:space-y-24">
         <section className="w-full text-white text-center space-y-6 sm:space-y-8 lg:space-y-10 mx-auto px-4 sm:px-6 lg:px-8">
           <div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-5">
               Why Choose Us?
             </h2>
             <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto px-4 sm:px-0">
-              Thousands of traders have elevated their performance with our proven strategies —
-              Join them today.
+              Thousands of traders have elevated their performance with our proven strategies — Join
+              them today.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-4 sm:gap-6 sm:px-4 md:px-2">
@@ -206,9 +217,57 @@ const HomePage = () => {
           </div>
         </section>
         {/* ========================================= */}
+        {/* Stock market Information */}
+        {/* ========================================= */}
+        <div className="w-full flex items-center gap-8 mt-0 pt-10 px-16 rounded-xl">
+          {/* Left side - Animation placeholder */}
+          <div className="flex-shrink-0 w-1/2 h-48  rounded-lg flex items-center justify-center ">
+            {/* Replace this div with your Lottie component */}
+            <div className="text-center ">
+              <Lottie animationData={stockMarketAnimation} width={400} height={400} />
+            </div>
+          </div>
+
+          {/* Right side - Information */}
+          <div className="flex-1 space-y-5">
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-3 flex  items-center gap-2">
+                <TrendingUp className="w-6 h-6 text-blue-500" />
+                Stock Market Insights
+              </h3>
+            </div>
+
+            <div className="space-y-4">
+              <div className=" p-4 rounded-lg shadow-sm border bg-zinc-800/50 border-zinc-700">
+                <h4 className="font-semibold text-white mb-2 flex items-center gap-2">
+                  <BarChart3 className="w-5 h-5 text-green-500" />
+                  What is Stock Market?
+                </h4>
+                <p className="text-white text-sm leading-relaxed">
+                  The stock market is a marketplace where investors buy and sell shares of publicly
+                  traded companies. It provides companies with access to capital and gives investors
+                  opportunities to own part of successful businesses.
+                </p>
+              </div>
+
+              <div className=" p-4 rounded-lg shadow-sm border bg-zinc-800/50 border-zinc-700">
+                <h4 className="font-semibold text-white mb-2 flex items-center gap-2">
+                  <Users className="w-5 h-5 text-blue-500" />
+                  What is Trading?
+                </h4>
+                <p className="text-white text-sm leading-relaxed">
+                  Trading is the buying and selling of stocks, bonds, and other securities to make
+                  profits. Traders analyze market trends, company performance, and economic factors
+                  to make informed decisions about when to buy or sell.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* ========================================= */}
         {/* Social Media */}
         {/* ========================================= */}
-        <section className="text-white text-center space-y-6 sm:space-y-8 lg:space-y-10 container mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="text-white text-center space-y-6 sm:space-y-2 lg:space-y-10 container mx-auto px-4 sm:px-6 lg:px-8">
           <div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-5">
               Social Media
@@ -248,13 +307,13 @@ const HomePage = () => {
           </div>
           <div className="flex flex-col w-full sm:w-4/5 md:w-3/4 lg:w-1/2 xl:w-2/5 md:flex-row justify-center items-center gap-6 sm:gap-8 lg:gap-10">
             <img
-              src={warrent_buffet}
+              src="https://res.cloudinary.com/deov0brww/image/upload/v1757182233/yashdeep_veebox.png"
               alt="Mentor"
-              className="rounded-full w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 object-cover border border-zinc-300 flex-shrink-0"
+              className="rounded-full w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 object-cover object- border border-zinc-300 flex-shrink-0"
             />
             <div className="text-center md:text-left">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-caveat font-semibold">
-                Yashdeep Chorasiya
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-geist font-semibold">
+                Yashdeep Charadiya
               </h1>
               <p className="text-gray-400 text-sm sm:text-base">Expert Trader and Mentor</p>
               <p className="w-[50vw] mt-3 sm:mt-4 text-sm">
@@ -262,6 +321,60 @@ const HomePage = () => {
                 record of success and is passionate about sharing his knowledge with others.
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* ========================================= */}
+        {/* Customer Reviews */}
+        {/* ========================================= */}
+        <section className="text-white text-center space-y-6 sm:space-y-8 lg:space-y-10 container mx-auto ">
+          <div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-5">
+              What Our <span className="text-green-500">Students</span> Say
+            </h2>
+            <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">
+              Don't just take our word for it. See what our successful traders have to say about
+              their journey with us.
+            </p>
+          </div>
+
+          <div className="overflow-hidden py-4  px-0 bg-gradient-to-b from-black via-green-950/35 to-black">
+            <Marquee
+              className="py-4 overflow-hidden"
+              speed={50}
+              direction="right"
+              gradient={true}
+              gradientColor="black"
+              gradientWidth={150}
+            >
+              {reviews?.map((review, index) => (
+                <div
+                  key={index}
+                  className="mx-4 w-80 h-60 p-6 rounded-2xl backdrop-blur-lg bg-zinc-950/40 border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                  style={{
+                    backdropFilter: 'blur(10px)',
+                    WebkitBackdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                  }}
+                >
+                  {/* Star Rating */}
+                  <div className="flex justify-center mb-4">
+                    <div className="flex space-x-1">{renderStars(review.rating)}</div>
+                  </div>
+
+                  {/* Review Message */}
+                  <p className="text-gray-200 text-sm leading-relaxed mb-4 italic">
+                    "{review.message}"
+                  </p>
+
+                  {/* Reviewer Name */}
+                  <div className="border-t border-white/20 pt-4">
+                    <h4 className="text-white font-semibold text-base">{review.courseId.title}</h4>
+                    <p className="text-gray-400 text-sm">{review.userId.name}</p>
+                  </div>
+                </div>
+              ))}
+            </Marquee>
           </div>
         </section>
       </div>

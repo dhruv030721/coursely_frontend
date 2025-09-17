@@ -94,7 +94,7 @@ const Aboutus = () => {
       </div>
 
       {/* Founder's Journey */}
-      <div className="mb-16  sm:mb-20 max-w-7xl sm:mx-10">
+      <div className="mb-16 mx-4 sm:mb-20 max-w-7xl sm:mx-10">
         <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-6 lg:p-8 shadow-xl backdrop-blur-md backdrop-filter">
           <h2 className="mb-6 sm:mb-8 text-2xl sm:text-3xl font-bold text-white text-center sm:text-left border-b border-zinc-700 border-dashed pb-3">My Journey</h2>
 
@@ -127,7 +127,7 @@ const Aboutus = () => {
       </div>
 
       {/* Mission section */}
-      <div className="max-w-7xl mx-auto pb-16 sm:pb-20 sm:mx-10">
+      <div className="max-w-7xl mx-4 pb-16 sm:pb-20 sm:mx-10">
         <div className="rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-6 lg:p-8 shadow-xl backdrop-blur-md backdrop-filter">
           <h2 className="mb-4 sm:mb-6 text-2xl sm:text-3xl font-bold text-white text-center sm:text-left border-b border-zinc-700 border-dashed pb-3">Our Mission</h2>
           <p className="text-base sm:text-lg text-gray-300 leading-relaxed">

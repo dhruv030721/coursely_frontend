@@ -17,6 +17,7 @@ const Cart = () => {
   const [percentage, setPercentage] = useState<number>(0);
   const [subTotal, setSubTotal] = useState<number>(0);
   const [discount, setDiscount] = useState<number>(0);
+  const [DiscountCode, setDiscountCode] = useState<string>('');
   const [total, setTotal] = useState<number>(0);
   const [DiscountApplied, setDiscountApplied] = useState(false);
   const [loader, setLoader] = useState<Boolean>(true);
@@ -62,6 +63,7 @@ const Cart = () => {
         success: (response) => {
           const discountPercentage = response.data.data.discount;
           setPercentage(discountPercentage);
+          setDiscountCode(code);
           setDiscountApplied(true);
           return `${response.data.message}`;
         },
@@ -102,6 +104,7 @@ const Cart = () => {
               razorpayOrderId: razorpay_order_id,
               receiptId,
               amount,
+              discount: DiscountCode,
               status: paymentHistoryEnum.COMPLETED,
             }),
             {

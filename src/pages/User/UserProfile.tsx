@@ -1,4 +1,4 @@
-import { Button, CandleStickLoader, Input } from '@/components';
+import { Button, CandleStickLoader, Input, Toast } from '@/components';
 import { userServices } from '@/services';
 import { RootState } from '@/store';
 import { useEffect, useState } from 'react';
@@ -38,11 +38,21 @@ const UserProfile = () => {
     }
   };
 
-  const onSubmit = (data: any) => {
-    // Handle form submission here
-    console.log('Form data:', data);
-    // You can call your update user service here
-    // await userServices.UpdateUser(user?.email, data);
+  const onSubmit = async (data: any) => {
+    await Toast.promise(userServices.UpdateUser(data.email, data.name, data.age, data.contact), {
+      loading: 'Updating profile...',
+      success: (response) => {
+        const data = response.data.user;
+        setValue('name', data.name || '');
+        setValue('email', data.email || '');
+        setValue('age', data.age || '');
+        setValue('contact', data.contact || '');
+        return `${response.data.message}`;
+      },
+      error: (error) => {
+        return `${error.response.data.message}`;
+      },
+    });
   };
 
   useEffect(() => {
@@ -67,8 +77,8 @@ const UserProfile = () => {
                 <Input
                   type="email"
                   label="Email"
-                  inputClasses='text-gray-400'
-                  innerDivClasses='border-none bg-zinc-900'
+                  inputClasses="text-gray-400"
+                  innerDivClasses="border-none bg-zinc-900"
                   required={true}
                   readOnly={true}
                   placeholder="Enter your email"

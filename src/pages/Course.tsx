@@ -1,8 +1,9 @@
 import { MarkdownRenderer, Toast } from '@/components';
+import { goToSection } from '@/components/Footer';
 import { userServices } from '@/services';
 import { UserData } from '@/store/slices/auth.slice';
-import { ArrowLeft, BookOpen, Clock, Star, Trophy, Users } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowLeft, BookOpen, Clock, Play, Star, Trophy, Users } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -36,10 +37,11 @@ const Course = () => {
     description: state.course.description,
     thumbnail: state.course.thumbnail,
     price: state.course.price,
-    rating: state.course.rating,
-    students: state.course.students,
+    averageRating: state.course.averageRating,
+    users: state.course.users,
     featured: state.course.featured,
     sections: state.course.sections,
+    reviews: state.course.reviews,
   };
 
   const tabs = [
@@ -48,8 +50,12 @@ const Course = () => {
     { id: 'reviews', name: 'Reviews', icon: Star },
   ];
 
+  useEffect(() => {
+    goToSection('course-mainSection', 100);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-black text-gray-100 pt-10">
+    <div className="min-h-screen bg-black text-gray-100 pt-10" id="course-mainSection">
       {/* Header Section */}
       <div className="relative">
         {/* Background Image with Overlay */}
@@ -57,7 +63,7 @@ const Course = () => {
           <img
             src={course.thumbnail}
             alt={course.title}
-            className="w-full h-full object-cover object-top opacity-50"
+            className="w-full h-full object-cover object-top opacity-50 blur-lg"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent sm:from-black" />
 
@@ -67,7 +73,7 @@ const Course = () => {
               <div className="max-w-full lg:max-w-4xl xl:max-w-5xl">
                 {/* Back Button */}
                 <button
-                  onClick={() => console.log('Go back')}
+                  onClick={() => navigate(-1)}
                   className="flex items-center text-gray-300 hover:text-white mb-3 sm:mb-4 transition-colors text-sm sm:text-base"
                 >
                   <ArrowLeft size={16} className="mr-2 sm:mr-2" />
@@ -90,19 +96,19 @@ const Course = () => {
                 <div className="flex flex-wrap items-center gap-3 sm:gap-4 md:gap-6 text-xs sm:text-sm md:text-base mb-4 sm:mb-6">
                   <div className="flex items-center">
                     <Star className="text-yellow-400 fill-current mr-1" size={14} />
-                    <span className="font-medium">{course.rating || 5}</span>
+                    <span className="font-medium">{course.averageRating || 5}</span>
                   </div>
                   <div className="flex items-center">
                     <Users className="text-gray-400 mr-1" size={14} />
-                    <span className="hidden xs:inline">{course.students || 100} students</span>
-                    <span className="xs:hidden">{course.students || 100}</span>
+                    <span className="hidden xs:inline">{course.users || 100} students</span>
+                    <span className="xs:hidden">{course.users || 100}</span>
                   </div>
                 </div>
 
                 {/* Price and Enroll */}
                 <div className="flex flex-col xs:flex-row items-start xs:items-center gap-3 sm:gap-4">
                   <span className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-bold text-green-400">
-                    ${course.price}
+                    ₹{course.price}
                   </span>
                   <Button
                     btnClass="w-52 xs:w-auto bg-green-600 hover:bg-green-700 px-4 xs:px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105 text-sm sm:text-base"
@@ -191,12 +197,12 @@ const Course = () => {
                             {section.lectures.map((lecture: any, index: number) => (
                               <div
                                 key={index}
-                                className="text-md sm:text-sm bg-green-950/40 text-green-200 p-2 rounded-md flex justify-between"
+                                className="text-md sm:text-sm bg-green-950/40 text-green-200 p-2 rounded-md flex justify-between items-center"
                               >
                                 <div className="flex flex-col px-1 gap-y-2">
-                                  <p className="text-white">{lecture.title}</p>
-                                  <p className="text-xs line-clamp-2 truncate">
-                                    {`> `} {lecture.description}
+                                  <p className="text-white flex  items-center gap-x-3">
+                                    <Play className="w-8 h-8 text-gray-400 border rounded-full p-2 bg-green-950 border-green-700" />{' '}
+                                    {lecture.title}
                                   </p>
                                 </div>
                                 <span className="bg-white/80 font-semibold text-black m-2 p-2 rounded-full text-xs">
@@ -217,50 +223,39 @@ const Course = () => {
                   <h2 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">Student Reviews</h2>
                   <div className="space-y-4 sm:space-y-6">
                     {/* Sample reviews */}
-                    {[
-                      {
-                        name: 'John Doe',
-                        rating: 5,
-                        comment: 'Excellent course! Very comprehensive and well-structured.',
-                      },
-                      {
-                        name: 'Jane Smith',
-                        rating: 4,
-                        comment: 'Great content, learned a lot about technical analysis.',
-                      },
-                      {
-                        name: 'Mike Johnson',
-                        rating: 5,
-                        comment: 'The instructor explains complex concepts very clearly.',
-                      },
-                    ].map((review, index) => (
-                      <div
-                        key={index}
-                        className="bg-zinc-900/50 rounded-lg p-4 sm:p-6 border border-zinc-700"
-                      >
-                        <div className="flex flex-col xs:flex-row xs:items-center mb-3 gap-2 xs:gap-0">
-                          <div className="flex">
-                            {[...Array(5)].map((_, i) => (
-                              <Star
-                                key={i}
-                                size={14}
-                                className={
-                                  i < review.rating
-                                    ? 'text-yellow-400 fill-current'
-                                    : 'text-gray-600'
-                                }
-                              />
-                            ))}
+                    {course.reviews.length > 0 ? (
+                      course.reviews.map((review: any, index: number) => (
+                        <div
+                          key={index}
+                          className="bg-zinc-900/50 rounded-lg p-4 sm:p-6 border border-zinc-700"
+                        >
+                          <div className="flex flex-col xs:flex-row xs:items-center mb-3 gap-2 xs:gap-0">
+                            <div className="flex">
+                              {[...Array(5)].map((_, i) => (
+                                <Star
+                                  key={i}
+                                  size={14}
+                                  className={
+                                    i < review.rating
+                                      ? 'text-yellow-400 fill-current'
+                                      : 'text-gray-600'
+                                  }
+                                />
+                              ))}
+                            </div>
+                            <span className="xs:ml-3 font-medium text-white text-sm sm:text-base">
+                              {review.name}
+                            </span>
+                            <p>{review.userId.name}</p>
                           </div>
-                          <span className="xs:ml-3 font-medium text-white text-sm sm:text-base">
-                            {review.name}
-                          </span>
+                          <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                            {review.message}
+                          </p>
                         </div>
-                        <p className="text-gray-300 text-sm sm:text-base leading-relaxed">
-                          {review.comment}
-                        </p>
-                      </div>
-                    ))}
+                      ))
+                    ) : (
+                      <p className="text-gray-400">No reviews yet.</p>
+                    )}
                   </div>
                 </div>
               )}
@@ -278,7 +273,7 @@ const Course = () => {
                     <Clock className="text-gray-400 mr-2 sm:mr-3 mt-0.5 flex-shrink-0" size={16} />
                     <div className="min-w-0">
                       <p className="text-xs sm:text-sm text-gray-400">Students Enrolled</p>
-                      <p className="font-medium text-sm sm:text-base">{course.students || 100}</p>
+                      <p className="font-medium text-sm sm:text-base">{course.users || 100}</p>
                     </div>
                   </div>
                 </div>

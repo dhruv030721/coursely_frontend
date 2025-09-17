@@ -7,6 +7,7 @@ const BASE_URL =
 
 export const UserEndPoints = {
   LOGIN: `${BASE_URL}/api/v1/login`,
+  LOGOUT: `${BASE_URL}/api/v1/logout`,
   SIGNUP: `${BASE_URL}/api/v1/signup`,
   FORGOT_PASSWORD: `${BASE_URL}/api/v1/forgot_password`,
   CHANGE_PASSWORD: `${BASE_URL}/api/v1/change_password`,
@@ -19,6 +20,8 @@ export const UserEndPoints = {
   GENERATE_ORDER_ID: `${BASE_URL}/api/v1/payment/create_order`,
   REGISTER_PAYMENT: `${BASE_URL}/api/v1/payment`,
   GET_MY_COURSES: `${BASE_URL}/api/v1/my_courses`,
+  UPDATE_USER: `${BASE_URL}/api/v1/update_user`,
+  CREATE_REVIEW: `${BASE_URL}/api/v1/create_review`,
 };
 
 export const WebEndPoints = {

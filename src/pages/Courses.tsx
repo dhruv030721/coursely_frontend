@@ -1,4 +1,5 @@
 import { CandleStickLoader, CourseCard } from '@/components';
+import { goToSection } from '@/components/Footer';
 import { Course } from '@/interfaces';
 import { CourseStatus } from '@/interfaces/course';
 import { webServices } from '@/services';
@@ -15,6 +16,7 @@ export default function Courses() {
   const [loader, setLoader] = useState<Boolean>(true);
 
   useEffect(() => {
+    goToSection('CoursesSection', 100);
     if (courses.length === 0) {
       (async () => {
         const response: any = await webServices.GetCourses();

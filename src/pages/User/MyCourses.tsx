@@ -71,7 +71,6 @@ const MyCourses = () => {
       return (
         total +
         section.lectures.reduce((sectionTotal, lecture) => {
-          console.log(lecture.video_playback_time);
           return sectionTotal + parseTimeToSeconds(lecture.video_playback_time);
         }, 0)
       );
@@ -79,7 +78,7 @@ const MyCourses = () => {
 
     return {
       totalLectures,
-      totalDuration: Math.round(totalDurationInSeconds / 60), // Convert to minutes
+      totalDuration: Math.round(totalDurationInSeconds / 60),
       sections: course.sections.length,
     };
   };

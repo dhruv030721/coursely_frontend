@@ -10,6 +10,8 @@ interface Course {
   price: number;
   featured?: boolean;
   status: CourseStatus;
+  users: number,
+  averageRating: number;
 }
 
 export enum CourseStatus {
