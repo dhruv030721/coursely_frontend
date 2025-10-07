@@ -1,19 +1,42 @@
-import { MouseEventHandler, ReactNode } from "react"
+import { MouseEventHandler, ReactNode } from 'react';
 interface ButtonProps {
-  name: string,
-  btnClass: string,
-  handler?: MouseEventHandler<HTMLButtonElement>,
-  preicon?: ReactNode
-  posticon?: ReactNode
-  type?: "submit" | "reset" | "button" | undefined
+  name: ReactNode | string;
+  btnClass: string;
+  handler?: MouseEventHandler<HTMLButtonElement>;
+  preicon?: ReactNode;
+  posticon?: ReactNode;
+  divClass?: string;
+  type?: 'submit' | 'reset' | 'button' | undefined;
+  form?: string;
+  disabled?: boolean;
 }
 
-const Button = ({ name, btnClass, handler, preicon, posticon, type }: ButtonProps) => {
+const Button = ({
+  name,
+  btnClass,
+  handler,
+  preicon,
+  posticon,
+  type,
+  divClass,
+  form,
+  disabled,
+}: ButtonProps) => {
   return (
-    <div>
-      <button type={type} className={` font-light flex justify-center items-center py-2 text-sm  ${btnClass}`} onClick={handler}>{preicon}{name}{posticon}</button>
+    <div className={`${divClass}`}>
+      <button
+        type={type}
+        className={` font-light flex justify-center items-center py-2 text-sm  ${btnClass}`}
+        onClick={handler}
+        form={form}
+        disabled={disabled}
+      >
+        {preicon}
+        {name}
+        {posticon}
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;

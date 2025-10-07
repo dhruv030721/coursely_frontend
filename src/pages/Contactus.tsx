@@ -16,7 +16,7 @@ const Contactus = () => {
             webServices.Contact(data),
             {
                 loading: "Sending Query",
-                success: (response) => {
+                success: (response: any) => {
                     return `${response.data.message}`
                 },
                 error: (error) => {
@@ -94,7 +94,7 @@ const Contactus = () => {
                                         label="Phone Number"
                                         {...register("contact", { required: true, validate: (value) => value.length == 10 })}
                                     />
-                                    {errors.phone && <p className="text-xs text-red-500 absolute -bottom-5">Please enter your phone number!</p>}
+                                    {errors.contact && <p className="text-xs text-red-500 absolute -bottom-5">Please enter your phone number!</p>}
                                 </div>
                                 <div className="relative">
                                     <Input

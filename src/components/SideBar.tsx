@@ -1,130 +1,124 @@
-import { ReactNode, useId } from "react";
-import { BsSpeedometer2 } from "react-icons/bs";
-import { MdVideoLibrary } from "react-icons/md";
-import { TbVideoPlus, TbUsersGroup } from "react-icons/tb";
-import { GiReceiveMoney } from "react-icons/gi";
-import { PiArrowBendDownLeftBold } from "react-icons/pi";
-import { Link, useLocation } from "react-router-dom";
-import { FaMoneyBill1Wave } from "react-icons/fa6";
-import { MdDiscount } from "react-icons/md";
-import yslogo from "@/assets/logo_icon.png";
+import yslogo from '@/assets/logo_icon.png';
+import { ReactNode, useId } from 'react';
+import { BsSpeedometer2 } from 'react-icons/bs';
+import { GiReceiveMoney } from 'react-icons/gi';
+import { MdDiscount, MdVideoLibrary } from 'react-icons/md';
+import { PiArrowBendDownLeftBold } from 'react-icons/pi';
+import { TbUsersGroup, TbVideoPlus } from 'react-icons/tb';
+import { Link, useLocation } from 'react-router-dom';
 
 interface SidebarOptionsType {
-    name: string;
-    icon: ReactNode;
-    route: string; // Add a route property
+  name: string;
+  icon: ReactNode;
+  route: string; // Add a route property
 }
 
 interface SidebarSectionType {
-    section: string;
-    elements: Array<SidebarOptionsType>;
+  section: string;
+  elements: Array<SidebarOptionsType>;
 }
 
 const SideBar = () => {
-    const location = useLocation();
-    const id = useId();
+  const location = useLocation();
+  const id = useId();
 
-    const SidebarMenus: Array<SidebarSectionType> = [
+  const SidebarMenus: Array<SidebarSectionType> = [
+    {
+      section: 'Main Section',
+      elements: [
         {
-            section: "Main Section",
-            elements: [
-                {
-                    name: "Dashboard",
-                    icon: <BsSpeedometer2 />,
-                    route: "dashboard",
-                },
-            ],
+          name: 'Dashboard',
+          icon: <BsSpeedometer2 />,
+          route: 'dashboard',
+        },
+      ],
+    },
+    {
+      section: 'Course Management',
+      elements: [
+        {
+          name: 'Manage Courses',
+          icon: <MdVideoLibrary />,
+          route: 'manage-courses',
         },
         {
-            section: "Course Management",
-            elements: [
-                {
-                    name: "Manage Courses",
-                    icon: <MdVideoLibrary />,
-                    route: "manage-courses",
-                },
-                {
-                    name: "Course Builder",
-                    icon: <TbVideoPlus />,
-                    route: "course-builder",
-                },
-            ],
+          name: 'Course Builder',
+          icon: <TbVideoPlus />,
+          route: 'course-builder',
         },
+      ],
+    },
+    {
+      section: 'Discount Management',
+      elements: [
         {
-            section: "Discount Management",
-            elements: [
-                {
-                    name: "Coupen Discount",
-                    icon: <MdDiscount />,
-                    route: "coupen-discount",
-                },
-            ],
+          name: 'Coupen Discount',
+          icon: <MdDiscount />,
+          route: 'coupen-discount',
         },
+      ],
+    },
+    {
+      section: 'User Management',
+      elements: [
         {
-            section: "User Management",
-            elements: [
-                {
-                    name: "Users",
-                    icon: <TbUsersGroup />,
-                    route: "users",
-                },
-            ],
+          name: 'Users',
+          icon: <TbUsersGroup />,
+          route: 'users',
         },
+      ],
+    },
+    {
+      section: 'Payments',
+      elements: [
         {
-            section: "Payments",
-            elements: [
-                {
-                    name: "Purchase History",
-                    icon: <GiReceiveMoney />,
-                    route: "transactions",
-                },
-                {
-                    name: "Earning",
-                    icon: <FaMoneyBill1Wave />,
-                    route: "earning",
-                },
-            ],
+          name: 'Purchase History',
+          icon: <GiReceiveMoney />,
+          route: 'transactions',
         },
-    ];
+        // {
+        //     name: "Earning",
+        //     icon: <FaMoneyBill1Wave />,
+        //     route: "earning",
+        // },
+      ],
+    },
+  ];
 
-    return (
-        <div className="w-[15%] border-r-[0.5px] border-zinc-700 min-h-full bg-zinc-950 flex flex-col drop-shadow-lg">
-            {/* Company Heading Section */}
-            <div className="flex items-center justify-between mx-3 mt-3">
-                <div className="flex items-center justify-center">
-                    <img src={yslogo} alt="" className="w-14" />
-                    <h1 className="font-caveat text-xl">Yayin Stocks Admin</h1>
-                </div>
-            </div>
-
-            <div>
-                {/* Sidebar Menus */}
-                <div className="font-geist py-5 flex flex-col gap-y-3">
-                    {SidebarMenus.map((menu, index) => (
-                        <>
-                            <h1 className="text-white text-xs mx-4 border-b border-zinc-700" key={index}>
-                                {menu.section.toUpperCase()}
-                            </h1>
-                            {menu.elements.map((option) => (
-                                <Link
-                                    to={option.route}
-                                    key={id}
-                                    className="flex justify-between items-center px-3"
-                                >
-                                    <div className="flex items-center gap-x-3 px-3 py-2">
-                                        {option.icon}
-                                        <h1 className="text-xs">{option.name}</h1>
-                                    </div>
-                                    {/* Show the arrow only if the route is active */}
-                                    {location.pathname.split('/')[2] === option.route && <PiArrowBendDownLeftBold />}
-                                </Link>
-                            ))}
-                        </>
-                    ))}
-                </div>
-            </div>
+  return (
+    <div className="w-[15%] border-r-[0.5px] border-zinc-700 min-h-full bg-zinc-950 flex flex-col drop-shadow-lg">
+      {/* Company Heading Section */}
+      <div className="flex items-center justify-between mx-3 mt-3">
+        <div className="flex items-center justify-center">
+          <img src={yslogo} alt="" className="w-14" />
+          <h1 className="font-caveat text-xl">Yayin Stocks Admin</h1>
         </div>
-    );
+      </div>
+
+      <div>
+        {/* Sidebar Menus */}
+        <div className="font-geist py-5 flex flex-col gap-y-3">
+          {SidebarMenus.map((menu, index) => (
+            <>
+              <h1 className="text-white text-xs mx-4 border-b border-zinc-700" key={index}>
+                {menu.section.toUpperCase()}
+              </h1>
+              {menu.elements.map((option) => (
+                <Link to={option.route} key={id} className="flex justify-between items-center px-3">
+                  <div className="flex items-center gap-x-3 px-3 py-2">
+                    {option.icon}
+                    <h1 className="text-xs">{option.name}</h1>
+                  </div>
+                  {/* Show the arrow only if the route is active */}
+                  {location.pathname.split('/')[2] === option.route && <PiArrowBendDownLeftBold />}
+                </Link>
+              ))}
+            </>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default SideBar;

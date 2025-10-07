@@ -11,15 +11,21 @@ const ForgotPassword = () => {
 
     const [steps, setSteps] = useState(1);
     const { register, handleSubmit, formState: { errors }, getValues } = useForm();
+    const [timer, setTimer] = useState(0);
     const navigate = useNavigate();
 
-    const handleSendOTP = async (email: FieldValues) => {
+    const handleSendOTP = async (email: FieldValues, isResend: boolean = false) => {
         await toast.promise(
             userServices.SendOTP(email),
             {
                 loading: "Sending OTP",
-                success: (response) => {
-                    setSteps(prev => prev > 2 ? 1 : prev + 1)
+                success: (response: any) => {
+                    if (!isResend) {
+                        setSteps(prev => prev > 2 ? 1 : prev + 1)
+                        startTimer()
+                    } else {
+                        startTimer()
+                    }
                     return `${response.data.message}`
                 },
                 error: (error) => {
@@ -35,7 +41,7 @@ const ForgotPassword = () => {
             userServices.ChangePassword(data),
             {
                 loading: "Changing Password",
-                success: (response) => {
+                success: (response: any) => {
                     navigate("/login")
                     return `${response.data.message}`
                 },
@@ -45,6 +51,19 @@ const ForgotPassword = () => {
             },
             toastDarkStyle()
         )
+    }
+
+    const startTimer = () => {
+        setTimer(60)
+        const interval = setInterval(() => {
+            setTimer(prev => {
+                if (prev <= 1) {
+                    clearInterval(interval)
+                    return 0
+                }
+                return prev - 1
+            })
+        }, 1000)
     }
 
     return (
@@ -103,6 +122,11 @@ const ForgotPassword = () => {
                                         validate: (value) => value.length == 6
                                     })}
                                 />
+                                <span className={`text-xs ${timer == 0 ? "text-zinc-400" : "text-zinc-600"} absolute -bottom-5 right-0 flex gap-x-1 cursor-pointer`} onClick={() => {
+                                    if (timer == 0) {
+                                        handleSendOTP(getValues("email"), true)
+                                    }
+                                }}>Resend OTP <p className="text-red-500 w-4">{timer == 0 ? "" : `${timer}s`}</p></span>
                                 {
                                     errors.otp && <p className="text-xs text-red-500 absolute -bottom-5 ">Please enter valid OTP!</p>
                                 }

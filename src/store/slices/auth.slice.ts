@@ -1,9 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface UserData {
-    name: string;
+export interface UserData {
+    _id: string;
     email: string;
+    name: string;
     contact: string;
+    cartItemCount: number
 }
 
 interface AuthState {
@@ -20,21 +22,30 @@ const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
-        login(state, action: PayloadAction<UserData>) {
+        login(state, action: PayloadAction<Partial<UserData>>) {
             state.isLogin = true;
-            state.user = action.payload;
+
+            state.user = {
+                _id: action.payload._id || '',
+                email: action.payload.email || '',
+                name: action.payload.name || '',
+                contact: action.payload.contact || '',
+                cartItemCount: action.payload.cartItemCount || 0,
+                ...action.payload
+            };
+
         },
         logout(state) {
             state.isLogin = false;
             state.user = null;
         },
-        updateUser(state, action: PayloadAction<Partial<UserData>>) {
+        updateCartItemCount(state, action: PayloadAction<number>) {
             if (state.user) {
-                state.user = { ...state.user, ...action.payload };
+                state.user.cartItemCount = action.payload;
             }
         },
     },
 });
 
-export const { login, logout, updateUser } = authSlice.actions;
+export const { login, logout, updateCartItemCount } = authSlice.actions;
 export default authSlice.reducer;
