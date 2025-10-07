@@ -5,6 +5,7 @@ const BASE_URL =
       ? import.meta.env.VITE_BACKEND_URL_QA
       : import.meta.env.VITE_BACKEND_URL_PROD;
 
+
 export const UserEndPoints = {
   LOGIN: `${BASE_URL}/api/v1/login`,
   LOGOUT: `${BASE_URL}/api/v1/logout`,

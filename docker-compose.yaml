@@ -1,0 +1,9 @@
+services:
+ ys-web:
+  image: ys-web
+  container_name: ys-web
+  ports:
+   - "3000:80"
+  env_file:
+    - ./.env
+  restart: always
