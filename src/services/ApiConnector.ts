@@ -46,7 +46,11 @@ export const apiConnector = async ({
     method,
     url,
     data: bodyData || undefined,
-    headers: headers || undefined,
+    headers: {
+      'X-API-KEY': "",
+      'X-Upstream-Base-Url': "http://localhost:4000",
+      ...headers
+    },
     withCredentials: true,
     params: params || undefined,
     responseType: responseType || undefined,
@@ -75,6 +79,8 @@ export const apiConnectorWithToken = async ({
     data: bodyData || undefined,
     headers: {
       Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+      'X-API-KEY': "",
+      'X-Upstream-Base-Url': "http://localhost:4000",
       ...headers,
     },
     withCredentials: true,
